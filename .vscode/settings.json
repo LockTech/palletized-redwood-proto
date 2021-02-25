@@ -6,10 +6,11 @@
     "source.fixAll.eslint": true
   },
   "workbench.colorCustomizations": {
-    "statusBar.background": "#b85833",
-    "statusBarItem.hoverBackground": "#ce7350",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBar.border": "#b85833"
+    "statusBar.background": "#5e94c6",
+    "statusBar.foreground": "#1a1b1c",
+    "statusBar.border": "#5e94c6",
+    "statusBarItem.hoverBackground": "#91c4f9",
+    "statusBarItem.activeBackground": "#acd4fc",
   },
   "[prisma]": {
     "editor.formatOnSave": true
