@@ -1,11 +1,11 @@
-import OrdersLayout from 'src/layouts/OrdersLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import EditOrderCell from 'src/components/EditOrderCell'
 
 const EditOrderPage = ({ id }) => {
   return (
-    <OrdersLayout>
+    <DashLayout>
       <EditOrderCell id={id} />
-    </OrdersLayout>
+    </DashLayout>
   )
 }
 

@@ -1,11 +1,11 @@
-import LocationsLayout from 'src/layouts/LocationsLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import NewLocation from 'src/components/NewLocation'
 
 const NewLocationPage = () => {
   return (
-    <LocationsLayout>
+    <DashLayout>
       <NewLocation />
-    </LocationsLayout>
+    </DashLayout>
   )
 }
 

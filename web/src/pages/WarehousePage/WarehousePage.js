@@ -1,11 +1,11 @@
-import WarehousesLayout from 'src/layouts/WarehousesLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import WarehouseCell from 'src/components/WarehouseCell'
 
 const WarehousePage = ({ id }) => {
   return (
-    <WarehousesLayout>
+    <DashLayout>
       <WarehouseCell id={id} />
-    </WarehousesLayout>
+    </DashLayout>
   )
 }
 

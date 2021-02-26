@@ -1,11 +1,11 @@
-import ProductsLayout from 'src/layouts/ProductsLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import ProductsCell from 'src/components/ProductsCell'
 
 const ProductsPage = () => {
   return (
-    <ProductsLayout>
+    <DashLayout>
       <ProductsCell />
-    </ProductsLayout>
+    </DashLayout>
   )
 }
 

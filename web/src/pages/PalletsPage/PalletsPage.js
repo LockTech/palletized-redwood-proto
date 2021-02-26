@@ -1,11 +1,11 @@
-import PalletsLayout from 'src/layouts/PalletsLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import PalletsCell from 'src/components/PalletsCell'
 
 const PalletsPage = () => {
   return (
-    <PalletsLayout>
+    <DashLayout>
       <PalletsCell />
-    </PalletsLayout>
+    </DashLayout>
   )
 }
 

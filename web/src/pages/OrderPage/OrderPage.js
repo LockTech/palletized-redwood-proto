@@ -1,11 +1,11 @@
-import OrdersLayout from 'src/layouts/OrdersLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import OrderCell from 'src/components/OrderCell'
 
 const OrderPage = ({ id }) => {
   return (
-    <OrdersLayout>
+    <DashLayout>
       <OrderCell id={id} />
-    </OrdersLayout>
+    </DashLayout>
   )
 }
 

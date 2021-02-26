@@ -1,11 +1,11 @@
-import PalletProductsLayout from 'src/layouts/PalletProductsLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import NewPalletProduct from 'src/components/NewPalletProduct'
 
 const NewPalletProductPage = () => {
   return (
-    <PalletProductsLayout>
+    <DashLayout>
       <NewPalletProduct />
-    </PalletProductsLayout>
+    </DashLayout>
   )
 }
 

@@ -1,11 +1,11 @@
-import ProductsLayout from 'src/layouts/ProductsLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import EditProductCell from 'src/components/EditProductCell'
 
 const EditProductPage = ({ id }) => {
   return (
-    <ProductsLayout>
+    <DashLayout>
       <EditProductCell id={id} />
-    </ProductsLayout>
+    </DashLayout>
   )
 }
 

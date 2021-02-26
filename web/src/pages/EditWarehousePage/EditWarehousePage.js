@@ -1,11 +1,11 @@
-import WarehousesLayout from 'src/layouts/WarehousesLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import EditWarehouseCell from 'src/components/EditWarehouseCell'
 
 const EditWarehousePage = ({ id }) => {
   return (
-    <WarehousesLayout>
+    <DashLayout>
       <EditWarehouseCell id={id} />
-    </WarehousesLayout>
+    </DashLayout>
   )
 }
 

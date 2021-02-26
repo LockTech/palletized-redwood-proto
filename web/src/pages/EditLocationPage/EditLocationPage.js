@@ -1,11 +1,11 @@
-import LocationsLayout from 'src/layouts/LocationsLayout'
+import DashLayout from 'src/layouts/DashLayout'
 import EditLocationCell from 'src/components/EditLocationCell'
 
 const EditLocationPage = ({ id }) => {
   return (
-    <LocationsLayout>
+    <DashLayout>
       <EditLocationCell id={id} />
-    </LocationsLayout>
+    </DashLayout>
   )
 }
 

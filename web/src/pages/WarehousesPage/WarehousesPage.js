@@ -1,11 +1,11 @@
-import WarehousesLayout from 'src/layouts/WarehousesLayout'
-import WarehousesCell from 'src/components/WarehousesCell'
+import DashLayout from 'src/layouts/DashLayout'
+import WarehousesCell from 'src/components/WarehousesCell/WarehousesCell'
 
 const WarehousesPage = () => {
   return (
-    <WarehousesLayout>
+    <DashLayout>
       <WarehousesCell />
-    </WarehousesLayout>
+    </DashLayout>
   )
 }
 
