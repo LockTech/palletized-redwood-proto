@@ -24,13 +24,6 @@ const DashLayout = ({ children, fluid }) => {
   // Warehouses
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
-  const locationsRoute = useMemo(() => routes.locations(), [])
-  const locationsMatch = useMatch(locationsRoute).match
-  // Orders
-  const ordersRoute = useMemo(() => routes.orders(), [])
-  const ordersMatch = useMatch(ordersRoute).match
-  const palletsRoute = useMemo(() => routes.pallets(), [])
-  const palletsMatch = useMatch(palletsRoute).match
 
   return (
     <>
@@ -50,7 +43,7 @@ const DashLayout = ({ children, fluid }) => {
             <Dropdown>
               <Dropdown.Toggle
                 as={Nav.Link}
-                className={(warehousesMatch || locationsMatch) && 'active'}
+                className={warehousesMatch && 'active'}
               >
                 Warehouse
               </Dropdown.Toggle>
@@ -60,34 +53,6 @@ const DashLayout = ({ children, fluid }) => {
                   href={warehousesRoute}
                 >
                   Warehouses
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={locationsMatch && 'active'}
-                  href={locationsRoute}
-                >
-                  Locations
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown>
-              <Dropdown.Toggle
-                as={Nav.Link}
-                className={(ordersMatch || palletsMatch) && 'active'}
-              >
-                Order
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  className={ordersMatch && 'active'}
-                  href={ordersRoute}
-                >
-                  Orders
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={palletsMatch && 'active'}
-                  href={palletsRoute}
-                >
-                  Pallets
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
