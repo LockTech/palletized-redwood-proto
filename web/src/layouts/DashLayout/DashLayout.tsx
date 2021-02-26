@@ -20,8 +20,15 @@ import './DashLayout.css'
  * underlying Bootstrap `<Container>` wrapping `children` content.
  */
 const DashLayout = ({ children, fluid }) => {
+  // Limit repetative code + useMatch for Bootstrap-compatible 'active' functionality.
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
+  const locationsRoute = useMemo(() => routes.locations(), [])
+  const locationsMatch = useMatch(locationsRoute).match
+  const ordersRoute = useMemo(() => routes.orders(), [])
+  const ordersMatch = useMatch(ordersRoute).match
+  const palletsRoute = useMemo(() => routes.pallets(), [])
+  const palletsMatch = useMatch(palletsRoute).match
 
   return (
     <>
@@ -41,7 +48,7 @@ const DashLayout = ({ children, fluid }) => {
             <Dropdown>
               <Dropdown.Toggle
                 as={Nav.Link}
-                className={warehousesMatch && 'active'}
+                className={(warehousesMatch || locationsMatch) && 'active'}
               >
                 Warehouses
               </Dropdown.Toggle>
@@ -52,12 +59,36 @@ const DashLayout = ({ children, fluid }) => {
                 >
                   Warehouses
                 </Dropdown.Item>
-                <Dropdown.Item>Locations</Dropdown.Item>
+                <Dropdown.Item
+                  className={locationsMatch && 'active'}
+                  href={locationsRoute}
+                >
+                  Locations
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <NavLink linkTo={routes.locations()}>Locations</NavLink>
-            <NavLink linkTo={routes.orders()}>Orders</NavLink>
-            <NavLink linkTo={routes.pallets()}>Pallets</NavLink>
+            <Dropdown>
+              <Dropdown.Toggle
+                as={Nav.Link}
+                className={(ordersMatch || palletsMatch) && 'active'}
+              >
+                Order
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  className={ordersMatch && 'active'}
+                  href={ordersRoute}
+                >
+                  Orders
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className={palletsMatch && 'active'}
+                  href={palletsRoute}
+                >
+                  Pallets
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
           <Nav>
             <Dropdown as={Nav.Item}>
