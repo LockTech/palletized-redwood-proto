@@ -1,0 +1,20 @@
+.link-light {
+  color: var(--white) !important;
+}
+
+#nav-actions-dropdown::after {
+  display: none;
+}
+
+.nav-actions-button {
+  color: var(--white) !important;
+}
+
+a.switch-warehouse:active {
+  color: var(--white) !important;
+}
+
+a.logout:active {
+  background-color: var(--danger) !important;
+  color: var(--white) !important;
+}
