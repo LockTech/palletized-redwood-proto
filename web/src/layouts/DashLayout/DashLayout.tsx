@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { BsPeopleCircle } from 'react-icons/bs'
 import { Link, routes, useMatch } from '@redwoodjs/router'
 
-import NavLink from 'src/components/common/NavLink'
+import NavLink from 'src/components/NavLink/NavLink'
 
 import './DashLayout.css'
 
@@ -20,11 +20,13 @@ import './DashLayout.css'
  * underlying Bootstrap `<Container>` wrapping `children` content.
  */
 const DashLayout = ({ children, fluid }) => {
-  // Limit repetative code + useMatch for Bootstrap-compatible 'active' functionality.
+  // Limit repetative code + useMatch for Bootstrap-compatible 'active' class.
+  // Warehouses
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
   const locationsRoute = useMemo(() => routes.locations(), [])
   const locationsMatch = useMatch(locationsRoute).match
+  // Orders
   const ordersRoute = useMemo(() => routes.orders(), [])
   const ordersMatch = useMatch(ordersRoute).match
   const palletsRoute = useMemo(() => routes.pallets(), [])
@@ -50,7 +52,7 @@ const DashLayout = ({ children, fluid }) => {
                 as={Nav.Link}
                 className={(warehousesMatch || locationsMatch) && 'active'}
               >
-                Warehouses
+                Warehouse
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item
