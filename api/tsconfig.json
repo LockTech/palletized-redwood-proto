@@ -10,7 +10,7 @@
     "paths": {
       "src/*": ["./src/*"]
     },
-    "typeRoots": ["../.redwood"],
+    "typeRoots": ["../.redwood", "../node_modules/@types"],
     "types": []
   },
   "include": ["src"]
