@@ -6,7 +6,7 @@ import TileCard from 'src/components/TileCard/TileCard'
 export interface DashTileCardProps {
   icon: (size: number) => React.ReactNode
   text: React.ReactNode
-  title: string
+  title: React.ReactNode
   toolTip: (props: unknown) => React.ReactNode
 }
 
@@ -30,7 +30,7 @@ const DashTileCard: React.FC<DashTileCardProps> = ({
       </div>
     }
     icon={icon}
-    text={<p className="display-4 mb-0 text-right">{text}</p>}
+    text={<p className="display-4 mb-0 ml-3 text-right">{text}</p>}
   />
 )
 
