@@ -1,6 +1,6 @@
 import DashLayout from './DashLayout'
 
-export const generated = () => {
+export const Default = () => {
   return <DashLayout>Hello World</DashLayout>
 }
 
