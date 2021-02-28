@@ -10,8 +10,8 @@
     "paths": {
       "src/*": ["./src/*"]
     },
-    "typeRoots": ["../.redwood", "../node_modules/@types", "../node_modules/@prisma/"],
-    "types": []
+    "typeRoots": ["../.redwood", "../node_modules/@types"],
+    "types": ["jest"]
   },
   "include": ["src"]
 }
