@@ -1,3 +1,4 @@
+import { routes } from '@redwoodjs/router'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Tooltip from 'react-bootstrap/Tooltip'
@@ -36,6 +37,10 @@ const DashboardPage = () => {
       <Row>
         <Col sm={12} md={6} className="mb-3 mb-md-0">
           <DashTileCard
+            footer={{
+              text: 'Active Orders',
+              to: routes.warehouses(),
+            }}
             icon={(size) => <BsArchive className="text-primary" size={size} />}
             text={
               <ActiveOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
@@ -46,6 +51,10 @@ const DashboardPage = () => {
         </Col>
         <Col sm={12} md={6} className="mb-3 mb-md-0">
           <DashTileCard
+            footer={{
+              text: 'Upcoming Deliveries',
+              to: routes.warehouses(),
+            }}
             icon={(size) => <BsClock className="text-secondary" size={size} />}
             text={
               <UpcomingOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
