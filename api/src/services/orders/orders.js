@@ -1,4 +1,4 @@
-import { db } from 'src/lib/db'
+import { db, eqQueryFromOpts } from 'src/lib'
 
 export const orders = () => {
   return db.order.findMany()
@@ -8,14 +8,17 @@ export const order = ({ id }) => {
   return db.order.findUnique({ where: { id } })
 }
 
-export const activeOrderCountInWarehouse = ({ warehouseId }) => {
+export const orderCountInWarehouse = ({ warehouseId, order }) => {
+  const query = eqQueryFromOpts(order)
+
   return db.order.count({
     where: {
+      ...query,
       pallets: {
         some: {
           location: {
-            warehouse: {
-              id: warehouseId,
+            warehouseId: {
+              equals: warehouseId,
             },
           },
         },
