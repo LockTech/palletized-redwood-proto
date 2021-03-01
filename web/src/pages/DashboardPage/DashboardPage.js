@@ -9,6 +9,7 @@ import ActiveOrderCountCell from 'src/components/ActiveOrderCountCell'
 import UpcomingOrderCountCell from 'src/components/UpcomingOrderCountCell'
 
 import DashTileCard from './components/DashTileCard/DashTileCard'
+import Container from 'react-bootstrap/esm/Container'
 
 const renderActiveOrderTooltip = (props) => (
   <Tooltip id="header-tooltip" {...props}>
@@ -24,45 +25,51 @@ const renderUpcomingOrderTooltip = (props) => (
 const DashboardPage = () => {
   return (
     <DashLayout>
-      <Row>
-        <Col>
-          <h1>Dashboard</h1>
-          <p className="text-muted">
-            A quick overview of the Jobs, Orders, and Pallets at:{' '}
-            <strong>Charleston</strong>
-          </p>
-        </Col>
-      </Row>
-      <Row>
-        <Col sm={12} md={6} className="mb-3 mb-md-0">
-          <DashTileCard
-            footer={{
-              text: 'Active Orders',
-              to: routes.warehouses(),
-            }}
-            icon={(size) => <BsArchive className="text-primary" size={size} />}
-            text={
-              <ActiveOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
-            }
-            title={'Active Orders'}
-            toolTip={renderActiveOrderTooltip}
-          />
-        </Col>
-        <Col sm={12} md={6} className="mb-3 mb-md-0">
-          <DashTileCard
-            footer={{
-              text: 'Upcoming Deliveries',
-              to: routes.warehouses(),
-            }}
-            icon={(size) => <BsClock className="text-secondary" size={size} />}
-            text={
-              <UpcomingOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
-            }
-            title={'Upcoming Deliveries'}
-            toolTip={renderUpcomingOrderTooltip}
-          />
-        </Col>
-      </Row>
+      <Container className="palletized-container">
+        <Row>
+          <Col>
+            <h1>Dashboard</h1>
+            <p className="text-muted">
+              A quick overview of the Jobs, Orders, and Pallets at:{' '}
+              <strong>Charleston</strong>
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={12} md={6} className="mb-3 mb-md-0">
+            <DashTileCard
+              footer={{
+                text: 'Active Orders',
+                to: routes.warehouses(),
+              }}
+              icon={(size) => (
+                <BsArchive className="text-primary" size={size} />
+              )}
+              text={
+                <ActiveOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
+              }
+              title={'Active Orders'}
+              toolTip={renderActiveOrderTooltip}
+            />
+          </Col>
+          <Col sm={12} md={6} className="mb-3 mb-md-0">
+            <DashTileCard
+              footer={{
+                text: 'Upcoming Deliveries',
+                to: routes.warehouses(),
+              }}
+              icon={(size) => (
+                <BsClock className="text-secondary" size={size} />
+              )}
+              text={
+                <UpcomingOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
+              }
+              title={'Upcoming Deliveries'}
+              toolTip={renderUpcomingOrderTooltip}
+            />
+          </Col>
+        </Row>
+      </Container>
     </DashLayout>
   )
 }
