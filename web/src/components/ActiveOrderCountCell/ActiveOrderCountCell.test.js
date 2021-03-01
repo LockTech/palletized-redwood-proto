@@ -27,11 +27,6 @@ describe('activeOrderCountCell', () => {
     expect(await result.findAllByText('-')).not.toBeUndefined()
   })
 
-  // When you're ready to test the actual output of your component render
-  // you could test that, for example, certain text is present:
-  //
-  //   expect(screen.getByText('Hello, world')).toBeInTheDocument()
-
   it('renders Success successfully', async () => {
     const val = standard().count
     const successComp = <Success count={val} />
