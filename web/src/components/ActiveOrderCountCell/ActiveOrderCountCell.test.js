@@ -17,9 +17,14 @@ describe('activeOrderCountCell', () => {
   })
 
   it('renders Failure successfully', async () => {
+    const failureComp = <Failure error={new Error('Oh no')} />
+
     expect(() => {
-      render(<Failure error={new Error('Oh no')} />)
+      render(failureComp)
     }).not.toThrow()
+
+    const result = render(failureComp)
+    expect(await result.findAllByText('-')).not.toBeUndefined()
   })
 
   // When you're ready to test the actual output of your component render
@@ -29,10 +34,11 @@ describe('activeOrderCountCell', () => {
 
   it('renders Success successfully', async () => {
     const val = standard().count
+    const successComp = <Success count={val} />
 
-    expect(() => <Success count={val} />).not.toThrow()
+    expect(() => successComp).not.toThrow()
 
-    const result = render(<Success count={val} />)
+    const result = render(successComp)
     expect(await result.findAllByText(val)).not.toBeUndefined()
   })
 })
