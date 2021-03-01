@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -10,6 +10,8 @@ import { Link, routes, useMatch } from '@redwoodjs/router'
 import NavLink from 'src/components/NavLink/NavLink'
 
 import './DashLayout.css'
+
+let renders = 0
 
 /**
  * Primary `Layout` for the Palletized application.
@@ -25,9 +27,32 @@ const DashLayout = ({ children, fluid }) => {
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
 
+  const [navbarExpanded, setNavbarExpanded] = useState(false)
+  const onSetNavbarExpanded = useCallback(
+    (expanded: boolean) => {
+      setNavbarExpanded(expanded)
+    },
+    [setNavbarExpanded]
+  )
+
+  const onClickApp = useCallback(() => {
+    if (navbarExpanded) {
+      setNavbarExpanded(false)
+    }
+  }, [navbarExpanded, setNavbarExpanded])
+
+  renders++
+  console.log(renders)
+
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar
+        bg="dark"
+        expand="lg"
+        expanded={navbarExpanded}
+        onToggle={onSetNavbarExpanded}
+        variant="dark"
+      >
         <Navbar.Brand>
           <Link
             className="link-light text-decoration-none"
@@ -93,7 +118,11 @@ const DashLayout = ({ children, fluid }) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Container className={!fluid && 'my-4'} fluid={fluid}>
+      <Container
+        className={!fluid && 'my-4'}
+        fluid={fluid}
+        onClick={onClickApp}
+      >
         {children}
       </Container>
     </>
