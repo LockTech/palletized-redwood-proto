@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import { BsPeopleCircle } from 'react-icons/bs'
 import { Link, routes, useMatch } from '@redwoodjs/router'
 
@@ -41,14 +40,22 @@ const DashLayout = ({ children, fluid }) => {
         <Navbar.Collapse>
           <Nav className="mr-auto">
             <NavLink linkTo={routes.dashboard()}>Dashboard</NavLink>
-            <NavDropdown id="warehouse-dropdown" title="Warehouses">
-              <NavDropdown.Item
+            <Dropdown>
+              <Dropdown.Toggle
+                as={Nav.Link}
                 className={warehousesMatch && 'active'}
-                href={warehousesRoute}
               >
-                Warehouses
-              </NavDropdown.Item>
-            </NavDropdown>
+                Warehouse
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  className={warehousesMatch && 'active'}
+                  href={warehousesRoute}
+                >
+                  Warehouses
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
           <Nav>
             <Dropdown as={Nav.Item}>
