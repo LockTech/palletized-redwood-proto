@@ -8,6 +8,10 @@ export interface TileCardProps {
   footer?: React.ReactNode
   header?: React.ReactNode
   icon: (size: number) => React.ReactNode
+  /**
+   * Instead of Icon->Text, make the Tile Text->Icon
+   */
+  reverse?: boolean
   text: React.ReactNode
 }
 
@@ -19,6 +23,7 @@ const TileCard: React.FC<TileCardProps> = ({
   footer,
   header,
   icon,
+  reverse,
   text,
 }) => {
   return (
@@ -28,12 +33,26 @@ const TileCard: React.FC<TileCardProps> = ({
         className="d-flex flex-row align-items-center"
         {...cardBodyProps}
       >
-        {icon(48)}
-        <span className="flex-grow-1">{text}</span>
+        {!reverse && (
+          <>
+            <span className="flex-grow-1">{text}</span>
+            {icon(48)}
+          </>
+        )}
+        {reverse && (
+          <>
+            {icon(48)}
+            <span className="flex-grow-1">{text}</span>
+          </>
+        )}
       </Card.Body>
       {footer && <Card.Footer {...cardFooterPops}>{footer}</Card.Footer>}
     </Card>
   )
+}
+
+TileCard.defaultProps = {
+  reverse: false,
 }
 
 export default TileCard
