@@ -1,1 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+
+html, body, #redwood-app {
+  height: auto;
+}
+
+.palletized-container {
+  // `padding-` is explicitly used, as opposed to `margin-` to not interfere with layout-size
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
