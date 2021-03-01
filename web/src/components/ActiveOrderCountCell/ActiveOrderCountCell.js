@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 export const QUERY = gql`
   query ActiveOrderCountCardQuery($warehouseId: String!) {
     count: orderCountInWarehouse(warehouseId: $warehouseId)
+    # Pending check for order.status
   }
 `
 
