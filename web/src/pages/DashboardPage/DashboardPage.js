@@ -12,8 +12,7 @@ import DashTileCard from './components/DashTileCard/DashTileCard'
 
 const renderActiveOrderTooltip = (props) => (
   <Tooltip id="header-tooltip" {...props}>
-    The number of active <strong>Orders</strong> which have{' '}
-    <strong>Pallets</strong> located at this warehouse.
+    The number of open Orders which have Pallets located in this warehouse.
   </Tooltip>
 )
 const renderUpcomingOrderTooltip = (props) => (
@@ -29,8 +28,8 @@ const DashboardPage = () => {
         <Col>
           <h1>Dashboard</h1>
           <p className="text-muted">
-            Get an overview of the <strong>Jorbs</strong>,{' '}
-            <strong>Orders</strong>, and <strong>Pallets</strong> of Charleston.
+            A quick overview of the Jobs, Orders, and Pallets at:{' '}
+            <strong>Charleston</strong>
           </p>
         </Col>
       </Row>
