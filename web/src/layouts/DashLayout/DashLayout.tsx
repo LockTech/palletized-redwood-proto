@@ -16,12 +16,9 @@ let renders = 0
 /**
  * Primary `Layout` for the Palletized application.
  *
- * Accepted Props:
- *
- * * `fluid` - can be used to remove margins and apply the `fluid` prop to the
- * underlying Bootstrap `<Container>` wrapping `children` content.
+ * Renders a `<Navbar>` and wraps content in a full-height-navbar-aware `<Container>`.
  */
-const DashLayout = ({ children, fluid }) => {
+const DashLayout: React.FC = ({ children }) => {
   // Limit repetative code + useMatch for Bootstrap-compatible 'active' class.
   // Warehouses
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
@@ -48,6 +45,7 @@ const DashLayout = ({ children, fluid }) => {
     <>
       <Navbar
         bg="dark"
+        className="dash-layout-navbar"
         expand="lg"
         expanded={navbarExpanded}
         onToggle={onSetNavbarExpanded}
@@ -55,7 +53,7 @@ const DashLayout = ({ children, fluid }) => {
       >
         <Navbar.Brand>
           <Link
-            className="link-light text-decoration-none"
+            className="dash-layout-link-light text-decoration-none"
             to={routes.dashboard()}
           >
             Palletized
@@ -63,7 +61,7 @@ const DashLayout = ({ children, fluid }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse>
-          <Nav className="mr-auto">
+          <Nav className="mr-auto layout-nav-links">
             <NavLink linkTo={routes.dashboard()}>Dashboard</NavLink>
             <Dropdown>
               <Dropdown.Toggle
@@ -82,11 +80,14 @@ const DashLayout = ({ children, fluid }) => {
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
-          <Nav>
+          <Nav className="dash-layout-nav-actions">
             <Dropdown as={Nav.Item}>
-              <Dropdown.Toggle id="nav-actions-dropdown" as={Nav.Item}>
+              <Dropdown.Toggle
+                id="dash-layout-nav-actions-dropdown"
+                as={Nav.Item}
+              >
                 <Button
-                  className="nav-actions-button d-flex flex-row align-items-center text-decoration-none"
+                  className="dash-layout-nav-actions-button d-flex flex-row align-items-center text-decoration-none"
                   variant="link"
                 >
                   <span className="d-flex flex-column">
@@ -106,10 +107,10 @@ const DashLayout = ({ children, fluid }) => {
                 <Dropdown.Item>Support Center</Dropdown.Item>
                 {/*  */}
                 <Dropdown.Header>Management</Dropdown.Header>
-                <Dropdown.Item className="text-primary switch-warehouse">
+                <Dropdown.Item className="dash-layout-switch-warehouse text-primary">
                   Switch Warehouse
                 </Dropdown.Item>
-                <Dropdown.Item className="text-danger logout">
+                <Dropdown.Item className="dash-layout-logout text-danger">
                   Logout
                 </Dropdown.Item>
                 {/*  */}
@@ -118,19 +119,11 @@ const DashLayout = ({ children, fluid }) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Container
-        className={!fluid && 'my-4'}
-        fluid={fluid}
-        onClick={onClickApp}
-      >
+      <Container fluid className="dash-layout-container" onClick={onClickApp}>
         {children}
       </Container>
     </>
   )
-}
-
-DashLayout.defaultProps = {
-  fluid: false,
 }
 
 export default DashLayout

@@ -1,20 +1,33 @@
-.link-light {
+:root {
+   /* Relative value; determinate based on the largest item in the Navbar; currently NavActions */
+   /* Sucks, but it works and accomplishes all goals in a decoupled, reusable manner. */
+  --navbar-height: 56px;
+}
+
+.dash-layout-link-light {
   color: var(--white) !important;
 }
 
-#nav-actions-dropdown::after {
+#dash-layout-nav-actions-dropdown::after {
   display: none;
 }
 
-.nav-actions-button {
+.dash-layout-nav-actions-button {
   color: var(--white) !important;
 }
 
-a.switch-warehouse:active {
+a.dash-layout-switch-warehouse:active {
   color: var(--white) !important;
 }
 
-a.logout:active {
+a.dash-layout-logout:active {
   background-color: var(--danger) !important;
   color: var(--white) !important;
+}
+
+.dash-layout-container {
+  min-height: calc(100vh - var(--navbar-height));
+  height: -o-calc(100vh - var(--navbar-height)); /* opera */
+  height: -webkit-calc(100vh - var(--navbar-height)); /* google, safari */
+  height: -moz-calc(100vh - var(--navbar-height)); /* firefox */
 }
