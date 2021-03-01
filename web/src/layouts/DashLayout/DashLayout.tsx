@@ -45,14 +45,14 @@ const DashLayout = ({ children, fluid }) => {
                 as={Nav.Link}
                 className={warehousesMatch && 'active'}
               >
-                Warehouse
+                Warehouses
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item
                   className={warehousesMatch && 'active'}
                   href={warehousesRoute}
                 >
-                  Warehouses
+                  List Warehouses
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
