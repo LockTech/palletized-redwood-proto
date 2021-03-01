@@ -21,7 +21,7 @@ const DashTileCard: React.FC<DashTileCardProps> = ({
       <div className="d-flex flex-direction-row align-items-center">
         <p className="mb-0">{title}</p>
         <OverlayTrigger
-          placement="bottom-start"
+          placement="bottom"
           delay={{ show: 30, hide: 1240 }}
           overlay={toolTip}
         >
