@@ -1,4 +1,5 @@
-import { db, eqQueryFromOpts } from 'src/lib'
+import { db } from 'src/lib/db'
+import { eqQueryFromOpts } from 'src/lib/queryBuilder'
 
 export const orders = () => {
   return db.order.findMany()
