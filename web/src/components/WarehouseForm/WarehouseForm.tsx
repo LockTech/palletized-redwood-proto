@@ -5,7 +5,6 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
-import Warehouse from '../Warehouse/Warehouse'
 
 export type WarehouseFormData = {
   name: string
@@ -15,7 +14,7 @@ export interface WarehouseFormProps {
   resultError?: Error
   resultLoading?: boolean
   onSave: (data: WarehouseFormData) => void
-  warehouse: Warehouse
+  warehouse: IWarehouse
 }
 
 const WarehouseForm: React.FC<WarehouseFormProps> = ({
@@ -71,7 +70,13 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
           isInvalid={errors.name !== undefined}
           name="name"
           placeholder="Warehouse Name"
-          ref={register({ required: true })}
+          ref={register({
+            maxLength: {
+              value: 75,
+              message: 'Warehouse names can be no longer than 75 characters.',
+            },
+            required: 'Name is required when creating a Warehouse.',
+          })}
         />
         <Form.Text
           className={!errors.name ? 'd-block' : 'd-none'}
@@ -81,7 +86,7 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
           A <em>unique</em> name used to identify and search for this Warehouse.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
-          A name is <strong>required</strong> when creating a new Warehouse.
+          {errors && errors.name && errors.name.message}
         </Form.Control.Feedback>
       </Form.Group>
 
