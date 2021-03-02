@@ -11,8 +11,6 @@ import NavLink from 'src/components/NavLink/NavLink'
 
 import './DashLayout.css'
 
-let renders = 0
-
 /**
  * Primary `Layout` for the Palletized application.
  *
@@ -21,6 +19,8 @@ let renders = 0
 const DashLayout: React.FC = ({ children }) => {
   // Limit repetative code + useMatch for Bootstrap-compatible 'active' class.
   // Warehouses
+  const newWarehouseRoute = useMemo(() => routes.newWarehouse(), [])
+  const newWarehouseMatch = useMatch(newWarehouseRoute).match
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
 
@@ -37,9 +37,6 @@ const DashLayout: React.FC = ({ children }) => {
       setNavbarExpanded(false)
     }
   }, [navbarExpanded, setNavbarExpanded])
-
-  renders++
-  console.log(renders)
 
   return (
     <>
@@ -66,11 +63,17 @@ const DashLayout: React.FC = ({ children }) => {
             <Dropdown>
               <Dropdown.Toggle
                 as={Nav.Link}
-                className={warehousesMatch && 'active'}
+                className={(newWarehouseMatch || warehousesMatch) && 'active'}
               >
                 Warehouses
               </Dropdown.Toggle>
               <Dropdown.Menu>
+                <Dropdown.Item
+                  className={newWarehouseMatch && 'active'}
+                  href={newWarehouseRoute}
+                >
+                  New Warehouse
+                </Dropdown.Item>
                 <Dropdown.Item
                   className={warehousesMatch && 'active'}
                   href={warehousesRoute}
