@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
 import NewWarehouseCell from 'src/components/NewWarehouseCell'
+import WarehouseForm from 'src/components/WarehouseForm/WarehouseForm'
 
 const WHNewPage = () => {
   return (
@@ -23,7 +24,15 @@ const WHNewPage = () => {
           <Col>
             <Card>
               <Card.Body>
-                <NewWarehouseCell />
+                <NewWarehouseCell
+                  render={(onSave, loading, error) => (
+                    <WarehouseForm
+                      onSave={onSave}
+                      resultError={error}
+                      resultLoading={loading}
+                    />
+                  )}
+                />
               </Card.Body>
             </Card>
           </Col>
