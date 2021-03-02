@@ -11,8 +11,9 @@
     "paths": {
       "src/*": ["./src/*"]
     },
-    "typeRoots": ["./src/@types", "../.redwood", "../node_modules/@types"],
+    "typeRoots": ["../.redwood", "../node_modules/@types"],
     "types": ["jest"]
   },
+  "files": ["../@types/index.d.ts"],
   "include": ["src"]
 }

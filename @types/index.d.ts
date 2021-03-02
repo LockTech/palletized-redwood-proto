@@ -1,4 +1,4 @@
-declare interface Warehouse {
+declare interface IWarehouse {
   id: string
   name: string
   createdAt: string
