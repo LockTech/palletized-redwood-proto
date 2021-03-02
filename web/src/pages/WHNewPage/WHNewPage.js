@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import NewWarehouse from 'src/components/NewWarehouse'
+import NewWarehouseCell from 'src/components/NewWarehouseCell'
 
 const WHNewPage = () => {
   return (
@@ -23,7 +23,7 @@ const WHNewPage = () => {
           <Col>
             <Card>
               <Card.Body>
-                <NewWarehouse />
+                <NewWarehouseCell />
               </Card.Body>
             </Card>
           </Col>
