@@ -69,16 +69,16 @@ const DashLayout: React.FC = ({ children }) => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item
+                  className={warehousesMatch && 'active'}
+                  href={warehousesRoute}
+                >
+                  Warehouses
+                </Dropdown.Item>
+                <Dropdown.Item
                   className={newWarehouseMatch && 'active'}
                   href={newWarehouseRoute}
                 >
                   New Warehouse
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={warehousesMatch && 'active'}
-                  href={warehousesRoute}
-                >
-                  List Warehouses
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
