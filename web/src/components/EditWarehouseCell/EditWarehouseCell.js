@@ -53,10 +53,10 @@ export const Success = ({ warehouse }) => {
       </header>
       <div className="rw-segment-main">
         <WarehouseForm
-          warehouse={warehouse}
           onSave={onSave}
-          error={error}
-          loading={loading}
+          resultError={error}
+          resultLoading={loading}
+          warehouse={warehouse}
         />
       </div>
     </div>
