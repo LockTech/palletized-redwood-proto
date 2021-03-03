@@ -12,7 +12,7 @@ const LoadingComp: React.FC<LoadingCompProps> = ({
 }) => {
   return (
     <div className="d-flex justify-content-center mt-3" {...containerProps}>
-      <Spinner animation="grow" variant="primary" {...spinnerProps} />
+      <Spinner animation="grow" variant="secondary" {...spinnerProps} />
     </div>
   )
 }

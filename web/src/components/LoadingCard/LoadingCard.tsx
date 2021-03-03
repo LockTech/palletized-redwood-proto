@@ -31,7 +31,7 @@ const LoadingCard: React.FC<LoadingCardProps> = ({
   return (
     <Card {...cardProps}>
       <Card.Body className="d-flex justify-content-center" {...cardBodyProps}>
-        <Spinner animation="grow" variant="primary" {...spinnerProps} />
+        <Spinner animation="grow" variant="secondary" {...spinnerProps} />
       </Card.Body>
     </Card>
   )
