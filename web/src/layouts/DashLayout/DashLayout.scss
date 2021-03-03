@@ -1,7 +1,17 @@
+@import "~bootstrap/scss/bootstrap";
+
 :root {
    /* Relative value; determinate based on the largest item in the Navbar; currently NavActions */
    /* Sucks, but it works and accomplishes all goals in a decoupled, reusable manner. */
   --navbar-height: 56px;
+}
+
+@include media-breakpoint-down(lg) {
+  .dash-layout-navbar .nav-link,
+  .dash-layout-navbar .dropdown-item {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
 }
 
 .dash-layout-link-light {
@@ -12,7 +22,7 @@
   display: none;
 }
 
-.dash-layout-nav-actions-button {
+.dash-layout-nav-actions-toggle {
   color: var(--white) !important;
 }
 

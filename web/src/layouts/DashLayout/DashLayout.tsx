@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
@@ -9,7 +8,7 @@ import { Link, routes, useMatch } from '@redwoodjs/router'
 
 import NavLink from 'src/components/NavLink/NavLink'
 
-import './DashLayout.css'
+import './DashLayout.scss'
 
 /**
  * Primary `Layout` for the Palletized application.
@@ -87,17 +86,13 @@ const DashLayout: React.FC = ({ children }) => {
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle
                 id="dash-layout-nav-actions-dropdown"
-                as={Nav.Item}
+                as={Nav.Link}
+                className="dash-layout-nav-actions-toggle d-flex flex-row align-items-center text-decoration-none"
               >
-                <Button
-                  className="dash-layout-nav-actions-button d-flex flex-row align-items-center text-decoration-none"
-                  variant="link"
-                >
-                  <span className="d-flex flex-column">
-                    <span>Ryan Lockard</span>
-                  </span>
-                  <BsPeopleCircle className="ml-4" size={16} />
-                </Button>
+                <span className="d-flex flex-column">
+                  <span>Ryan Lockard</span>
+                </span>
+                <BsPeopleCircle className="ml-4" size={16} />
               </Dropdown.Toggle>
               <Dropdown.Menu align="right">
                 {/*  */}
