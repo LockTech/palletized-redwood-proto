@@ -1,7 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 
-import { _QUERY } from 'src/components/WarehousesCell'
+import WarehouseForm from 'src/components/WarehouseForm/WarehouseForm'
 
 const CREATE_WAREHOUSE_MUTATION = gql`
   mutation CreateWarehouseMutation($input: CreateWarehouseInput!) {
@@ -11,7 +11,7 @@ const CREATE_WAREHOUSE_MUTATION = gql`
   }
 `
 
-const NewWarehouseCell = ({ render }) => {
+const NewWarehouseCell = () => {
   const { addMessage } = useFlash()
   const [createWarehouse, { loading, error }] = useMutation(
     CREATE_WAREHOUSE_MUTATION,
@@ -31,7 +31,13 @@ const NewWarehouseCell = ({ render }) => {
     }
   }
 
-  return render(onSave, loading, error)
+  return (
+    <WarehouseForm
+      onSave={onSave}
+      resultError={error}
+      resultLoading={loading}
+    />
+  )
 }
 
 export default NewWarehouseCell
