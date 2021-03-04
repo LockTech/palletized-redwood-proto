@@ -45,20 +45,11 @@ export const Success = ({ warehouse }) => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">
-          Edit Warehouse {warehouse.id}
-        </h2>
-      </header>
-      <div className="rw-segment-main">
-        <WarehouseForm
-          onSave={onSave}
-          resultError={error}
-          resultLoading={loading}
-          warehouse={warehouse}
-        />
-      </div>
-    </div>
+    <WarehouseForm
+      onSave={onSave}
+      resultError={error}
+      resultLoading={loading}
+      warehouse={warehouse}
+    />
   )
 }
