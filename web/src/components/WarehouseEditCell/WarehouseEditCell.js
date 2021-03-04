@@ -1,5 +1,8 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
+import Card from 'react-bootstrap/Card'
+
+import LoadingCard from 'src/components/LoadingCard'
 import WarehouseForm from 'src/components/WarehouseForm'
 
 export const QUERY = gql`
@@ -26,7 +29,7 @@ const UPDATE_WAREHOUSE_MUTATION = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <LoadingCard />
 
 export const Success = ({ warehouse }) => {
   const { addMessage } = useFlash()
@@ -45,11 +48,16 @@ export const Success = ({ warehouse }) => {
   }
 
   return (
-    <WarehouseForm
-      onSave={onSave}
-      resultError={error}
-      resultLoading={loading}
-      warehouse={warehouse}
-    />
+    <Card>
+      <Card.Header>Editing Warehouse: {warehouse.name}</Card.Header>
+      <Card.Body>
+        <WarehouseForm
+          onSave={onSave}
+          resultError={error}
+          resultLoading={loading}
+          warehouse={warehouse}
+        />
+      </Card.Body>
+    </Card>
   )
 }
