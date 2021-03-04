@@ -1,10 +1,13 @@
-import { useMutation, useFlash } from '@redwoodjs/web'
+import { useCallback, useState } from 'react'
+import { useFlash, useMutation } from '@redwoodjs/web'
 import { Link, routes } from '@redwoodjs/router'
 import Button from 'react-bootstrap/Button'
-import Table from 'react-bootstrap/Table'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
+import DeleteModal from 'src/components/DeleteModal/DeleteModal'
 import { QUERY } from 'src/components/WarehousesCell'
-import WarehouseCard from 'src/components/WarehouseCard/WarehouseCard'
 
 const DELETE_WAREHOUSE_MUTATION = gql`
   mutation DeleteWarehouseMutation($id: String!) {
@@ -24,11 +27,11 @@ const truncate = (text) => {
   return output
 }
 
-const jsonTruncate = (obj) => {
+const _jsonTruncate = (obj) => {
   return truncate(JSON.stringify(obj, null, 2))
 }
 
-const timeTag = (datetime) => {
+const _timeTag = (datetime) => {
   return (
     <time dateTime={datetime} title={datetime}>
       {new Date(datetime).toUTCString()}
@@ -36,13 +39,14 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
+const _checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
 const WarehousesList = ({ warehouses }) => {
   const { addMessage } = useFlash()
-  const [deleteWarehouse] = useMutation(DELETE_WAREHOUSE_MUTATION, {
+
+  const [deleteWarehouseQuery] = useMutation(DELETE_WAREHOUSE_MUTATION, {
     onCompleted: () => {
       addMessage('Warehouse deleted.', { classes: 'rw-flash-success' })
     },
@@ -53,62 +57,88 @@ const WarehousesList = ({ warehouses }) => {
     awaitRefetchQueries: true,
   })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete warehouse ' + id + '?')) {
-      deleteWarehouse({ variables: { id } })
-    }
-  }
+  const [deleteModalVis, setDeleteModalVis] = useState(false)
+  const [deleteWarehouse, setDeleteWarehouse] = useState(undefined)
+  const onHideDeleteModal = useCallback(() => {
+    setDeleteModalVis(false)
+  }, [setDeleteModalVis])
+
+  const onDeleteClick = useCallback(
+    (warehouse) => {
+      setDeleteWarehouse(warehouse)
+      setDeleteModalVis(true)
+    },
+    [setDeleteModalVis, setDeleteWarehouse]
+  )
+  const onDeleteConfirm = useCallback(() => {
+    deleteWarehouseQuery({ variables: { id: deleteWarehouse.id } })
+    setDeleteModalVis(false)
+  }, [deleteWarehouse, deleteWarehouseQuery, setDeleteModalVis])
 
   return (
-    <Table bordered responsive>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Updated at</th>
-          <th>Created at</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {warehouses.map((warehouse) => (
-          <tr key={warehouse.id}>
-            <td className="text-nowrap">{truncate(warehouse.name)}</td>
-            <td className="text-nowrap">{timeTag(warehouse.updatedAt)}</td>
-            <td className="text-nowrap">{timeTag(warehouse.createdAt)}</td>
-            <td>
-              <div className="d-flex justify-content-end">
+    <>
+      <DeleteModal
+        onConfirm={onDeleteConfirm}
+        onHide={onHideDeleteModal}
+        show={deleteModalVis}
+      >
+        <p>
+          Are you sure you want to delete the{' '}
+          <strong>{deleteWarehouse?.name}</strong> warehouse?
+        </p>
+        <p>
+          This action{' '}
+          <u className="text-danger">
+            <strong>cannot be undone</strong>
+          </u>{' '}
+          and <em>will</em> delete all Locations belonging to this warehouse.
+        </p>
+        <p>
+          If deleted, you will have the opportunity to move each Pallet which is
+          tagged to a will-be-deleted Location.
+        </p>
+      </DeleteModal>
+      <Row>
+        {warehouses.map((warehouse, index) => (
+          <Col key={index} lg={4} md={6}>
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Text className="h3">{warehouse.name}</Card.Text>
+                <Card.Text>
+                  Date Created: {new Date(warehouse.createdAt).toLocaleString()}
+                </Card.Text>
                 <Button
                   as={Link}
-                  className="mr-3"
+                  block
+                  className="mb-2"
                   to={routes.warehouse({ id: warehouse.id })}
-                  size="sm"
                   variant="outline-primary"
                 >
                   Details
                 </Button>
                 <Button
                   as={Link}
-                  className="mr-3"
+                  block
+                  className="mb-2"
                   to={routes.editWarehouse({ id: warehouse.id })}
-                  size="sm"
                   variant="outline-secondary"
                 >
-                  Edit
+                  Locations
                 </Button>
                 <Button
-                  href="#"
-                  onClick={() => onDeleteClick(warehouse.id)}
-                  size="sm"
+                  block
+                  className="mb-2"
+                  onClick={() => onDeleteClick(warehouse)}
                   variant="outline-danger"
                 >
                   Delete
                 </Button>
-              </div>
-            </td>
-          </tr>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </tbody>
-    </Table>
+      </Row>
+    </>
   )
 }
 
