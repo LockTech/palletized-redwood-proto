@@ -27,7 +27,9 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
       show={show}
       {...modalProps}
     >
-      <Modal.Header closeButton>Delete Confirmation</Modal.Header>
+      <Modal.Header className="text-danger" closeButton>
+        <strong>Danger</strong>
+      </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
         <Button onClick={onConfirm} variant="danger">
