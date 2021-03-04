@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import NewWarehouseCell from 'src/components/NewWarehouseCell'
+import NewWarehouseCell from 'src/components/WarehouseNewCell'
 
 const WHNewPage = () => {
   return (
