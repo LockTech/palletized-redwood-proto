@@ -1,7 +1,8 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
+import Card from 'react-bootstrap/Card'
 
-import WarehouseForm from 'src/components/WarehouseForm/WarehouseForm'
+import WarehouseForm from 'src/components/WarehouseForm'
 
 const CREATE_WAREHOUSE_MUTATION = gql`
   mutation CreateWarehouseMutation($input: CreateWarehouseInput!) {
@@ -32,11 +33,15 @@ const NewWarehouseCell = () => {
   }
 
   return (
-    <WarehouseForm
-      onSave={onSave}
-      resultError={error}
-      resultLoading={loading}
-    />
+    <Card>
+      <Card.Body>
+        <WarehouseForm
+          onSave={onSave}
+          resultError={error}
+          resultLoading={loading}
+        />
+      </Card.Body>
+    </Card>
   )
 }
 
