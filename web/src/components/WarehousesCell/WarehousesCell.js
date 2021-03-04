@@ -1,5 +1,5 @@
-import { Link, routes } from '@redwoodjs/router'
-
+import Card from 'react-bootstrap/Card'
+import LoadingCard from 'src/components/LoadingCard/LoadingCard'
 import Warehouses from 'src/components/Warehouses'
 
 export const QUERY = gql`
@@ -13,19 +13,21 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <LoadingCard />
 
 export const Empty = () => {
   return (
-    <div className="rw-text-center">
-      {'No warehouses yet. '}
-      <Link to={routes.newWarehouse()} className="rw-link">
-        {'Create one?'}
-      </Link>
-    </div>
+    <Card>
+      <Card.Body>
+        <Card.Text className="h3">No Warehouses Found</Card.Text>
+        <Card.Text>
+          You do not have any Warehouses configured for your organization.
+        </Card.Text>
+      </Card.Body>
+    </Card>
   )
 }
 
-export const Success = ({ warehouses }) => {
-  return <Warehouses warehouses={warehouses} />
-}
+export const Success = ({ warehouses }) => (
+  <Warehouses warehouses={warehouses} />
+)
