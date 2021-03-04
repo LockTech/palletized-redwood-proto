@@ -43,7 +43,7 @@ const _checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const WarehousesList = ({ warehouses }) => {
+const WarehouseList = ({ warehouses }) => {
   const { addMessage } = useFlash()
 
   const [deleteWarehouseQuery] = useMutation(DELETE_WAREHOUSE_MUTATION, {
@@ -123,6 +123,15 @@ const WarehousesList = ({ warehouses }) => {
                   to={routes.editWarehouse({ id: warehouse.id })}
                   variant="outline-secondary"
                 >
+                  Edit
+                </Button>
+                <Button
+                  as={Link}
+                  block
+                  className="mb-2"
+                  to={routes.editWarehouse({ id: warehouse.id })}
+                  variant="outline-secondary"
+                >
                   Locations
                 </Button>
                 <Button
@@ -142,4 +151,4 @@ const WarehousesList = ({ warehouses }) => {
   )
 }
 
-export default WarehousesList
+export default WarehouseList
