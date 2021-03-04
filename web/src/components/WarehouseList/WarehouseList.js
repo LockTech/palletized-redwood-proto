@@ -104,9 +104,9 @@ const WarehouseList = ({ warehouses }) => {
             <Card className="mb-3">
               <Card.Body>
                 <Card.Text className="h3">{warehouse.name}</Card.Text>
-                <Card.Text>
+                <Card.Subtitle className="mb-3 text-muted">
                   Date Created: {new Date(warehouse.createdAt).toLocaleString()}
-                </Card.Text>
+                </Card.Subtitle>
                 <Button
                   as={Link}
                   block
