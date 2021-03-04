@@ -9,7 +9,7 @@ export const OverrideAnimation = () => {
 }
 
 export const OverrideVariant = () => {
-  return <LoadingComp spinnerProps={{ variant: 'secondary' }} />
+  return <LoadingComp spinnerProps={{ variant: 'danger' }} />
 }
 
 export default { title: 'Components/LoadingComp' }
