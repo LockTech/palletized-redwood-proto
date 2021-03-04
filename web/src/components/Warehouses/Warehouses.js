@@ -1,7 +1,10 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { Link, routes } from '@redwoodjs/router'
+import Button from 'react-bootstrap/Button'
+import Table from 'react-bootstrap/Table'
 
 import { QUERY } from 'src/components/WarehousesCell'
+import WarehouseCard from 'src/components/WarehouseCard/WarehouseCard'
 
 const DELETE_WAREHOUSE_MUTATION = gql`
   mutation DeleteWarehouseMutation($id: String!) {
@@ -57,55 +60,55 @@ const WarehousesList = ({ warehouses }) => {
   }
 
   return (
-    <div className="rw-segment rw-table-wrapper-responsive">
-      <table className="rw-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Updated at</th>
-            <th>Created at</th>
-            <th>&nbsp;</th>
+    <Table bordered responsive>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Updated at</th>
+          <th>Created at</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {warehouses.map((warehouse) => (
+          <tr key={warehouse.id}>
+            <td className="text-nowrap">{truncate(warehouse.name)}</td>
+            <td className="text-nowrap">{timeTag(warehouse.updatedAt)}</td>
+            <td className="text-nowrap">{timeTag(warehouse.createdAt)}</td>
+            <td>
+              <div className="d-flex justify-content-end">
+                <Button
+                  as={Link}
+                  className="mr-3"
+                  to={routes.warehouse({ id: warehouse.id })}
+                  size="sm"
+                  variant="outline-primary"
+                >
+                  Details
+                </Button>
+                <Button
+                  as={Link}
+                  className="mr-3"
+                  to={routes.editWarehouse({ id: warehouse.id })}
+                  size="sm"
+                  variant="outline-secondary"
+                >
+                  Edit
+                </Button>
+                <Button
+                  href="#"
+                  onClick={() => onDeleteClick(warehouse.id)}
+                  size="sm"
+                  variant="outline-danger"
+                >
+                  Delete
+                </Button>
+              </div>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {warehouses.map((warehouse) => (
-            <tr key={warehouse.id}>
-              <td>{truncate(warehouse.id)}</td>
-              <td>{truncate(warehouse.name)}</td>
-              <td>{timeTag(warehouse.updatedAt)}</td>
-              <td>{timeTag(warehouse.createdAt)}</td>
-              <td>
-                <nav className="rw-table-actions">
-                  <Link
-                    to={routes.warehouse({ id: warehouse.id })}
-                    title={'Show warehouse ' + warehouse.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </Link>
-                  <Link
-                    to={routes.editWarehouse({ id: warehouse.id })}
-                    title={'Edit warehouse ' + warehouse.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <a
-                    href="#"
-                    title={'Delete warehouse ' + warehouse.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(warehouse.id)}
-                  >
-                    Delete
-                  </a>
-                </nav>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </Table>
   )
 }
 
