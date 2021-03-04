@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import WarehousesCell from 'src/components/WarehousesCell'
+import WarehouseListCell from 'src/components/WarehouseListCell'
 
 const WHListPage = () => {
   return (
@@ -34,7 +34,7 @@ const WHListPage = () => {
         </Row>
         <Row>
           <Col>
-            <WarehousesCell />
+            <WarehouseListCell />
           </Col>
         </Row>
       </Container>

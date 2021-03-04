@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 import DeleteModal from 'src/components/DeleteModal/DeleteModal'
-import { QUERY } from 'src/components/WarehousesCell'
+import { QUERY } from 'src/components/WarehouseListCell'
 
 const DELETE_WAREHOUSE_MUTATION = gql`
   mutation DeleteWarehouseMutation($id: String!) {
