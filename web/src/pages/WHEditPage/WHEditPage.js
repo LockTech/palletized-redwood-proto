@@ -1,10 +1,30 @@
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import EditWarehouseCell from 'src/components/EditWarehouseCell'
+import WarehouseEditCell from 'src/components/WarehouseEditCell'
 
 const WHEditPage = ({ id }) => {
   return (
     <DashLayout>
-      <EditWarehouseCell id={id} />
+      <Container className="palletized-container">
+        <Row>
+          <Col>
+            <h1>Edit Warehouse</h1>
+            <p className="text-muted">
+              Alter the details of a Warehouse; from its name to the Locations
+              belonging to it.
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <WarehouseEditCell id={id} />
+          </Col>
+        </Row>
+      </Container>
     </DashLayout>
   )
 }
