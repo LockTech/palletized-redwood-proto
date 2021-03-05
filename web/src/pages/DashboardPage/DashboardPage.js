@@ -45,8 +45,8 @@ const DashboardPage = () => {
               icon={(size) => (
                 <BsArchive className="text-primary" size={size} />
               )}
-              titleElement={'Active Orders'}
-              titleTooltip={renderActiveOrderTooltip}
+              header={'Active Orders'}
+              headerTooltip={renderActiveOrderTooltip}
             >
               <ActiveOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
             </DashTileCard>
@@ -60,8 +60,8 @@ const DashboardPage = () => {
               icon={(size) => (
                 <BsClock className="text-secondary" size={size} />
               )}
-              titleElement={'Upcoming Deliveries'}
-              titleTooltip={renderUpcomingOrderTooltip}
+              header={'Upcoming Deliveries'}
+              headerTooltip={renderUpcomingOrderTooltip}
             >
               <UpcomingOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
             </DashTileCard>
