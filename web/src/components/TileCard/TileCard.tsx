@@ -7,7 +7,7 @@ export interface TileCardProps {
   cardHeaderProps?: Partial<CardProps>
   footer?: React.ReactNode
   header?: React.ReactNode
-  icon: (size: number) => React.ReactNode
+  icon?: (size: number) => React.ReactNode
   /**
    * Instead of Icon->Text, make the Tile Text->Icon
    */
@@ -36,12 +36,12 @@ const TileCard: React.FC<TileCardProps> = ({
         {!reverse && (
           <>
             <span className="flex-grow-1">{text}</span>
-            {icon(48)}
+            {icon && icon(48)}
           </>
         )}
         {reverse && (
           <>
-            {icon(48)}
+            {icon && icon(48)}
             <span className="flex-grow-1">{text}</span>
           </>
         )}
