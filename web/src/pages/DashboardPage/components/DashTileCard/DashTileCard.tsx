@@ -8,20 +8,19 @@ export type DashTileFooterLink = {
   text: string
   to: string
 }
-export interface DashTileCardProps {
+export interface DashTileCardProps extends React.HTMLProps<HTMLDivElement> {
   footer: DashTileFooterLink
   icon: (size: number) => React.ReactNode
-  text: React.ReactNode
-  title: React.ReactNode
-  toolTip: (props: unknown) => React.ReactNode
+  titleElement: React.ReactNode
+  titleTooltip: (props: unknown) => React.ReactNode
 }
 
 const DashTileCard: React.FC<DashTileCardProps> = ({
+  children,
   footer,
   icon,
-  text,
-  title,
-  toolTip,
+  titleElement,
+  titleTooltip,
 }) => (
   <TileCard
     footer={
@@ -32,20 +31,21 @@ const DashTileCard: React.FC<DashTileCardProps> = ({
     }
     header={
       <div className="d-flex flex-direction-row align-items-center">
-        <p className="mb-0">{title}</p>
+        <p className="mb-0">{titleElement}</p>
         <OverlayTrigger
           trigger={['click', 'hover']}
           placement="bottom"
           delay={{ show: 30, hide: 500 }}
-          overlay={toolTip}
+          overlay={titleTooltip}
         >
           <BsInfoCircle className="ml-2" />
         </OverlayTrigger>
       </div>
     }
     icon={icon}
-    text={<p className="display-4 mb-0 mr-3">{text}</p>}
-  />
+  >
+    <p className="display-4 mb-0 mr-3">{children}</p>
+  </TileCard>
 )
 
 export default DashTileCard

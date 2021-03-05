@@ -5,10 +5,9 @@ import TileCard from './TileCard'
 
 export const Default = () => {
   return (
-    <TileCard
-      icon={(size) => <BsHammer size={size} />}
-      text={<Card.Text>Hammer Time</Card.Text>}
-    />
+    <TileCard icon={(size) => <BsHammer size={size} />}>
+      <Card.Text>Hammer Time</Card.Text>
+    </TileCard>
   )
 }
 
@@ -25,8 +24,9 @@ export const HeaderAndFooter = () => {
       }
       header={'Bootstrap Hammers in Stock'}
       icon={(size) => <BsHammer size={size} />}
-      text={<Card.Text>15</Card.Text>}
-    />
+    >
+      <Card.Text>15</Card.Text>
+    </TileCard>
   )
 }
 
@@ -43,8 +43,9 @@ export const IconAmbiguity = () => {
       }
       header={'Font-Awesome Address Cards in Stock'}
       icon={(size) => <FaAddressCard size={size} />}
-      text={<Card.Text>0</Card.Text>}
-    />
+    >
+      <Card.Text>15</Card.Text>
+    </TileCard>
   )
 }
 

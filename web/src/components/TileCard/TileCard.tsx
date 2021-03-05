@@ -1,6 +1,6 @@
 import Card, { CardProps } from 'react-bootstrap/Card'
 
-export interface TileCardProps {
+export interface TileCardProps extends React.HTMLProps<HTMLParagraphElement> {
   cardProps?: Partial<CardProps>
   cardBodyProps?: Partial<CardProps>
   cardFooterPops?: Partial<CardProps>
@@ -12,7 +12,6 @@ export interface TileCardProps {
    * Instead of Icon->Text, make the Tile Text->Icon
    */
   reverse?: boolean
-  text: React.ReactNode
 }
 
 const TileCard: React.FC<TileCardProps> = ({
@@ -20,11 +19,11 @@ const TileCard: React.FC<TileCardProps> = ({
   cardBodyProps,
   cardFooterPops,
   cardHeaderProps,
+  children,
   footer,
   header,
   icon,
   reverse,
-  text,
 }) => {
   return (
     <Card {...cardProps}>
@@ -35,14 +34,14 @@ const TileCard: React.FC<TileCardProps> = ({
       >
         {!reverse && (
           <>
-            <span className="flex-grow-1">{text}</span>
+            <span className="flex-grow-1">{children}</span>
             {icon && icon(48)}
           </>
         )}
         {reverse && (
           <>
             {icon && icon(48)}
-            <span className="flex-grow-1">{text}</span>
+            <span className="flex-grow-1">{children}</span>
           </>
         )}
       </Card.Body>

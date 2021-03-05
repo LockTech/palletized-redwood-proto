@@ -45,12 +45,11 @@ const DashboardPage = () => {
               icon={(size) => (
                 <BsArchive className="text-primary" size={size} />
               )}
-              text={
-                <ActiveOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
-              }
-              title={'Active Orders'}
-              toolTip={renderActiveOrderTooltip}
-            />
+              titleElement={'Active Orders'}
+              titleTooltip={renderActiveOrderTooltip}
+            >
+              <ActiveOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
+            </DashTileCard>
           </Col>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
             <DashTileCard
@@ -61,12 +60,11 @@ const DashboardPage = () => {
               icon={(size) => (
                 <BsClock className="text-secondary" size={size} />
               )}
-              text={
-                <UpcomingOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
-              }
-              title={'Upcoming Deliveries'}
-              toolTip={renderUpcomingOrderTooltip}
-            />
+              titleElement={'Upcoming Deliveries'}
+              titleTooltip={renderUpcomingOrderTooltip}
+            >
+              <UpcomingOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
+            </DashTileCard>
           </Col>
         </Row>
       </Container>

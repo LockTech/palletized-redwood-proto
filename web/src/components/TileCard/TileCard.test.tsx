@@ -14,7 +14,7 @@ describe('TileCard', () => {
     const textContent = "I'm the header"
 
     const comp = render(
-      <TileCard icon={(size) => <BsApp size={size} />} text={textContent} />
+      <TileCard icon={(size) => <BsApp size={size} />}>{textContent}</TileCard>
     )
     const text = await comp.findByText(textContent)
 
@@ -30,8 +30,9 @@ describe('TileCard', () => {
         footer={headerText}
         header={footerText}
         icon={(size) => <BsApp size={size} />}
-        text={15}
-      />
+      >
+        15
+      </TileCard>
     )
     const header = await comp.findByText(headerText)
     const footer = await comp.findByText(footerText)
