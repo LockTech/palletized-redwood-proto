@@ -1,8 +1,8 @@
 import Skeleton from 'react-loading-skeleton'
 
 export const QUERY = gql`
-  query UpcomingOrderCountQuery($warehouseId: String!) {
-    count: orderCountInWarehouse(warehouseId: $warehouseId)
+  query UpcomingOrderCountQuery($id: String!) {
+    count: orderCountInWarehouse(warehouseId: $id)
     # Pending check for order.deliveryDate
   }
 `

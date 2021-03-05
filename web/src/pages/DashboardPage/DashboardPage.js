@@ -21,10 +21,10 @@ const DashboardPage = () => {
         </Row>
         <Row>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <ActiveOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
+            <ActiveOrderCountCell id="064b12ba-468d-4c29-b852-b1a5ced654c0" />
           </Col>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <UpcomingOrderCountCell warehouseId="064b12ba-468d-4c29-b852-b1a5ced654c0" />
+            <UpcomingOrderCountCell id="064b12ba-468d-4c29-b852-b1a5ced654c0" />
           </Col>
         </Row>
       </Container>

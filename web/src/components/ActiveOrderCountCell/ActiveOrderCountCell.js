@@ -4,8 +4,8 @@ import Skeleton from 'react-loading-skeleton'
 import TileCard from 'src/components/TileCard'
 
 export const QUERY = gql`
-  query ActiveOrderCountCardQuery($warehouseId: String!) {
-    count: orderCountInWarehouse(warehouseId: $warehouseId)
+  query ActiveOrderCountCardQuery($id: String!) {
+    count: orderCountInWarehouse(warehouseId: $id)
     # Pending check for order.status
   }
 `
