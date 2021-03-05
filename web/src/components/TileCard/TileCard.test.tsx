@@ -6,7 +6,7 @@ import TileCard from './TileCard'
 describe('TileCard', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<TileCard icon={(size) => <BsApp size={size} />} text={15} />)
+      render(<TileCard>15</TileCard>)
     }).not.toThrow()
   })
 
@@ -27,7 +27,10 @@ describe('TileCard', () => {
 
     const comp = render(
       <TileCard
-        footer={headerText}
+        footer={{
+          text: footerText,
+          to: 'null',
+        }}
         header={footerText}
         icon={(size) => <BsApp size={size} />}
       >
