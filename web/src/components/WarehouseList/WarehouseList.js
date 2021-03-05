@@ -106,11 +106,13 @@ const WarehouseList = ({ warehouses }) => {
                 <Card.Text className="h3 mb-3">{warehouse.name}</Card.Text>
                 <Card.Text className="d-flex align-items-center mb-3">
                   <strong>Date Created:</strong>
-                  &nbsp;{new Date(warehouse.createdAt).toLocaleString()}
+                  &nbsp;
+                  <time>{new Date(warehouse.createdAt).toLocaleString()}</time>
                 </Card.Text>
                 <Card.Text className="d-flex align-items-center mb-3">
                   <strong>Last Updated:</strong>
-                  &nbsp;{new Date(warehouse.updatedAt).toLocaleString()}
+                  &nbsp;
+                  <time>{new Date(warehouse.createdAt).toLocaleString()}</time>
                 </Card.Text>
                 <Button
                   as={Link}
