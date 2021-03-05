@@ -103,10 +103,15 @@ const WarehouseList = ({ warehouses }) => {
           <Col key={index} lg={4} md={6}>
             <Card className="mb-3">
               <Card.Body>
-                <Card.Text className="h3">{warehouse.name}</Card.Text>
-                <Card.Subtitle className="mb-3 text-muted">
-                  Date Created: {new Date(warehouse.createdAt).toLocaleString()}
-                </Card.Subtitle>
+                <Card.Text className="h3 mb-3">{warehouse.name}</Card.Text>
+                <Card.Text className="d-flex align-items-center mb-3">
+                  <strong>Date Created:</strong>
+                  &nbsp;{new Date(warehouse.createdAt).toLocaleString()}
+                </Card.Text>
+                <Card.Text className="d-flex align-items-center mb-3">
+                  <strong>Last Updated:</strong>
+                  &nbsp;{new Date(warehouse.updatedAt).toLocaleString()}
+                </Card.Text>
                 <Button
                   as={Link}
                   block
