@@ -13,7 +13,7 @@ export type WarehouseFormData = {
 export interface WarehouseFormProps {
   resultError?: Error
   resultLoading?: boolean
-  onSave: (data: WarehouseFormData) => void
+  onSave: (data: WarehouseFormData, id?: string) => void
   warehouse: IWarehouse
 }
 
@@ -33,7 +33,7 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
     defaultValues: { name: warehouse ? warehouse.name : '' },
   })
 
-  const onSubmit = (data: WarehouseFormData) => onSave(data)
+  const onSubmit = (data: WarehouseFormData) => onSave(data, warehouse?.id)
 
   const submitButtonChild: React.ReactNode = useMemo(() => {
     if (resultLoading) {
