@@ -10,8 +10,6 @@ export const QUERY = gql`
     warehouse: warehouse(id: $id) {
       id
       name
-      updatedAt
-      createdAt
     }
   }
 `
@@ -23,8 +21,6 @@ const UPDATE_WAREHOUSE_MUTATION = gql`
     updateWarehouse(id: $id, input: $input) {
       id
       name
-      updatedAt
-      createdAt
     }
   }
 `
