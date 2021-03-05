@@ -45,11 +45,11 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
             size="sm"
             variant="light"
           />
-          Creating...
+          Submitting...
         </>
       )
     } else {
-      return 'Create Warehouse'
+      return 'Submit'
     }
   }, [resultLoading])
 
