@@ -1,4 +1,3 @@
-import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -14,8 +13,7 @@ const WHEditPage = ({ id }) => {
           <Col>
             <h1>Edit Warehouse</h1>
             <p className="text-muted">
-              Alter the details of a Warehouse; from its name to the Locations
-              belonging to it.
+              Alter the details of a Warehouse managed by your organization.
             </p>
           </Col>
         </Row>
