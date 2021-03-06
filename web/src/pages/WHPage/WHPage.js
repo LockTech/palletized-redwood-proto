@@ -29,10 +29,11 @@ const WHPage = ({ id }) => {
         <Row>
           <Col>
             <Alert className="whpage-alert-container" variant="info">
-              You are currently viewing details for:&nbsp;
+              You are currently viewing details for the&nbsp;
               <strong>
                 <WarehouseNameCell id={id} />
               </strong>
+              &nbsp;Warehouse.
             </Alert>
           </Col>
         </Row>
