@@ -17,7 +17,11 @@ const CommonTileCard = ({ children }) => (
       to: routes.warehouses(),
     }}
     header="Active Orders"
-    headerTooltip="The total number of Orders with Pallets at this warehouse."
+    headerTooltip={
+      <span>
+        The number of <em>open</em> Orders with Pallets at this Warehouse.
+      </span>
+    }
   >
     <p className="mb-0 display-4">{children}</p>
   </TileCard>
