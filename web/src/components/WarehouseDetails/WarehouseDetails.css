@@ -1,0 +1,3 @@
+.warehouse-table tr:first-child th, .warehouse-table tr:first-child td {
+  border-top: none;
+}
