@@ -12,17 +12,17 @@ export const schema = gql`
     warehouse(id: String!): Warehouse
   }
 
+  type Mutation {
+    createWarehouse(input: CreateWarehouseInput!): Warehouse!
+    updateWarehouse(id: String!, input: UpdateWarehouseInput!): Warehouse!
+    deleteWarehouse(id: String!): Warehouse!
+  }
+
   input CreateWarehouseInput {
     name: String!
   }
 
   input UpdateWarehouseInput {
     name: String
-  }
-
-  type Mutation {
-    createWarehouse(input: CreateWarehouseInput!): Warehouse!
-    updateWarehouse(id: String!, input: UpdateWarehouseInput!): Warehouse!
-    deleteWarehouse(id: String!): Warehouse!
   }
 `
