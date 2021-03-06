@@ -126,7 +126,6 @@ const WarehouseList = ({ warehouses }) => {
                 <Button
                   as={Link}
                   block
-                  className="mb-2"
                   to={routes.editWarehouse({ id: warehouse.id })}
                   variant="outline-secondary"
                 >
@@ -135,7 +134,6 @@ const WarehouseList = ({ warehouses }) => {
                 <Button
                   as={Link}
                   block
-                  className="mb-2"
                   to={routes.editWarehouse({ id: warehouse.id })}
                   variant="outline-secondary"
                 >
@@ -143,7 +141,6 @@ const WarehouseList = ({ warehouses }) => {
                 </Button>
                 <Button
                   block
-                  className="mb-2"
                   onClick={() => onDeleteClick(warehouse)}
                   variant="outline-danger"
                 >
