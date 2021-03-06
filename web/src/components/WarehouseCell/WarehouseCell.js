@@ -1,3 +1,4 @@
+import LoadingCard from 'src/components/LoadingCard'
 import Warehouse from 'src/components/Warehouse'
 
 export const QUERY = gql`
@@ -11,7 +12,7 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <LoadingCard header="Details" />
 
 export const Empty = () => <div>Warehouse not found</div>
 
