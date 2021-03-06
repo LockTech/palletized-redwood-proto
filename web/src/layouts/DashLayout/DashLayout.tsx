@@ -23,6 +23,9 @@ const DashLayout: React.FC = ({ children }) => {
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
 
+  const newOrderRoute = useMemo(() => routes.newOrder(), [])
+  const newOrderMatch = useMatch(newOrderRoute).match
+
   const [navbarExpanded, setNavbarExpanded] = useState(false)
   const onSetNavbarExpanded = useCallback(
     (expanded: boolean) => {
@@ -84,7 +87,7 @@ const DashLayout: React.FC = ({ children }) => {
             <Dropdown>
               <Dropdown.Toggle
                 as={Nav.Link}
-                className={(newWarehouseMatch || warehousesMatch) && 'active'}
+                className={newOrderMatch && 'active'}
               >
                 Orders
               </Dropdown.Toggle>
@@ -96,8 +99,8 @@ const DashLayout: React.FC = ({ children }) => {
                   Orders
                 </Dropdown.Item>
                 <Dropdown.Item
-                  className={newWarehouseMatch && 'active'}
-                  href={newWarehouseRoute}
+                  className={newOrderMatch && 'active'}
+                  href={newOrderRoute}
                 >
                   New Order
                 </Dropdown.Item>
