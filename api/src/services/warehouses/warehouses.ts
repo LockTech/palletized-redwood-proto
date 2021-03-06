@@ -41,10 +41,10 @@ export const createWarehouse = async ({ input }: { input: IWarehouse }) => {
     switch (err.code) {
       case PrismaError.UniqueConstraintViolation: {
         throw new UserInputError(
-          'One or more fields are not unique to your organization.',
+          'One or more Warehouse-fields are not unique to your organization.',
           {
             messages: {
-              Name: ['must not collide with any other Warehouses.'],
+              Name: ['must not collide with any other, existing Warehouses.'],
             },
           }
         )
