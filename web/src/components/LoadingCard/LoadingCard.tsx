@@ -13,6 +13,14 @@ export interface LoadingCardProps {
    */
   cardBodyProps?: Partial<React.HTMLAttributes<HTMLDivElement>>
   /**
+   * *Optionally* provide a footer to be used as the content for a `<Card.Footer>`
+   */
+  footer?: React.ReactNode
+  /**
+   * *Optionally* provide a header to be used as the content for a `<Card.Header>`
+   */
+  header?: React.ReactNode
+  /**
    * Override the underlying `<Spinner>`-s props.
    */
   spinnerProps?: Partial<SpinnerProps>
@@ -26,13 +34,17 @@ export interface LoadingCardProps {
 const LoadingCard: React.FC<LoadingCardProps> = ({
   cardProps,
   cardBodyProps,
+  footer,
+  header,
   spinnerProps,
 }) => {
   return (
     <Card {...cardProps}>
+      {header && <Card.Header>{header}</Card.Header>}
       <Card.Body className="d-flex justify-content-center" {...cardBodyProps}>
         <Spinner animation="grow" variant="secondary" {...spinnerProps} />
       </Card.Body>
+      {footer && <Card.Footer>{footer}</Card.Footer>}
     </Card>
   )
 }
