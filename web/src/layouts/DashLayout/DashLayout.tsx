@@ -81,6 +81,28 @@ const DashLayout: React.FC = ({ children }) => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+            <Dropdown>
+              <Dropdown.Toggle
+                as={Nav.Link}
+                className={(newWarehouseMatch || warehousesMatch) && 'active'}
+              >
+                Orders
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  className={warehousesMatch && 'active'}
+                  href={warehousesRoute}
+                >
+                  Orders
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className={newWarehouseMatch && 'active'}
+                  href={newWarehouseRoute}
+                >
+                  New Order
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
           <Nav className="dash-layout-nav-actions">
             <Dropdown as={Nav.Item}>
