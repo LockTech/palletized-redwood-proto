@@ -1,6 +1,6 @@
 import { UserInputError } from '@redwoodjs/api'
 import { db } from 'src/lib/db'
-import { throwIfNameIsReserved, throwIfTooLong } from 'src/lib/error'
+import { throwIfIsReserved, throwIfTooLong } from 'src/lib/error'
 
 const WAREHOUSE_NAME_MAX_LEN = 75
 
@@ -20,8 +20,8 @@ export const warehouse = ({ id }) => {
 
 // ==
 export const createWarehouse = async ({ input }: { input: IWarehouse }) => {
-  throwIfNameIsReserved(input.name, 'Warehouse')
-  throwIfTooLong(input.name, WAREHOUSE_NAME_MAX_LEN, 'Warehouse Name')
+  throwIfIsReserved(input.name, 'Warehouse', 'Name')
+  throwIfTooLong(input.name, WAREHOUSE_NAME_MAX_LEN, 'Warehouse', 'Name')
 
   input.id = input.name.replaceAll(' ', '-').toLowerCase()
 
@@ -41,8 +41,8 @@ export const createWarehouse = async ({ input }: { input: IWarehouse }) => {
 
 // ==
 export const updateWarehouse = async ({ id, input }) => {
-  throwIfNameIsReserved(input.name, 'Warehouse')
-  throwIfTooLong(input.name, WAREHOUSE_NAME_MAX_LEN, 'Warehouse Name')
+  throwIfIsReserved(input.name, 'Warehouse', 'Name')
+  throwIfTooLong(input.name, WAREHOUSE_NAME_MAX_LEN, 'Warehouse', 'Name')
 
   input.id = input.name.replaceAll(' ', '-').toLowerCase()
 
