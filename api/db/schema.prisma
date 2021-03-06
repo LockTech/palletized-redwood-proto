@@ -15,24 +15,24 @@ generator client {
 model Warehouse {
   @@map(name: "warehouses")
 
-  id              String      @id
-  name            String      @unique
-  updatedAt       DateTime    @updatedAt @default(now())
-  createdAt       DateTime    @default(now())
-  locations       Location[]
+  id                  String              @id
+  name                String              @unique
+  updatedAt           DateTime            @updatedAt @default(now())
+  createdAt           DateTime            @default(now())
+  locations           Location[]
 }
 
 //
 model Location {
   @@map(name: "locations")
 
-  id              String      @id
-  name            String
-  updatedAt       DateTime?   @updatedAt @default(now())
-  createdAt       DateTime    @default(now())
-  warehouse       Warehouse   @relation(fields: [warehouseId], references: [id])
-  warehouseId     String
-  pallets         Pallet[]
+  id                  String              @id
+  name                String
+  updatedAt           DateTime?           @updatedAt @default(now())
+  createdAt           DateTime            @default(now())
+  warehouse           Warehouse           @relation(fields: [warehouseId], references: [id])
+  warehouseId         String
+  pallets             Pallet[]
 
   @@unique([name, warehouseId])
 }
@@ -41,35 +41,38 @@ model Location {
 model Product {
   @@map(name: "products")
 
-  id              String      @id
-  name            String      @unique
-  updatedAt       DateTime?   @updatedAt @default(now())
-  createdAt       DateTime    @default(now())
+  id                  String              @id
+  name                String              @unique
+  updatedAt           DateTime?           @updatedAt @default(now())
+  createdAt           DateTime            @default(now())
+  palletProducts      PalletProduct[]
 }
 
 //
 model Order {
   @@map(name: "orders")
 
-  id              String      @id
-  name            String
-  updatedAt       DateTime    @updatedAt @default(now())
-  createdAt       DateTime    @default(now())
-  pallets         Pallet[]
+  id                  String              @id
+  orderNumber         String              @unique
+  jobName             String              @unique
+  updatedAt           DateTime            @updatedAt @default(now())
+  createdAt           DateTime            @default(now())
+  pallets             Pallet[]
 }
 
 //
 model Pallet {
   @@map(name: "pallets")
 
-  id              String      @id
-  name            String
-  updatedAt       DateTime    @updatedAt @default(now())
-  createdAt       DateTime    @default(now())
-  location        Location?   @relation(fields: [locationId], references: [id])
-  locationId      String?
-  order           Order?      @relation(fields: [orderId], references: [id])
-  orderId         String?
+  id                  String              @id
+  name                String
+  updatedAt           DateTime            @updatedAt @default(now())
+  createdAt           DateTime            @default(now())
+  location            Location?           @relation(fields: [locationId], references: [id])
+  locationId          String?
+  order               Order?              @relation(fields: [orderId], references: [id])
+  orderId             String?
+  palletProducts      PalletProduct[]
 }
 
 //
@@ -77,13 +80,13 @@ model Pallet {
 model PalletProduct {
   @@map(name: "pallet_products")
 
-  id              String      @id
-  pallet          Pallet      @relation(fields: [palletId], references: [id])
-  palletId        String
-  product         Product     @relation(fields: [productId], references: [id])
-  productId       String
-  updatedAt       DateTime    @updatedAt @default(now())
-  createdAt       DateTime    @default(now())
+  id                  String              @id
+  pallet              Pallet              @relation(fields: [palletId], references: [id])
+  palletId            String
+  product             Product             @relation(fields: [productId], references: [id])
+  productId           String
+  updatedAt           DateTime            @updatedAt @default(now())
+  createdAt           DateTime            @default(now())
 
   @@unique([palletId, productId])
 }
