@@ -1,6 +1,12 @@
 import { UserInputError } from '@redwoodjs/api'
+import { PrismaError } from 'prisma-error-enum'
 import { db } from 'src/lib/db'
-import { throwIfIsReserved, throwIfTooLong } from 'src/lib/error'
+import {
+  handleCommonErrors,
+  throwIfIsReserved,
+  throwIfTooLong,
+  throwUnexpectedError,
+} from 'src/lib/error'
 
 const WAREHOUSE_NAME_MAX_LEN = 75
 
@@ -30,11 +36,23 @@ export const createWarehouse = async ({ input }: { input: IWarehouse }) => {
       data: input,
     })
   } catch (err) {
-    throw new UserInputError('test', {
-      messages: {
-        Error: [err.code],
-      },
-    })
+    handleCommonErrors(err)
+
+    switch (err.code) {
+      case PrismaError.UniqueConstraintViolation: {
+        throw new UserInputError(
+          'One or more fields are not unique to your organization.',
+          {
+            messages: {
+              Name: ['must not collide with any other Warehouses.'],
+            },
+          }
+        )
+      }
+      default: {
+        throwUnexpectedError(err)
+      }
+    }
   }
 }
 //
