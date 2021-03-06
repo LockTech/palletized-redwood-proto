@@ -1,4 +1,5 @@
 import { UserInputError } from '@redwoodjs/api'
+import { PrismaError } from 'prisma-error-enum'
 import { reservedCharRegEx } from 'src/lib/stringBuilder'
 
 /**
@@ -62,4 +63,73 @@ export const throwIfTooLong = (
   }
 
   return
+}
+
+export type PrismaErrorType = {
+  code: string
+  clientVersion: string
+  meta: {
+    target: string[]
+  }
+}
+
+/**
+ * Provides error-handling for errors which are likely to be encountered on any service.
+ *
+ * Will throw a properly formatted `UserInputError` for consumption by frontends.
+ * @param error A [`PrismaError`](https://www.prisma.io/docs/reference/api-reference/error-reference#prismaclientknownrequesterror)
+ */
+export const handleCommonErrors = (error: PrismaErrorType) => {
+  switch (error.code) {
+    case PrismaError.ConnectionTimedOut: {
+      throw new UserInputError(
+        'An internal error occured while processing your request.',
+        {
+          messages: {
+            'Error:': ['Connection to DB has timed out.'],
+            Consider: [
+              'trying to re-submit your request.',
+              'reporting this error to Support if it continues.',
+            ],
+          },
+        }
+      )
+    }
+    case PrismaError.TimedOutFetchingConnectionFromThePool: {
+      throw new UserInputError(
+        'An internal error occured while processing your request.',
+        {
+          messages: {
+            'Error:': ['Could not retrieve pooled-connection to DB.'],
+            Consider: [
+              'trying to re-submit your request.',
+              'reporting this error to Support if it continues.',
+            ],
+          },
+        }
+      )
+    }
+  }
+}
+
+/**
+ * Handles formatting and throwing a `UserInputError` for un-expected (un-handled) errors.
+ * @param error A [`PrismaError`](https://www.prisma.io/docs/reference/api-reference/error-reference#prismaclientknownrequesterror)
+ */
+export const throwUnexpectedError = (error: PrismaErrorType) => {
+  throw new UserInputError(
+    'An internal error occured while processing your request.',
+    {
+      messages: {
+        'Error:': [
+          'An unexpected error occured.',
+          `Encountered error-code: ${error.code}`,
+        ],
+        Consider: [
+          'trying to re-submit your request.',
+          'reporting this error to Support, with the error-code above.',
+        ],
+      },
+    }
+  )
 }
