@@ -65,8 +65,8 @@ const WarehouseList = ({ warehouses }) => {
         show={deleteModalVis}
       >
         <p>
-          Are you sure you want to delete the{' '}
-          <strong>{deleteWarehouse?.name}</strong> warehouse?
+          Are you sure you want to <strong>delete</strong> the{' '}
+          {deleteWarehouse?.name} warehouse?
         </p>
         <p>
           This action{' '}

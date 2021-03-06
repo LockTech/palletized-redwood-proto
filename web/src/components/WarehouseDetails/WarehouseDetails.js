@@ -54,7 +54,7 @@ const WarehouseDetails = ({ warehouse }) => {
         show={deleteModalVis}
       >
         <p>
-          Are you sure you want to delete the <strong>{warehouse.name}</strong>{' '}
+          Are you sure you want to <strong>delete</strong> the {warehouse.name}{' '}
           warehouse?
         </p>
         <p>
