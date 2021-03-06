@@ -54,7 +54,7 @@ model Order {
 
   id                  String              @id
   orderNumber         String              @unique
-  jobName             String              @unique
+  jobName             String?             @unique
   updatedAt           DateTime            @updatedAt @default(now())
   createdAt           DateTime            @default(now())
   pallets             Pallet[]
