@@ -1,7 +1,8 @@
 export const schema = gql`
   type Order {
     id: String!
-    name: String!
+    orderName: String!
+    jobName: String
     updatedAt: DateTime!
     createdAt: DateTime!
     pallets: [Pallet]!
@@ -16,12 +17,20 @@ export const schema = gql`
     ): Int!
   }
 
+  type Mutation {
+    createOrder(input: CreateOrderInput!): Order!
+    # updateOrder(id: String!, input: UpdateOrderInput!): Order!
+    # deleteOrder(id: String!): Order!
+  }
+
   input CreateOrderInput {
-    name: String!
+    orderName: String!
+    jobName: String
   }
 
   input UpdateOrderInput {
-    name: String
+    orderName: String!
+    jobName: String
   }
 
   input ComplexOrderInput {
