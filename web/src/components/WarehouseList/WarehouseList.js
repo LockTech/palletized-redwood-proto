@@ -17,30 +17,12 @@ const DELETE_WAREHOUSE_MUTATION = gql`
   }
 `
 
-const MAX_STRING_LENGTH = 150
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
-
-const _jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
-
-const _timeTag = (datetime) => {
+const timeTag = (datetime) => {
   return (
     <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toUTCString()}
+      {new Date(datetime).toLocaleString()}
     </time>
   )
-}
-
-const _checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
 }
 
 const WarehouseList = ({ warehouses }) => {
@@ -107,12 +89,12 @@ const WarehouseList = ({ warehouses }) => {
                 <Card.Text className="d-flex align-items-center mb-3">
                   <strong>Date Created:</strong>
                   &nbsp;
-                  <time>{new Date(warehouse.createdAt).toLocaleString()}</time>
+                  {timeTag(warehouse.createdAt)}
                 </Card.Text>
                 <Card.Text className="d-flex align-items-center mb-3">
                   <strong>Last Updated:</strong>
                   &nbsp;
-                  <time>{new Date(warehouse.createdAt).toLocaleString()}</time>
+                  {timeTag(warehouse.updatedAt)}
                 </Card.Text>
                 <Button
                   as={Link}
@@ -134,10 +116,10 @@ const WarehouseList = ({ warehouses }) => {
                 <Button
                   as={Link}
                   block
-                  to={routes.editWarehouse({ id: warehouse.id })}
+                  to={routes.warehouse({ id: warehouse.id })}
                   variant="outline-secondary"
                 >
-                  Locations
+                  Switch to Warehouse
                 </Button>
                 <Button
                   block
