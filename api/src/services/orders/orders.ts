@@ -1,6 +1,12 @@
 import { UserInputError } from '@redwoodjs/api'
+import { PrismaError } from 'prisma-error-enum'
 import { db } from 'src/lib/db'
-import { throwIfIsReserved, throwIfTooLong } from 'src/lib/error'
+import {
+  handleCommonErrors,
+  throwIfIsReserved,
+  throwIfTooLong,
+  throwUnexpectedError,
+} from 'src/lib/error'
 
 const MAX_ORDER_NUMBER_LEN = 75
 const MAX_JOB_NAME_LEN = 75
@@ -33,11 +39,24 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
       data: input,
     })
   } catch (err) {
-    throw new UserInputError('test', {
-      messages: {
-        Error: [err.code],
-      },
-    })
+    handleCommonErrors(err)
+
+    switch (err.code) {
+      case PrismaError.UniqueConstraintViolation: {
+        throw new UserInputError(
+          'One or more fields are not unique to your organization.',
+          {
+            messages: {
+              'Order Number': ['must not collide with any other Orders.'],
+              'Job Name': ['must be unique accross all other Orders'],
+            },
+          }
+        )
+      }
+      default: {
+        throwUnexpectedError(err)
+      }
+    }
   }
 }
 //
