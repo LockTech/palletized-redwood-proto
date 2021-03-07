@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { FormError } from '@redwoodjs/forms'
 import Alert from 'react-bootstrap/Alert'
@@ -33,7 +33,10 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
     defaultValues: { name: warehouse ? warehouse.name : '' },
   })
 
-  const onSubmit = (data: WarehouseFormData) => onSave(data, warehouse?.id)
+  const onSubmit = useCallback(
+    (data: WarehouseFormData) => onSave(data, warehouse?.id),
+    [onSave, warehouse]
+  )
 
   const submitButtonChild: React.ReactNode = useMemo(() => {
     if (resultLoading) {
@@ -63,24 +66,24 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
         />
       </Alert>
 
-      <Form.Group controlId="createWarehouseForm.nameInput">
+      <Form.Group controlId="createWarehouseForm.name">
         <Form.Label>Warehouse Name</Form.Label>
         <Form.Control
-          aria-describedby="nameHelpBlock"
+          aria-describedby="createWarehouseForm.nameHelpBlock"
           isInvalid={errors.name !== undefined}
           name="name"
           placeholder="Warehouse Name"
           ref={register({
             maxLength: {
               value: 75,
-              message: 'Warehouse names can be no longer than 75 characters.',
+              message: 'Warehouse Names can be no longer than 75 characters.',
             },
-            required: 'Name is required when creating a Warehouse.',
+            required: 'A Name is required when creating a Warehouse.',
           })}
         />
         <Form.Text
           className={!errors.name ? 'd-block' : 'd-none'}
-          id="nameHelpBlock"
+          id="createWarehouseForm.nameHelpBlock"
           muted
         >
           A <em>unique</em> name used to identify and search for this Warehouse.
@@ -92,7 +95,7 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
 
       <Button
         block
-        className="mb-3 d-flex align-items-center justify-content-center"
+        className="d-flex align-items-center justify-content-center"
         disabled={resultLoading || !isValid || !isDirty}
         type="submit"
       >
