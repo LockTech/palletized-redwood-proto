@@ -14,7 +14,7 @@ declare interface IOrder {
 }
 
 declare interface IFlashMessage {
-  id: string
+  id: number
   text: string
   title: string
   variant: string

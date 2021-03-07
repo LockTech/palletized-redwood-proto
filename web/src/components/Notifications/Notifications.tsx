@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useFlash } from '@redwoodjs/web'
 import Alert from 'react-bootstrap/Alert'
 
-const MessageToast = ({ message }) => {
+const Message = ({ message }: { message: IFlashMessage }) => {
   const { cycleMessage } = useFlash()
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const Notifications: React.FC = () => {
   return (
     <div className="fixed-top mt-3 mx-3" style={{ right: 0 }}>
       {messages.map((msg) => (
-        <MessageToast key={msg.id} message={msg} />
+        <Message key={msg.id} message={msg} />
       ))}
     </div>
   )
