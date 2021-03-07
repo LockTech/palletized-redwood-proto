@@ -12,7 +12,10 @@ const OrderCreatePage = () => {
         <Row>
           <Col>
             <h1>Create Order</h1>
-            <p className="text-muted"></p>
+            <p className="text-muted">
+              Create a new Order which can be used accross all Warehouses in
+              your organization.
+            </p>
           </Col>
         </Row>
         <Row>
