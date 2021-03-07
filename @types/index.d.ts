@@ -15,7 +15,9 @@ declare interface IOrder {
 
 declare interface IFlashMessage {
   id: number
+  skipTimeout?: boolean
   text: string
+  timeoutTime?: number
   title: string
   variant: string
 }

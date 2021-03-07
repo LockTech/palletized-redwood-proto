@@ -9,8 +9,10 @@ const Message = ({ message }: { message: IFlashMessage }) => {
     cycleMessage(message.id)
 
     // Automatically hide after 5s
-    setTimeout(() => cycleMessage(message.id), 5000)
-  }, [cycleMessage, message.id])
+    if (!message.skipTimeout) {
+      setTimeout(() => cycleMessage(message.id), message.timeoutTime || 5000)
+    }
+  }, [cycleMessage, message.id, message.skipTimeout, message.timeoutTime])
 
   return (
     <Alert
