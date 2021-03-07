@@ -63,7 +63,7 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
         />
       </Alert>
 
-      <Form.Group controlId="newWarehouseForm.nameInput">
+      <Form.Group controlId="createWarehouseForm.nameInput">
         <Form.Label>Warehouse Name</Form.Label>
         <Form.Control
           aria-describedby="nameHelpBlock"

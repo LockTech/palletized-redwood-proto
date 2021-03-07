@@ -4,18 +4,18 @@ import Card from 'react-bootstrap/Card'
 
 import WarehouseForm from 'src/components/WarehouseForm'
 
-const CREATE_WAREHOUSE_MUTATION = gql`
-  mutation CreateWarehouseMutation($input: CreateWarehouseInput!) {
+const WAREHOUSE_CREATE_MUTATION = gql`
+  mutation WarehouseCreateMutation($input: CreateWarehouseInput!) {
     createWarehouse(input: $input) {
       id
     }
   }
 `
 
-const NewWarehouseCell = () => {
+const WarehouseCreateCell = () => {
   const { addMessage } = useFlash()
   const [createWarehouse, { loading, error }] = useMutation(
-    CREATE_WAREHOUSE_MUTATION,
+    WAREHOUSE_CREATE_MUTATION,
     {
       onCompleted: () => {
         navigate(routes.warehouses())
@@ -45,4 +45,4 @@ const NewWarehouseCell = () => {
   )
 }
 
-export default NewWarehouseCell
+export default WarehouseCreateCell

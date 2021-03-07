@@ -25,7 +25,7 @@ const WHListPage = () => {
               as={Link}
               block
               className="mb-3"
-              to={routes.newWarehouse()}
+              to={routes.createWarehouse()}
               variant="primary"
             >
               Create New Warehouse

@@ -3,9 +3,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import NewWarehouseCell from 'src/components/WarehouseNewCell'
+import WarehouseCreateCell from 'src/components/WarehouseCreateCell'
 
-const WHNewPage = () => {
+const WarehouseCreatePage = () => {
   return (
     <DashLayout>
       <Container className="palletized-container">
@@ -20,7 +20,7 @@ const WHNewPage = () => {
         </Row>
         <Row>
           <Col>
-            <NewWarehouseCell />
+            <WarehouseCreateCell />
           </Col>
         </Row>
       </Container>
@@ -28,4 +28,4 @@ const WHNewPage = () => {
   )
 }
 
-export default WHNewPage
+export default WarehouseCreatePage

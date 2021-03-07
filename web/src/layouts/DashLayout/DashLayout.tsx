@@ -18,8 +18,8 @@ import './DashLayout.scss'
 const DashLayout: React.FC = ({ children }) => {
   // Limit repetative code + useMatch for Bootstrap-compatible 'active' class.
   // Warehouses
-  const newWarehouseRoute = useMemo(() => routes.newWarehouse(), [])
-  const newWarehouseMatch = useMatch(newWarehouseRoute).match
+  const createWarehouseRoute = useMemo(() => routes.createWarehouse(), [])
+  const createWarehouseMatch = useMatch(createWarehouseRoute).match
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
 
@@ -67,7 +67,9 @@ const DashLayout: React.FC = ({ children }) => {
             <Dropdown>
               <Dropdown.Toggle
                 as={Nav.Link}
-                className={(newWarehouseMatch || warehousesMatch) && 'active'}
+                className={
+                  (createWarehouseMatch || warehousesMatch) && 'active'
+                }
               >
                 Warehouses
               </Dropdown.Toggle>
@@ -79,10 +81,10 @@ const DashLayout: React.FC = ({ children }) => {
                   Warehouses
                 </Dropdown.Item>
                 <Dropdown.Item
-                  className={newWarehouseMatch && 'active'}
-                  href={newWarehouseRoute}
+                  className={createWarehouseMatch && 'active'}
+                  href={createWarehouseRoute}
                 >
-                  New Warehouse
+                  Create Warehouse
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
