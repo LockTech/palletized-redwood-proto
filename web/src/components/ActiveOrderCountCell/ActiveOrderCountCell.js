@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { routes } from '@redwoodjs/router'
+import { useFlash } from '@redwoodjs/web'
 import Skeleton from 'react-loading-skeleton'
 
 import TileCard from 'src/components/TileCard'
@@ -35,8 +37,18 @@ export const Loading = () => (
 
 export const Empty = () => '0'
 
-export const Failure = ({ _error }) => {
-  // perform error notification
+export const Failure = ({ id }) => {
+  const { addMessage } = useFlash()
+
+  useEffect(() => {
+    addMessage(
+      `An error occured while retrieving the Active-Order count in Warehouse: ${id}`,
+      {
+        variant: 'danger',
+      }
+    )
+  }, [addMessage, id])
+
   return <CommonTileCard>-</CommonTileCard>
 }
 
