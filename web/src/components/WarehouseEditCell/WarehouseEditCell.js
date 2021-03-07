@@ -47,7 +47,6 @@ export const Success = ({ warehouse }) => {
 
   return (
     <Card>
-      <Card.Header>Editing Warehouse: {warehouse.name}</Card.Header>
       <Card.Body>
         <WarehouseForm
           onSave={onSave}
