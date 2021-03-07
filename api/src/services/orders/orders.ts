@@ -62,21 +62,26 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
 //
 
 // ==
-export const orderCountInWarehouse = ({ warehouseId, order }) => {
-  return db.order.count({
-    where: {
-      ...order,
-      pallets: {
-        some: {
-          location: {
-            warehouseId: {
-              equals: warehouseId,
+export const orderCountInWarehouse = async ({ warehouseId, order }) => {
+  try {
+    return await db.order.count({
+      where: {
+        ...order,
+        pallets: {
+          some: {
+            location: {
+              warehouseId: {
+                equals: warehouseId,
+              },
             },
           },
         },
       },
-    },
-  })
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    throwUnexpectedError(err)
+  }
 }
 //
 
