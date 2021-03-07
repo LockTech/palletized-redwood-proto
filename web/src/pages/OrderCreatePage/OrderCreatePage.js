@@ -11,7 +11,7 @@ const OrderCreatePage = () => {
       <Container className="palletized-container">
         <Row>
           <Col>
-            <h1>New Order</h1>
+            <h1>Create Order</h1>
             <p className="text-muted"></p>
           </Col>
         </Row>
