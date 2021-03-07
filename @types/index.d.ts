@@ -12,3 +12,10 @@ declare interface IOrder {
   createdAt: string
   updatedAt: string
 }
+
+declare interface IFlashMessage {
+  id: string
+  text: string
+  title: string
+  variant: string
+}
