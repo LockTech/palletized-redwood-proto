@@ -1,7 +1,7 @@
 export const schema = gql`
   type Order {
     id: String!
-    orderName: String!
+    orderNumber: String!
     jobName: String
     updatedAt: DateTime!
     createdAt: DateTime!
@@ -24,17 +24,18 @@ export const schema = gql`
   }
 
   input CreateOrderInput {
-    orderName: String!
+    orderNumber: String!
     jobName: String
   }
 
   input UpdateOrderInput {
-    orderName: String!
+    orderNumber: String!
     jobName: String
   }
 
   input ComplexOrderInput {
-    name: String
+    orderNumber: String
+    jobName: String
     type: String
   }
 `
