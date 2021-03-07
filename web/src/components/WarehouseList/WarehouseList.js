@@ -87,17 +87,17 @@ const WarehouseList = ({ warehouses }) => {
           <Col key={index} lg={4} md={6}>
             <Card className="mb-3">
               <Card.Body>
-                <Card.Text className="h3 mb-3">{warehouse.name}</Card.Text>
-                <Card.Text className="d-flex align-items-center mb-3">
+                <Card.Title>{warehouse.name}</Card.Title>
+                <Card.Subtitle className="d-flex align-items-center mb-3 text-muted">
                   <strong>Date Created:</strong>
                   &nbsp;
                   {timeTag(warehouse.createdAt)}
-                </Card.Text>
-                <Card.Text className="d-flex align-items-center mb-3">
+                </Card.Subtitle>
+                <Card.Subtitle className="d-flex align-items-center mb-3 text-muted">
                   <strong>Last Updated:</strong>
                   &nbsp;
                   {timeTag(warehouse.updatedAt)}
-                </Card.Text>
+                </Card.Subtitle>
                 <Button
                   as={Link}
                   block
