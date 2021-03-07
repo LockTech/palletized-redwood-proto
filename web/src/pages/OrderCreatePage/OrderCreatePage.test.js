@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing'
 
-import OrderNewPage from './OrderNewPage'
+import OrderNewPage from './OrderCreatePage'
 
 describe('OrderNewPage', () => {
   it('renders successfully', () => {

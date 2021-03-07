@@ -1,11 +1,11 @@
-import { Link, routes } from '@redwoodjs/router'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout'
+import OrderCreateCell from 'src/components/OrderCreateCell'
 
-const OrderNewPage = () => {
+const OrderCreatePage = () => {
   return (
     <DashLayout>
       <Container className="palletized-container">
@@ -15,9 +15,14 @@ const OrderNewPage = () => {
             <p className="text-muted"></p>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <OrderCreateCell />
+          </Col>
+        </Row>
       </Container>
     </DashLayout>
   )
 }
 
-export default OrderNewPage
+export default OrderCreatePage

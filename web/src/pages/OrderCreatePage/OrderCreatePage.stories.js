@@ -1,4 +1,4 @@
-import OrderNewPage from './OrderNewPage'
+import OrderNewPage from './OrderCreatePage'
 
 export const generated = () => {
   return <OrderNewPage />

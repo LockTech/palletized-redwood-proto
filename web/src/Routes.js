@@ -16,7 +16,7 @@ const Routes = () => {
       <Route notfound={NotFoundPage} page={NotFoundPage} />
       {/* Orders */}
       <Route path="/orders" page={OrderListPage} name="orders" />
-      <Route path="/order/new" page={OrderNewPage} name="newOrder" />
+      <Route path="/order/create" page={OrderCreatePage} name="createOrder" />
       {/* Warehouses */}
       <Route path="/warehouse/create" page={WarehouseCreatePage} name="createWarehouse" />
       <Route path="/warehouses/{id}/edit" page={WHEditPage} name="editWarehouse" />

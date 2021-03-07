@@ -23,8 +23,8 @@ const DashLayout: React.FC = ({ children }) => {
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
 
-  const newOrderRoute = useMemo(() => routes.newOrder(), [])
-  const newOrderMatch = useMatch(newOrderRoute).match
+  const createOrderRoute = useMemo(() => routes.createOrder(), [])
+  const createOrderMatch = useMatch(createOrderRoute).match
   const ordersRoute = useMemo(() => routes.orders(), [])
   const ordersMatch = useMatch(ordersRoute).match
 
@@ -91,7 +91,7 @@ const DashLayout: React.FC = ({ children }) => {
             <Dropdown>
               <Dropdown.Toggle
                 as={Nav.Link}
-                className={(ordersMatch || newOrderMatch) && 'active'}
+                className={(ordersMatch || createOrderMatch) && 'active'}
               >
                 Orders
               </Dropdown.Toggle>
@@ -103,10 +103,10 @@ const DashLayout: React.FC = ({ children }) => {
                   Orders
                 </Dropdown.Item>
                 <Dropdown.Item
-                  className={newOrderMatch && 'active'}
-                  href={newOrderRoute}
+                  className={createOrderMatch && 'active'}
+                  href={createOrderRoute}
                 >
-                  New Order
+                  Create Order
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
