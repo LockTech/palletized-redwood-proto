@@ -47,7 +47,7 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
           'One or more fields are not unique to your organization.',
           {
             messages: {
-              'Order Number': ['must not collide with any other Orders.'],
+              'Order Number': ['must be unique accross all other Orders.'],
               'Job Name': ['must be unique accross all other Orders'],
             },
           }
