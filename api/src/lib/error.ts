@@ -123,7 +123,7 @@ export const throwUnexpectedError = (error: PrismaErrorType) => {
       messages: {
         'Error:': [
           'An unexpected error occured.',
-          `Encountered error-code: ${error.code}`,
+          `Encountered error-code: ${error.code || 'undefined'}`,
         ],
         Consider: [
           'trying to re-submit your request.',
