@@ -11,7 +11,7 @@ const WarehouseCreatePage = () => {
       <Container className="palletized-container">
         <Row>
           <Col>
-            <h1>New Warehouse</h1>
+            <h1>Create Warehouse</h1>
             <p className="text-muted">
               Create a new Warehouse accessible by all members of your
               organization.
