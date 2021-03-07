@@ -34,7 +34,9 @@ export const Success = ({ warehouse }) => {
     {
       onCompleted: () => {
         navigate(routes.warehouses())
-        addMessage('Warehouse updated.', { classes: 'rw-flash-success' })
+        addMessage('Warehouse has been successfully updated.', {
+          variant: 'success',
+        })
       },
     }
   )

@@ -19,7 +19,9 @@ const WarehouseCreateCell = () => {
     {
       onCompleted: () => {
         navigate(routes.warehouses())
-        addMessage('Warehouse created.', { classes: 'rw-flash-success' })
+        addMessage('Warehouse has been successfully created.', {
+          variant: 'success',
+        })
       },
     }
   )
@@ -28,7 +30,7 @@ const WarehouseCreateCell = () => {
     try {
       createWarehouse({ variables: { input } })
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

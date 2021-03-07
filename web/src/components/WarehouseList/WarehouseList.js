@@ -30,7 +30,9 @@ const WarehouseList = ({ warehouses }) => {
 
   const [deleteWarehouseQuery] = useMutation(DELETE_WAREHOUSE_MUTATION, {
     onCompleted: () => {
-      addMessage('Warehouse deleted.', { classes: 'rw-flash-success' })
+      addMessage('Warehouse has been successfully deleted.', {
+        variant: 'success',
+      })
     },
     // This refetches the query on the list page. Read more about other ways to
     // update the cache over here:

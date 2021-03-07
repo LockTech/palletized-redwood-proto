@@ -29,7 +29,9 @@ const WarehouseDetails = ({ warehouse }) => {
   const [deleteWarehouseQuery] = useMutation(DELETE_WAREHOUSE_MUTATION, {
     onCompleted: () => {
       navigate(routes.warehouses())
-      addMessage('Warehouse deleted.', { classes: 'rw-flash-success' })
+      addMessage('Warehouse has been successfully deleted.', {
+        variant: 'success',
+      })
     },
   })
 
