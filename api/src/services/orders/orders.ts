@@ -92,6 +92,14 @@ export const orderCountInWarehouse = async ({ warehouseId, order }) => {
 //
 
 // ==
+export const deleteOrder = ({ id }) => {
+  return db.order.delete({
+    where: { id },
+  })
+}
+//
+
+// ==
 export const Order = {
   pallets: (_obj, { root }) =>
     db.order.findUnique({ where: { id: root.id } }).pallets(),
