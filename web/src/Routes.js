@@ -15,8 +15,10 @@ const Routes = () => {
       <Route path="/" page={DashboardPage} name="dashboard" />
       <Route notfound={NotFoundPage} page={NotFoundPage} />
       {/* Orders */}
-      <Route path="/orders" page={OrderListPage} name="orders" />
       <Route path="/order/create" page={OrderCreatePage} name="createOrder" />
+      <Route path="/orders/{id}/edit" page={OrderEditPage} name="editOrder" />
+      <Route path="/orders/{id}" page={OrderListPage} name="order" />
+      <Route path="/orders" page={OrderListPage} name="orders" />
       {/* Warehouses */}
       <Route path="/warehouse/create" page={WarehouseCreatePage} name="createWarehouse" />
       <Route path="/warehouses/{id}/edit" page={WHEditPage} name="editWarehouse" />
