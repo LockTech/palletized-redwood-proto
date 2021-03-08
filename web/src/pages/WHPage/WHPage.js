@@ -22,7 +22,7 @@ const WHPage = ({ id }) => {
           <Col>
             <h1>Warehouse Details</h1>
             <p className="text-muted">
-              A detailed overview of the current status of a Warehouse.
+              Detailed overview of the current status of a Warehouse.
             </p>
           </Col>
         </Row>
