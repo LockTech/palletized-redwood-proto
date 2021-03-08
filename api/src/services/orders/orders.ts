@@ -12,8 +12,22 @@ const MAX_ORDER_NUMBER_LEN = 75
 const MAX_JOB_NAME_LEN = 75
 
 // ==
-export const orders = () => {
-  return db.order.findMany()
+export const orders = ({ warehouseId }) => {
+  if (!warehouseId) return db.order.findMany()
+  else
+    return db.order.findMany({
+      where: {
+        pallets: {
+          some: {
+            location: {
+              warehouseId: {
+                equals: warehouseId,
+              },
+            },
+          },
+        },
+      },
+    })
 }
 //
 

@@ -9,7 +9,7 @@ export const schema = gql`
   }
 
   type Query {
-    orders: [Order!]!
+    orders(warehouseId: String): [Order!]!
     order(id: String!): Order
     orderCountInWarehouse(
       warehouseId: String!
