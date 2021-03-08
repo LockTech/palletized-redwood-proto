@@ -4,7 +4,7 @@ import { routes, navigate } from '@redwoodjs/router'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 
-import DeleteModal from 'src/components/DeleteModal'
+import WarehouseDeleteModal from 'src/components/WarehouseDeleteModal'
 
 import './WarehouseDetails.css'
 
@@ -50,27 +50,12 @@ const WarehouseDetails = ({ warehouse }) => {
 
   return (
     <>
-      <DeleteModal
+      <WarehouseDeleteModal
+        name={warehouse.name}
         onConfirm={onDeleteConfirm}
         onHide={onHideDeleteModal}
         show={deleteModalVis}
-      >
-        <p>
-          Are you sure you want to <strong>delete</strong> the {warehouse.name}{' '}
-          warehouse?
-        </p>
-        <p>
-          This action{' '}
-          <u className="text-danger">
-            <strong>cannot be undone</strong>
-          </u>{' '}
-          and <em>will</em> delete all Locations belonging to this warehouse.
-        </p>
-        <p>
-          If deleted, you will have the opportunity to move each Pallet which is
-          tagged to a will-be-deleted Location.
-        </p>
-      </DeleteModal>
+      />
       <Table className="warehouse-table">
         <tbody>
           <tr>

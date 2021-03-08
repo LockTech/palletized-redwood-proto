@@ -6,10 +6,10 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import DeleteModal from 'src/components/DeleteModal/DeleteModal'
+import WarehouseDeleteModal from 'src/components/WarehouseDeleteModal'
 import { QUERY } from 'src/components/WarehouseListCell'
 
-const DELETE_WAREHOUSE_MUTATION = gql`
+const WAREHOUSE_DELETE_MUTATION = gql`
   mutation DeleteWarehouseMutation($id: String!) {
     deleteWarehouse(id: $id) {
       id
@@ -28,7 +28,7 @@ const timeTag = (datetime) => {
 const WarehouseList = ({ warehouses }) => {
   const { addMessage } = useFlash()
 
-  const [deleteWarehouseQuery] = useMutation(DELETE_WAREHOUSE_MUTATION, {
+  const [deleteWarehouseQuery] = useMutation(WAREHOUSE_DELETE_MUTATION, {
     onCompleted: () => {
       addMessage('Warehouse has been successfully deleted.', {
         variant: 'success',
@@ -61,27 +61,12 @@ const WarehouseList = ({ warehouses }) => {
 
   return (
     <>
-      <DeleteModal
+      <WarehouseDeleteModal
+        name={deleteWarehouse?.name}
         onConfirm={onDeleteConfirm}
         onHide={onHideDeleteModal}
         show={deleteModalVis}
-      >
-        <p>
-          Are you sure you want to <strong>delete</strong> the{' '}
-          {deleteWarehouse?.name} warehouse?
-        </p>
-        <p>
-          This action{' '}
-          <u className="text-danger">
-            <strong>cannot be undone</strong>
-          </u>{' '}
-          and <em>will</em> delete all Locations belonging to this warehouse.
-        </p>
-        <p>
-          If deleted, you will have the opportunity to move each Pallet which is
-          tagged to a will-be-deleted Location.
-        </p>
-      </DeleteModal>
+      />
       <Row>
         {warehouses.map((warehouse, index) => (
           <Col key={index} lg={4} md={6}>
