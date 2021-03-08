@@ -20,7 +20,7 @@ export const Loading = () => <LoadingCard />
 export const Empty = () => (
   <Card>
     <Card.Body>
-      <Card.Title>No Warehouses Found</Card.Title>
+      <Card.Title>No Orders Found</Card.Title>
       <Card.Text>
         You do not have any Orders configured for your organization.
       </Card.Text>
