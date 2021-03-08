@@ -1,17 +1,22 @@
 import { Link, routes } from '@redwoodjs/router'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
-const OrderEditPage = () => {
+import DashLayout from 'src/layouts/DashLayout'
+
+const OrderEditPage = ({ id }) => {
   return (
-    <>
-      <h1>OrderEditPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/OrderEditPage/OrderEditPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>orderEdit</code>, link to me with `
-        <Link to={routes.orderEdit()}>OrderEdit</Link>`
-      </p>
-    </>
+    <DashLayout>
+      <Container className="palletized-container">
+        <Row>
+          <Col>
+            <h1>Edit Order</h1>
+            <p>{id}</p>
+          </Col>
+        </Row>
+      </Container>
+    </DashLayout>
   )
 }
 
