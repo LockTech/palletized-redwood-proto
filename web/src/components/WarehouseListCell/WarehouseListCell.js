@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card'
-import LoadingCard from 'src/components/LoadingCard/LoadingCard'
 
+import LoadingCard from 'src/components/LoadingCard/LoadingCard'
 import WarehouseList from 'src/components/WarehouseList'
 
 export const QUERY = gql`
@@ -20,7 +20,7 @@ export const Empty = () => {
   return (
     <Card>
       <Card.Body>
-        <Card.Text className="h3">No Warehouses Found</Card.Text>
+        <Card.Title>No Warehouses Found</Card.Title>
         <Card.Text>
           You do not have any Warehouses configured for your organization.
         </Card.Text>
