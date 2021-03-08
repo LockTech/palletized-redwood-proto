@@ -16,7 +16,7 @@ const CommonTileCard = ({ children }) => (
   <TileCard
     footer={{
       text: 'Active Order list',
-      to: routes.warehouses(),
+      to: routes.orders({ active: true }),
     }}
     header="Active Orders"
     headerTooltip={
