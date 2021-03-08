@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { Link, routes } from '@redwoodjs/router'
 import { useFlash, useMutation } from '@redwoodjs/web'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -62,6 +63,14 @@ const OrderList = ({ orders }) => {
                 <Card.Subtitle className="mb-3 text-muted">
                   {order.jobName ? order.orderNumber : 'No Job-Name Specified'}
                 </Card.Subtitle>
+                <Button
+                  as={Link}
+                  block
+                  to={routes.editOrder({ id: order.id })}
+                  variant="outline-secondary"
+                >
+                  Edit
+                </Button>
                 <Button
                   block
                   onClick={() => onDeleteClick(order)}
