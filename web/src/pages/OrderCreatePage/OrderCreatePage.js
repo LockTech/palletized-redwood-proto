@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout'
-import OrderCreateCell from 'src/components/OrderCreateCell'
+import OrderCreateCell from 'src/components/order/OrderCreateCell'
 
 const OrderCreatePage = () => {
   return (

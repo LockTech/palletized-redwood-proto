@@ -5,8 +5,8 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import OrderDeleteModal from 'src/components/OrderDeleteModal'
-import { QUERY } from 'src/components/OrderListCell'
+import OrderDeleteModal from 'src/components/order/OrderDeleteModal'
+import { QUERY } from 'src/components/order/OrderListCell'
 
 const ORDER_DELETE_MUTATION = gql`
   mutation DeleteOrderMutation($id: String!) {

@@ -1,7 +1,8 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
-import OrderForm from '../OrderForm/OrderForm'
+
+import OrderForm from 'src/components/order/OrderForm'
 
 export const ORDER_CREATE_MUTATION = gql`
   mutation OrderCreateMutation($input: CreateOrderInput!) {

@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card'
 
 import LoadingCard from 'src/components/LoadingCard'
-import OrderList from 'src/components/OrderList'
+import OrderList from 'src/components/order/OrderList'
 
 export const QUERY = gql`
   query ORDERS {

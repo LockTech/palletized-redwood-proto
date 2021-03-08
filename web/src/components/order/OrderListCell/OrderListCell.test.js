@@ -1,8 +1,9 @@
 import { render } from '@redwoodjs/testing'
-import { Loading, Empty, Failure, Success } from './OrderCreateCell'
-import { standard } from './OrderCreateCell.mock'
 
-describe('OrderNewCell', () => {
+import { Loading, Empty, Failure, Success } from './OrderListCell'
+import { standard } from './OrderListCell.mock'
+
+describe('OrderListCell', () => {
   it('renders Loading successfully', () => {
     expect(() => {
       render(<Loading />)
@@ -28,7 +29,7 @@ describe('OrderNewCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success orderNew={standard().orderNew} />)
+      render(<Success orderList={standard().orderList} />)
     }).not.toThrow()
   })
 })
