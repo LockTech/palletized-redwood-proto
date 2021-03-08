@@ -66,6 +66,14 @@ const OrderList = ({ orders }) => {
                 <Button
                   as={Link}
                   block
+                  to={routes.order({ id: order.id })}
+                  variant="outline-primary"
+                >
+                  Details
+                </Button>
+                <Button
+                  as={Link}
+                  block
                   to={routes.editOrder({ id: order.id })}
                   variant="outline-secondary"
                 >
