@@ -3,8 +3,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import ActiveOrderCountCell from 'src/components/ActiveOrderCountCell'
-import UpcomingOrderCountCell from 'src/components/UpcomingOrderCountCell'
+import ActiveOrderCountCell from 'src/components/order/ActiveOrderCountCell'
+import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
 
 const DashboardPage = () => {
   return (
