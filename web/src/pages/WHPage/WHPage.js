@@ -7,10 +7,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import ActiveOrderCountCell from 'src/components/ActiveOrderCountCell'
-import UpcomingOrderCountCell from 'src/components/UpcomingOrderCountCell'
-import WarehouseDetailsCell from 'src/components/WarehouseDetailsCell'
-import WarehouseNameCell from 'src/components/WarehouseNameCell'
+import ActiveOrderCountCell from 'src/components/order/ActiveOrderCountCell'
+import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
+import WarehouseDetailsCell from 'src/components/warehouse/WarehouseDetailsCell'
+import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell'
 
 import './WHPage.css'
 

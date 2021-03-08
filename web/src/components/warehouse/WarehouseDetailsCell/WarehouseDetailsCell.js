@@ -3,7 +3,7 @@ import { useFlash } from '@redwoodjs/web'
 import Card from 'react-bootstrap/Card'
 
 import LoadingCard from 'src/components/LoadingCard'
-import WarehouseDetails from 'src/components/WarehouseDetails'
+import WarehouseDetails from 'src/components/warehouse/WarehouseDetails'
 
 export const QUERY = gql`
   query FIND_WAREHOUSE_BY_ID($id: String!) {

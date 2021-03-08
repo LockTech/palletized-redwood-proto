@@ -6,8 +6,8 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import WarehouseDeleteModal from 'src/components/WarehouseDeleteModal'
-import { QUERY } from 'src/components/WarehouseListCell'
+import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
+import { QUERY } from 'src/components/warehouse/WarehouseListCell'
 
 const WAREHOUSE_DELETE_MUTATION = gql`
   mutation DeleteWarehouseMutation($id: String!) {

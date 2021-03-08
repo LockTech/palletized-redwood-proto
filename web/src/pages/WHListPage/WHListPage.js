@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import WarehouseListCell from 'src/components/WarehouseListCell'
+import WarehouseListCell from 'src/components/warehouse/WarehouseListCell'
 
 const WHListPage = () => {
   return (

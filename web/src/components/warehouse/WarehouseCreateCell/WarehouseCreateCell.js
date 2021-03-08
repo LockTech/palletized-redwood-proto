@@ -2,7 +2,7 @@ import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
-import WarehouseForm from 'src/components/WarehouseForm'
+import WarehouseForm from 'src/components/warehouse/WarehouseForm'
 
 const WAREHOUSE_CREATE_MUTATION = gql`
   mutation WarehouseCreateMutation($input: CreateWarehouseInput!) {

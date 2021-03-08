@@ -4,8 +4,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import WarehouseEditCell from 'src/components/WarehouseEditCell'
-import WarehouseNameCell from 'src/components/WarehouseNameCell'
+import WarehouseEditCell from 'src/components/warehouse/WarehouseEditCell'
+import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell'
 
 const WHEditPage = ({ id }) => {
   return (

@@ -3,7 +3,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
 import LoadingCard from 'src/components/LoadingCard'
-import WarehouseForm from 'src/components/WarehouseForm'
+import WarehouseForm from 'src/components/warehouse/WarehouseForm'
 
 export const QUERY = gql`
   query FIND_WAREHOUSE_BY_ID($id: String!) {

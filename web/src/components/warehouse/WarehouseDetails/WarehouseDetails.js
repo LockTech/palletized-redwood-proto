@@ -4,7 +4,7 @@ import { routes, navigate } from '@redwoodjs/router'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 
-import WarehouseDeleteModal from 'src/components/WarehouseDeleteModal'
+import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
 
 import './WarehouseDetails.css'
 

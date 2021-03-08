@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import WarehouseCreateCell from 'src/components/WarehouseCreateCell'
+import WarehouseCreateCell from 'src/components/warehouse/WarehouseCreateCell'
 
 const WarehouseCreatePage = () => {
   return (
