@@ -7,7 +7,7 @@ import WarehouseDetails from 'src/components/warehouse/WarehouseDetails'
 
 export const QUERY = gql`
   query FIND_WAREHOUSE_BY_ID($id: String!) {
-    warehouse: warehouse(id: $id) {
+    warehouse(id: $id) {
       id
       name
       updatedAt
