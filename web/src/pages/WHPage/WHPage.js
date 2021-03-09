@@ -12,8 +12,6 @@ import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
 import WarehouseDetailsCell from 'src/components/warehouse/WarehouseDetailsCell'
 import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell'
 
-import './WHPage.css'
-
 const WHPage = ({ id }) => {
   return (
     <DashLayout>
@@ -28,7 +26,7 @@ const WHPage = ({ id }) => {
         </Row>
         <Row>
           <Col>
-            <Alert className="whpage-alert-container" variant="info">
+            <Alert className="details-alert-container" variant="info">
               You are currently viewing details for the&nbsp;
               <strong>
                 <WarehouseNameCell id={id} />
