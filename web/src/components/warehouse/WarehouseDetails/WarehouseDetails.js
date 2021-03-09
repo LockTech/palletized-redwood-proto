@@ -6,8 +6,6 @@ import Table from 'react-bootstrap/Table'
 
 import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
 
-import './WarehouseDetails.css'
-
 const DELETE_WAREHOUSE_MUTATION = gql`
   mutation DeleteWarehouseMutation($id: String!) {
     deleteWarehouse(id: $id) {
@@ -56,7 +54,7 @@ const WarehouseDetails = ({ warehouse }) => {
         onHide={onHideDeleteModal}
         show={deleteModalVis}
       />
-      <Table className="warehouse-table">
+      <Table className="details-table">
         <tbody>
           <tr>
             <th>ID</th>
