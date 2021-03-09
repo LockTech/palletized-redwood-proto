@@ -9,10 +9,16 @@ export const schema = gql`
     order: Order
     orderId: String
     PalletProduct: [PalletProduct]!
+    status: PalletStatus!
   }
 
   type Query {
     pallets: [Pallet!]!
+  }
+
+  enum PalletStatus {
+    ACTIVE
+    SHIPPED
   }
 
   input CreatePalletInput {
