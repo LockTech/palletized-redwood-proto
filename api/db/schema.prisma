@@ -73,6 +73,12 @@ model Pallet {
   order               Order?              @relation(fields: [orderId], references: [id])
   orderId             String?
   palletProducts      PalletProduct[]
+  status              PalletStatus        @default(ACTIVE)
+}
+
+enum PalletStatus {
+  ACTIVE
+  SHIPPED
 }
 
 //
