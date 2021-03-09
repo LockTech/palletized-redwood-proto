@@ -4,6 +4,7 @@ import { routes, navigate } from '@redwoodjs/router'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 
+import LocaleTime from 'src/components/LocaleTime'
 import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
 
 const DELETE_WAREHOUSE_MUTATION = gql`
@@ -13,14 +14,6 @@ const DELETE_WAREHOUSE_MUTATION = gql`
     }
   }
 `
-
-const timeTag = (datetime) => {
-  return (
-    <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toLocaleString()}
-    </time>
-  )
-}
 
 const WarehouseDetails = ({ warehouse }) => {
   const { addMessage } = useFlash()
@@ -66,11 +59,15 @@ const WarehouseDetails = ({ warehouse }) => {
           </tr>
           <tr>
             <th>Created</th>
-            <td>{timeTag(warehouse.createdAt)}</td>
+            <td>
+              <LocaleTime datetime={warehouse.createdAt} />
+            </td>
           </tr>
           <tr>
             <th>Last Updated</th>
-            <td>{timeTag(warehouse.updatedAt)}</td>
+            <td>
+              <LocaleTime datetime={warehouse.updatedAt} />
+            </td>
           </tr>
         </tbody>
       </Table>

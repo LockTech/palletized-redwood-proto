@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
+import LocaleTime from 'src/components/LocaleTime'
 import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
 import { QUERY } from 'src/components/warehouse/WarehouseListCell'
 
@@ -16,14 +17,6 @@ const WAREHOUSE_DELETE_MUTATION = gql`
     }
   }
 `
-
-const timeTag = (datetime) => {
-  return (
-    <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toLocaleString()}
-    </time>
-  )
-}
 
 const WarehouseList = ({ warehouses }) => {
   const { addMessage } = useFlash()
@@ -76,12 +69,12 @@ const WarehouseList = ({ warehouses }) => {
                 <Card.Subtitle className="d-flex align-items-center mb-3 text-muted">
                   <strong>Date Created:</strong>
                   &nbsp;
-                  {timeTag(warehouse.createdAt)}
+                  <LocaleTime datetime={warehouse.createdAt} />
                 </Card.Subtitle>
                 <Card.Subtitle className="d-flex align-items-center mb-3 text-muted">
                   <strong>Last Updated:</strong>
                   &nbsp;
-                  {timeTag(warehouse.updatedAt)}
+                  <LocaleTime datetime={warehouse.updatedAt} />
                 </Card.Subtitle>
                 <Button
                   as={Link}
