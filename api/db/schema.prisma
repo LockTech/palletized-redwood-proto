@@ -1,3 +1,13 @@
+//
+// Versioning for schema migrations:
+// MAJOR versions include a significant change to one or more models; backwards compatability is not possible.
+//    Ex: Removal of @relations or dependant-fields.
+// MINOR versions include a small change to one or more models; backwards compatability may or may not be possible.
+//    Ex: Renaming fields, adding an additional Model.
+// PATCH versions include minute changes that affect or more models; backwards compatability is possible.
+//    Ex: Adding a field to an existing Model.
+//
+
 datasource DS {
   provider = "postgresql"
   url      = "postgresql://palletized:secret@localhost:5432/palletized?schema=palletized"
@@ -82,7 +92,6 @@ enum PalletStatus {
 }
 
 //
-// Explicit m-n-relationship to allow for extra fields.
 model PalletProduct {
   @@map(name: "pallet_products")
 
