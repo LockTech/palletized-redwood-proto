@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
+import WarehouseDeleteCell from 'src/components/warehouse/WarehouseDeleteCell'
 import ActiveOrderCountCell from 'src/components/order/ActiveOrderCountCell'
 import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
 import WarehouseDetailsCell from 'src/components/warehouse/WarehouseDetailsCell'
@@ -37,7 +38,6 @@ const WHPage = ({ id }) => {
         </Row>
         <Row className="mb-3">
           <Col>
-            {/* CHECK FOR ACTIVE WAREHOUSE BEING THIS ONE */}
             <Button block variant="primary">
               Switch to Warehouse
             </Button>
@@ -49,6 +49,7 @@ const WHPage = ({ id }) => {
             >
               Edit Warehouse
             </Button>
+            <WarehouseDeleteCell id={id} />
           </Col>
         </Row>
         <Row>
