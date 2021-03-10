@@ -7,8 +7,8 @@ import LoadingCard from 'src/components/LoadingCard'
 import WarehouseForm from 'src/components/warehouse/WarehouseForm'
 
 export const QUERY = gql`
-  query FIND_WAREHOUSE_BY_ID($id: String!) {
-    warehouse: warehouse(id: $id) {
+  query FindWarehouseById($id: String!) {
+    warehouse(id: $id) {
       id
       name
     }
