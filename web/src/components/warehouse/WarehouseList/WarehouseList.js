@@ -9,27 +9,17 @@ import Row from 'react-bootstrap/Row'
 import LocaleTime from 'src/components/LocaleTime'
 import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
 import { QUERY } from 'src/components/warehouse/WarehouseListCell'
-
-const WAREHOUSE_DELETE_MUTATION = gql`
-  mutation DeleteWarehouseMutation($id: String!) {
-    deleteWarehouse(id: $id) {
-      id
-    }
-  }
-`
+import { DELETE_WAREHOUSE_MUTATION } from 'src/components/warehouse/WarehouseDeleteCell'
 
 const WarehouseList = ({ warehouses }) => {
   const { addMessage } = useFlash()
 
-  const [deleteWarehouseQuery] = useMutation(WAREHOUSE_DELETE_MUTATION, {
+  const [deleteWarehouseQuery] = useMutation(DELETE_WAREHOUSE_MUTATION, {
     onCompleted: () => {
       addMessage('Warehouse has been successfully deleted.', {
         variant: 'success',
       })
     },
-    // This refetches the query on the list page. Read more about other ways to
-    // update the cache over here:
-    // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates
     refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
   })
@@ -48,14 +38,14 @@ const WarehouseList = ({ warehouses }) => {
     [setDeleteModalVis, setDeleteWarehouse]
   )
   const onDeleteConfirm = useCallback(() => {
-    deleteWarehouseQuery({ variables: { id: deleteWarehouse.id } })
+    deleteWarehouseQuery({ variables: { id: deleteWarehouse } })
     setDeleteModalVis(false)
   }, [deleteWarehouse, deleteWarehouseQuery, setDeleteModalVis])
 
   return (
     <>
       <WarehouseDeleteModal
-        name={deleteWarehouse?.name}
+        id={deleteWarehouse}
         onConfirm={onDeleteConfirm}
         onHide={onHideDeleteModal}
         show={deleteModalVis}
@@ -103,7 +93,7 @@ const WarehouseList = ({ warehouses }) => {
                 </Button>
                 <Button
                   block
-                  onClick={() => onDeleteClick(warehouse)}
+                  onClick={() => onDeleteClick(warehouse.id)}
                   variant="outline-danger"
                 >
                   Delete
