@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
@@ -26,6 +27,22 @@ const UPDATE_WAREHOUSE_MUTATION = gql`
 `
 
 export const Loading = () => <LoadingCard />
+
+export const Empty = ({ id }) => {
+  const { addMessage } = useFlash()
+
+  useEffect(() => {
+    addMessage(`Could not find Warehouse: ${id}.`, {
+      variant: 'danger',
+    })
+  }, [addMessage, id])
+
+  return (
+    <Card>
+      <Card.Body>Could not find Warehouse: {id}.</Card.Body>
+    </Card>
+  )
+}
 
 export const Success = ({ warehouse }) => {
   const { addMessage } = useFlash()
