@@ -28,7 +28,7 @@ const UPDATE_ORDER_MUTATION = gql`
 
 export const Loading = () => <LoadingCard />
 
-const EmptyFail = ({ id }) => {
+export const Empty = ({ id }) => {
   const { addMessage } = useFlash()
 
   useEffect(() => {
@@ -43,8 +43,22 @@ const EmptyFail = ({ id }) => {
     </Card>
   )
 }
-export const Empty = EmptyFail
-export const Failure = EmptyFail
+
+export const Failure = ({ id }) => {
+  const { addMessage } = useFlash()
+
+  useEffect(() => {
+    addMessage(`An error occured while trying to edit Order: ${id}.`, {
+      variant: 'danger',
+    })
+  }, [addMessage, id])
+
+  return (
+    <Card>
+      <Card.Body>An error occured while trying to edit Order: {id}.</Card.Body>
+    </Card>
+  )
+}
 
 export const Success = ({ order }) => {
   const { addMessage } = useFlash()
