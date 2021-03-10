@@ -41,7 +41,7 @@ const OrderListPage = ({ active }) => {
         <Row>
           <Col className="mb-3">
             <Button as={Link} block to={routes.createOrder()}>
-              Create Order
+              Create New Order
             </Button>
           </Col>
         </Row>
