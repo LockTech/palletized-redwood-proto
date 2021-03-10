@@ -1,17 +1,52 @@
+import { useEffect } from 'react'
+import { useFlash } from '@redwoodjs/web'
+import Card from 'react-bootstrap/Card'
+
+import LoadingCard from 'src/components/LoadingCard'
+import OrderDetails from 'src/components/order/OrderDetails'
+
 export const QUERY = gql`
-  query OrderDetailsQuery {
-    orderDetails {
+  query OrderDetailsQuery($id: String!) {
+    order(id: $id) {
       id
+      orderNumber
+      jobName
+      createdAt
+      updatedAt
     }
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <LoadingCard />
 
-export const Empty = () => <div>Empty</div>
+export const Empty = ({ id }) => {
+  const { addMessage } = useFlash()
 
-export const Failure = ({ error }) => <div>Error: {error.message}</div>
+  useEffect(() => {
+    addMessage(
+      `Could not find details for Order: ${id}. Are you sure the Order exist?`,
+      {
+        skipTimeout: true,
+        variant: 'danger',
+      }
+    )
+  }, [addMessage, id])
 
-export const Success = ({ orderDetails }) => {
-  return JSON.stringify(orderDetails)
+  return (
+    <Card>
+      <Card.Header>Details</Card.Header>
+      <Card.Body>
+        <Card.Text>Could not find Order.</Card.Text>
+      </Card.Body>
+    </Card>
+  )
 }
+
+export const Success = ({ order }) => (
+  <Card>
+    <Card.Header>Details</Card.Header>
+    <Card.Body>
+      <OrderDetails order={order} />
+    </Card.Body>
+  </Card>
+)
