@@ -5,6 +5,12 @@ declare interface IWarehouse {
   updatedAt: string
 }
 
+declare interface ILocation {
+  id: string
+  name: string
+  warehouse: IWarehouse
+}
+
 declare interface IOrder {
   id: string
   orderNumber: string
