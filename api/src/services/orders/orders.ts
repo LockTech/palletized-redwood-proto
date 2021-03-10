@@ -62,7 +62,7 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
           {
             messages: {
               'Order Number': ['must be unique accross all other Orders.'],
-              'Job Name': ['must be unique accross all other Orders'],
+              'Job Name': ['must be unique accross all other Orders.'],
             },
           }
         )
@@ -77,12 +77,6 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
 
 // ==
 export const orderCountInWarehouse = async ({ warehouseId, order }) => {
-  if (!warehouseId) {
-    throw new UserInputError(
-      'Expected a Warehouse to get Order Count in Warehouse.'
-    )
-  }
-
   try {
     return await db.order.count({
       where: {
