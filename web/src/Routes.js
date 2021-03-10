@@ -24,6 +24,9 @@ const Routes = () => {
       <Route path="/warehouses/{id}/edit" page={WHEditPage} name="editWarehouse" />
       <Route path="/warehouses/{id}" page={WHPage} name="warehouse" />
       <Route path="/warehouses" page={WHListPage} name="warehouses" />
+      {/* Locations */}
+      <Route path="/location/create" page={LocationCreatePage} name="createLocation" />
+      <Route path="/locations" page={LocationListPage} name="locations" />
     </Router>
   )
 }
