@@ -44,6 +44,24 @@ export const Empty = ({ id }) => {
   )
 }
 
+export const Failure = ({ id }) => {
+  const { addMessage } = useFlash()
+
+  useEffect(() => {
+    addMessage(`An error occured while trying to edit Warehouse: ${id}.`, {
+      variant: 'danger',
+    })
+  }, [addMessage, id])
+
+  return (
+    <Card>
+      <Card.Body>
+        An error occured while trying to edit Warehouse: {id}.
+      </Card.Body>
+    </Card>
+  )
+}
+
 export const Success = ({ warehouse }) => {
   const { addMessage } = useFlash()
   const [updateWarehouse, { loading, error }] = useMutation(
