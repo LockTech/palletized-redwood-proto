@@ -22,7 +22,7 @@ const WarehouseDropdown: React.FunctionComponent = () => {
           className={warehousesMatch && 'active'}
           href={warehousesRoute}
         >
-          Warehouses
+          Warehouse List
         </Dropdown.Item>
         <Dropdown.Item
           className={createWarehouseMatch && 'active'}
