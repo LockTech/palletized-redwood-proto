@@ -117,8 +117,9 @@ export const handleCommonErrors = (error: PrismaErrorType) => {
  * @param error A [`PrismaError`](https://www.prisma.io/docs/reference/api-reference/error-reference#prismaclientknownrequesterror)
  */
 export const throwUnexpectedError = (error: PrismaErrorType) => {
+  console.log(error)
   throw new UserInputError(
-    'An internal error occured while processing your request.',
+    'An unexpected internal error occured while processing your request.',
     {
       messages: {
         'Error:': [
