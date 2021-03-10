@@ -33,6 +33,14 @@ const handleCommonOrderErrors = (error) => {
         }
       )
     }
+
+    case PrismaError.RecordDoesNotExist: {
+      throw new UserInputError(`Could not find Order.`, {
+        messages: {
+          An: ['Order must exist in to be updated.'],
+        },
+      })
+    }
   }
 }
 
@@ -99,6 +107,7 @@ export const orderCountInWarehouse = async ({ warehouseId, order }) => {
     })
   } catch (err) {
     handleCommonErrors(err)
+    handleCommonOrderErrors(err)
     throwUnexpectedError(err)
   }
 }
@@ -124,29 +133,33 @@ export const updateOrder = async ({ id, input }: UpdateOrderParams) => {
   } catch (err) {
     handleCommonErrors(err)
     handleCommonOrderErrors(err)
-
-    switch (err.code) {
-      case PrismaError.RecordDoesNotExist: {
-        throw new UserInputError(`Could not find Order ${id}.`, {
-          messages: {
-            An: ['Order must exist in order to be updated.'],
-          },
-        })
-      }
-
-      default: {
-        throwUnexpectedError(err)
-      }
-    }
+    throwUnexpectedError(err)
   }
 }
 //
 
 // ==
-export const deleteOrder = ({ id }) => {
-  return db.order.delete({
-    where: { id },
-  })
+export const deleteOrder = async ({ id }) => {
+  try {
+    return await db.order.delete({
+      where: { id },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    // handleCommonWarehouseErrors(err) - Does not apply ATM
+
+    switch (err.code) {
+      case PrismaError.InterpretationError: {
+        throw new UserInputError('Could not find Order.', {
+          message: {
+            An: ['Order must exist to be deleted.'],
+          },
+        })
+      }
+    }
+
+    throwUnexpectedError(err)
+  }
 }
 //
 

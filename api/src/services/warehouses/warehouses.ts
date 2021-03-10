@@ -27,6 +27,14 @@ const handleCommonWarehouseErrors = (error) => {
         }
       )
     }
+
+    case PrismaError.RecordDoesNotExist: {
+      throw new UserInputError(`Could not find Warehouse.`, {
+        messages: {
+          A: ['Warehouse must exist to be updated.'],
+        },
+      })
+    }
   }
 }
 
@@ -82,28 +90,33 @@ export const updateWarehouse = async ({ id, input }: UpdateWarehouseInput) => {
   } catch (err) {
     handleCommonErrors(err)
     handleCommonWarehouseErrors(err)
-
-    switch (err.code) {
-      case PrismaError.RecordDoesNotExist: {
-        throw new UserInputError(`Could not find Warehouse ${id}`, {
-          messages: {
-            A: ['Warehouse must exist in order to be updated.'],
-          },
-        })
-      }
-      default: {
-        throwUnexpectedError(err)
-      }
-    }
+    throwUnexpectedError(err)
   }
 }
 //
 
 // ==
-export const deleteWarehouse = ({ id }) => {
-  return db.warehouse.delete({
-    where: { id },
-  })
+export const deleteWarehouse = async ({ id }) => {
+  try {
+    return await db.warehouse.delete({
+      where: { id },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    // handleCommonWarehouseErrors(err) - Does not apply ATM
+
+    switch (err.code) {
+      case PrismaError.InterpretationError: {
+        throw new UserInputError('Could not find Warehouse.', {
+          message: {
+            A: ['Warehouse must exist to be deleted.'],
+          },
+        })
+      }
+    }
+
+    throwUnexpectedError(err)
+  }
 }
 //
 
