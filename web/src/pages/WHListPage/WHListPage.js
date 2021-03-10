@@ -15,7 +15,7 @@ const WHListPage = () => {
           <Col>
             <h1>Warehouses</h1>
             <p className="text-muted">
-              Geographically distinct areas for storing Pallets.
+              A list of the Warehouses accessible by your Organization.
             </p>
           </Col>
         </Row>
