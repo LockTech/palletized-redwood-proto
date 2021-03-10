@@ -4,6 +4,7 @@ import { useFlash, useMutation } from '@redwoodjs/web'
 import Button from 'react-bootstrap/Button'
 
 import OrderDeleteModal from 'src/components/order/OrderDeleteModal'
+import { QUERY } from 'src/components/order/OrderListCell'
 
 export const DELETE_ORDER_MUTATION = gql`
   mutation DeleteOrderMutation($id: String!) {
@@ -28,6 +29,8 @@ export const OrderDeleteCell = ({ id }) => {
         variant: 'success',
       })
     },
+    refetchQueries: [{ query: QUERY }],
+    awaitRefetchQueries: true,
   })
 
   useEffect(() => {
