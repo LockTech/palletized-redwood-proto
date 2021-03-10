@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useCallback, useState } from 'react'
 import { navigate, routes } from '@redwoodjs/router'
 import { useFlash, useMutation } from '@redwoodjs/web'
@@ -21,14 +22,29 @@ export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
 export const WarehouseDeleteCell = ({ id }) => {
   const { addMessage } = useFlash()
-  const [deleteWarehouseQuery] = useMutation(DELETE_WAREHOUSE_MUTATION, {
-    onCompleted: () => {
-      navigate(routes.warehouses())
-      addMessage('Warehouse has been successfully deleted.', {
-        variant: 'success',
-      })
-    },
-  })
+  const [deleteQuery, { called, error }] = useMutation(
+    DELETE_WAREHOUSE_MUTATION,
+    {
+      onCompleted: () => {
+        navigate(routes.warehouses())
+        addMessage('Warehouse has been successfully deleted.', {
+          variant: 'success',
+        })
+      },
+    }
+  )
+
+  useEffect(() => {
+    if (called && error) {
+      addMessage(
+        <span>
+          <p>{error.name}</p>
+          <p>{error.message}</p>
+        </span>,
+        { variant: 'danger' }
+      )
+    }
+  }, [addMessage, called, error])
 
   const [deleteModalVis, setDeleteModalVis] = useState(false)
   const onHideDeleteModal = useCallback(() => {
@@ -39,9 +55,9 @@ export const WarehouseDeleteCell = ({ id }) => {
     setDeleteModalVis(true)
   }, [setDeleteModalVis])
   const onDeleteConfirm = useCallback(() => {
-    deleteWarehouseQuery({ variables: { id } })
+    deleteQuery({ variables: { id } })
     setDeleteModalVis(false)
-  }, [deleteWarehouseQuery, setDeleteModalVis, id])
+  }, [deleteQuery, setDeleteModalVis, id])
 
   return (
     <>
@@ -52,7 +68,7 @@ export const WarehouseDeleteCell = ({ id }) => {
         show={deleteModalVis}
       />
       <Button block onClick={onDeleteClick} variant="outline-danger">
-        Delete Warehouse
+        Delete
       </Button>
     </>
   )
