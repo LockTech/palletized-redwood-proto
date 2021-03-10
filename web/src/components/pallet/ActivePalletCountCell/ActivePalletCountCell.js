@@ -1,17 +1,55 @@
+import { useEffect } from 'react'
+// import { routes } from '@redwoodjs/router'
+import { useFlash } from '@redwoodjs/web'
+import Skeleton from 'react-loading-skeleton'
+
+import TileCard from 'src/components/TileCard'
+
 export const QUERY = gql`
-  query ActivePalletCountQuery {
-    activePalletCount {
-      id
-    }
+  query ActivePalletCountQuery($id: String!) {
+    count: palletCountForOrder(orderId: $id)
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+const CommonTileCard = ({ children }) => (
+  <TileCard
+    footer={{
+      text: 'Active Pallet Count',
+      // to: routes.pallets({ active: true }),
+    }}
+    header="Active Pallets"
+    headerTooltip={
+      <span>
+        Active Pallets are Pallets which have been tagged to an Order, and that
+        have the status of <em>Not-Shipped</em>
+      </span>
+    }
+  >
+    <p className="mb-0 display-4">{children}</p>
+  </TileCard>
+)
 
-export const Empty = () => <div>Empty</div>
+export const Loading = () => (
+  <CommonTileCard>
+    <Skeleton />
+  </CommonTileCard>
+)
 
-export const Failure = ({ error }) => <div>Error: {error.message}</div>
+export const Empty = () => <CommonTileCard>0</CommonTileCard>
 
-export const Success = ({ activePalletCount }) => {
-  return JSON.stringify(activePalletCount)
+export const Failure = ({ id }) => {
+  const { addMessage } = useFlash()
+
+  useEffect(() => {
+    addMessage(
+      `An error occured while retrieving the Active-Pallet count for Order: ${id}`,
+      {
+        variant: 'danger',
+      }
+    )
+  }, [addMessage, id])
+
+  return <CommonTileCard>-</CommonTileCard>
 }
+
+export const Success = ({ count }) => <CommonTileCard>{count}</CommonTileCard>
