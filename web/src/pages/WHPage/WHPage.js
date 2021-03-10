@@ -47,7 +47,7 @@ const WHPage = ({ id }) => {
               to={routes.editWarehouse({ id })}
               variant="outline-secondary"
             >
-              Edit Warehouse
+              Edit
             </Button>
             <WarehouseDeleteCell id={id} />
           </Col>
