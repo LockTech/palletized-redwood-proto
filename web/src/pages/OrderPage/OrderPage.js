@@ -1,17 +1,48 @@
-import { Link, routes } from '@redwoodjs/router'
+import Alert from 'react-bootstrap/Alert'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
-const OrderPage = () => {
+import DashLayout from 'src/layouts/DashLayout'
+import OrderDetailsCell from 'src/components/order/OrderDetailsCell'
+import OrderNameCell from 'src/components/order/OrderNameCell'
+import ActivePalletCountCell from 'src/components/pallet/ActivePalletCountCell'
+
+const OrderPage = ({ id }) => {
   return (
-    <>
-      <h1>OrderPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/OrderPage/OrderPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>order</code>, link to me with `
-        <Link to={routes.order()}>Order</Link>`
-      </p>
-    </>
+    <DashLayout>
+      <Container className="palletized-container">
+        <Row>
+          <Col>
+            <h1>Order Details</h1>
+            <p className="text-muted">
+              Detailed overview of the current status of an Order.
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Alert className="details-alert-container" variant="info">
+              You are currently viewing details for Order Number:&nbsp;
+              <strong>
+                <OrderNameCell id={id} />
+              </strong>
+              .
+            </Alert>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-3">
+            <ActivePalletCountCell id={id} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <OrderDetailsCell id={id} />
+          </Col>
+        </Row>
+      </Container>
+    </DashLayout>
   )
 }
 
