@@ -19,7 +19,7 @@ const OrderDropdown: React.FunctionComponent = () => {
       </Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Item className={ordersMatch && 'active'} href={ordersRoute}>
-          Orders
+          Order List
         </Dropdown.Item>
         <Dropdown.Item
           className={createOrderMatch && 'active'}
