@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/web-manifest.json",
+  "short_name": "Palletized",
+  "name": "Palletized - Warehouse Project Management",
+  "description": "Warehouse Project Management",
+  "background_color": "#fff",
+  "theme_color": "#000",
+  "display": "standalone",
+  "scope": "/",
+  "icons": []
+}
