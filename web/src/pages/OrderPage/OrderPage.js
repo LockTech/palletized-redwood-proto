@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import DashLayout from 'src/layouts/DashLayout'
 import OrderDetailsCell from 'src/components/order/OrderDetailsCell'
 import OrderNameCell from 'src/components/order/OrderNameCell'
+import OrderDeleteCell from 'src/components/order/OrderDeleteCell'
 import ActivePalletCountCell from 'src/components/pallet/ActivePalletCountCell'
 
 const OrderPage = ({ id }) => {
@@ -25,7 +26,7 @@ const OrderPage = ({ id }) => {
         <Row>
           <Col>
             <Alert className="details-alert-container" variant="info">
-              You are currently viewing details for Order Number:&nbsp;
+              You are currently viewing details for Order:&nbsp;
               <strong>
                 <OrderNameCell id={id} />
               </strong>
@@ -34,15 +35,16 @@ const OrderPage = ({ id }) => {
           </Col>
         </Row>
         <Row>
-          <Col className="mb-3">
+          <Col className="mb-3" xs={12}>
             <Button
               as={Link}
               block
               to={routes.editOrder({ id })}
               variant="outline-secondary"
             >
-              Edit Order
+              Edit
             </Button>
+            <OrderDeleteCell id={id} />
           </Col>
         </Row>
         <Row>
