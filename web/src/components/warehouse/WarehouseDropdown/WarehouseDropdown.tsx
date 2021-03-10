@@ -9,11 +9,22 @@ const WarehouseDropdown: React.FunctionComponent = () => {
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
   const warehousesMatch = useMatch(warehousesRoute).match
 
+  const createLocationRoute = useMemo(() => routes.createLocation(), [])
+  const createLocationMatch = useMatch(createLocationRoute).match
+  const locationsRoute = useMemo(() => routes.locations(), [])
+  const locationsMatch = useMatch(locationsRoute).match
+
   return (
     <Dropdown>
       <Dropdown.Toggle
         as={Nav.Link}
-        className={(createWarehouseMatch || warehousesMatch) && 'active'}
+        className={
+          (createWarehouseMatch ||
+            warehousesMatch ||
+            createLocationMatch ||
+            locationsMatch) &&
+          'active'
+        }
       >
         Warehouses
       </Dropdown.Toggle>
@@ -29,6 +40,19 @@ const WarehouseDropdown: React.FunctionComponent = () => {
           href={createWarehouseRoute}
         >
           Create Warehouse
+        </Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item
+          className={locationsMatch && 'active'}
+          href={locationsRoute}
+        >
+          Location List
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={createLocationMatch && 'active'}
+          href={createLocationRoute}
+        >
+          Create Location
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
