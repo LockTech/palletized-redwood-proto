@@ -10,6 +10,26 @@ import {
 
 const WAREHOUSE_NAME_MAX_LEN = 75
 
+const commonExceptions = (input: IWarehouse) => {
+  throwIfIsReserved(input.name, 'Warehouse', 'Name')
+  throwIfTooLong(input.name, WAREHOUSE_NAME_MAX_LEN, 'Warehouse', 'Name')
+}
+
+const handleCommonWarehouseErrors = (error) => {
+  switch (error.code) {
+    case PrismaError.UniqueConstraintViolation: {
+      throw new UserInputError(
+        'One or more fields are not unique to your organization.',
+        {
+          messages: {
+            Name: ['must not collide with any other, existing Warehouses.'],
+          },
+        }
+      )
+    }
+  }
+}
+
 // ==
 export const warehouses = () => {
   return db.warehouse.findMany()
@@ -26,8 +46,7 @@ export const warehouse = ({ id }) => {
 
 // ==
 export const createWarehouse = async ({ input }: { input: IWarehouse }) => {
-  throwIfIsReserved(input.name, 'Warehouse', 'Name')
-  throwIfTooLong(input.name, WAREHOUSE_NAME_MAX_LEN, 'Warehouse', 'Name')
+  commonExceptions(input)
 
   input.id = input.name.replaceAll(' ', '-').toLowerCase()
 
@@ -37,30 +56,19 @@ export const createWarehouse = async ({ input }: { input: IWarehouse }) => {
     })
   } catch (err) {
     handleCommonErrors(err)
-
-    switch (err.code) {
-      case PrismaError.UniqueConstraintViolation: {
-        throw new UserInputError(
-          'One or more Warehouse-fields are not unique to your organization.',
-          {
-            messages: {
-              Name: ['must not collide with any other, existing Warehouses.'],
-            },
-          }
-        )
-      }
-      default: {
-        throwUnexpectedError(err)
-      }
-    }
+    handleCommonWarehouseErrors(err)
+    throwUnexpectedError(err)
   }
 }
 //
 
 // ==
-export const updateWarehouse = async ({ id, input }) => {
-  throwIfIsReserved(input.name, 'Warehouse', 'Name')
-  throwIfTooLong(input.name, WAREHOUSE_NAME_MAX_LEN, 'Warehouse', 'Name')
+type UpdateWarehouseInput = {
+  id: string
+  input: IWarehouse
+}
+export const updateWarehouse = async ({ id, input }: UpdateWarehouseInput) => {
+  commonExceptions(input)
 
   input.id = input.name.replaceAll(' ', '-').toLowerCase()
 
@@ -72,11 +80,21 @@ export const updateWarehouse = async ({ id, input }) => {
       },
     })
   } catch (err) {
-    throw new UserInputError('test', {
-      messages: {
-        Error: [err.code],
-      },
-    })
+    handleCommonErrors(err)
+    handleCommonWarehouseErrors(err)
+
+    switch (err.code) {
+      case PrismaError.RecordDoesNotExist: {
+        throw new UserInputError(`Could not find Warehouse ${id}`, {
+          messages: {
+            A: ['Warehouse must exist in order to be updated.'],
+          },
+        })
+      }
+      default: {
+        throwUnexpectedError(err)
+      }
+    }
   }
 }
 //
