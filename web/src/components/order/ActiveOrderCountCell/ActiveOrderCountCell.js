@@ -6,7 +6,7 @@ import Skeleton from 'react-loading-skeleton'
 import TileCard from 'src/components/TileCard'
 
 export const QUERY = gql`
-  query ActiveOrderCountCardQuery($id: String!) {
+  query ActiveOrderCountQuery($id: String!) {
     count: orderCountInWarehouse(warehouseId: $id)
     # Pending check for order.status
   }
@@ -21,7 +21,8 @@ const CommonTileCard = ({ children }) => (
     header="Active Orders"
     headerTooltip={
       <span>
-        The number of <em>open</em> Orders with Pallets at this Warehouse.
+        Active Orders are ones which have Pallets with the status
+        &quot;Not-Shipped&quot;.
       </span>
     }
   >
@@ -35,7 +36,7 @@ export const Loading = () => (
   </CommonTileCard>
 )
 
-export const Empty = () => '0'
+export const Empty = () => <CommonTileCard>0</CommonTileCard>
 
 export const Failure = ({ id }) => {
   const { addMessage } = useFlash()
