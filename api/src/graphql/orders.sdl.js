@@ -34,8 +34,8 @@ export const schema = gql`
   }
 
   input ComplexOrderInput {
+    id: String
     orderNumber: String
     jobName: String
-    type: String
   }
 `
