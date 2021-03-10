@@ -1,4 +1,6 @@
+import { Link, routes } from '@redwoodjs/router'
 import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -29,6 +31,18 @@ const OrderPage = ({ id }) => {
               </strong>
               .
             </Alert>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-3">
+            <Button
+              as={Link}
+              block
+              to={routes.editOrder({ id })}
+              variant="outline-secondary"
+            >
+              Edit Order
+            </Button>
           </Col>
         </Row>
         <Row>
