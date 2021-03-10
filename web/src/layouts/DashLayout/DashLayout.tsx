@@ -1,12 +1,15 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
+import { Link, routes } from '@redwoodjs/router'
 import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { BsPeopleCircle } from 'react-icons/bs'
-import { Link, routes, useMatch } from '@redwoodjs/router'
 
 import NavLink from 'src/components/NavLink/NavLink'
+
+import WarehouseDropdown from 'src/components/warehouse/WarehouseDropdown/WarehouseDropdown'
+import OrderDropdown from 'src/components/order/OrderDropdown/OrderDropdown'
 
 import './DashLayout.scss'
 
@@ -16,18 +19,6 @@ import './DashLayout.scss'
  * Renders a `<Navbar>` and wraps content in a full-height-navbar-aware `<Container>`.
  */
 const DashLayout: React.FC = ({ children }) => {
-  // Limit repetative code + useMatch for Bootstrap-compatible 'active' class.
-  // Warehouses
-  const createWarehouseRoute = useMemo(() => routes.createWarehouse(), [])
-  const createWarehouseMatch = useMatch(createWarehouseRoute).match
-  const warehousesRoute = useMemo(() => routes.warehouses(), [])
-  const warehousesMatch = useMatch(warehousesRoute).match
-
-  const createOrderRoute = useMemo(() => routes.createOrder(), [])
-  const createOrderMatch = useMatch(createOrderRoute).match
-  const ordersRoute = useMemo(() => routes.orders(), [])
-  const ordersMatch = useMatch(ordersRoute).match
-
   const [navbarExpanded, setNavbarExpanded] = useState(false)
   const onSetNavbarExpanded = useCallback(
     (expanded: boolean) => {
@@ -64,52 +55,8 @@ const DashLayout: React.FC = ({ children }) => {
         <Navbar.Collapse>
           <Nav className="mr-auto layout-nav-links">
             <NavLink linkTo={routes.dashboard()}>Dashboard</NavLink>
-            <Dropdown>
-              <Dropdown.Toggle
-                as={Nav.Link}
-                className={
-                  (createWarehouseMatch || warehousesMatch) && 'active'
-                }
-              >
-                Warehouses
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  className={warehousesMatch && 'active'}
-                  href={warehousesRoute}
-                >
-                  Warehouses
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={createWarehouseMatch && 'active'}
-                  href={createWarehouseRoute}
-                >
-                  Create Warehouse
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown>
-              <Dropdown.Toggle
-                as={Nav.Link}
-                className={(ordersMatch || createOrderMatch) && 'active'}
-              >
-                Orders
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  className={ordersMatch && 'active'}
-                  href={ordersRoute}
-                >
-                  Orders
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={createOrderMatch && 'active'}
-                  href={createOrderRoute}
-                >
-                  Create Order
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <WarehouseDropdown />
+            <OrderDropdown />
           </Nav>
           <Nav className="dash-layout-nav-actions">
             <Dropdown as={Nav.Item}>
