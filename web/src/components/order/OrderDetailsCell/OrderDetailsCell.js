@@ -42,6 +42,31 @@ export const Empty = ({ id }) => {
   )
 }
 
+export const Failure = ({ id }) => {
+  const { addMessage } = useFlash()
+
+  useEffect(() => {
+    addMessage(
+      `An error occured while retrieving the details for Order: ${id}`,
+      {
+        skipTimeout: true,
+        variant: 'danger',
+      }
+    )
+  }, [addMessage, id])
+
+  return (
+    <Card>
+      <Card.Header>Details</Card.Header>
+      <Card.Body>
+        <Card.Text>
+          An error occured while retrieving the details for Order: {id}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  )
+}
+
 export const Success = ({ order }) => (
   <Card>
     <Card.Header>Details</Card.Header>

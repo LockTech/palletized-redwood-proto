@@ -32,14 +32,37 @@ export const Empty = ({ id }) => {
   }, [addMessage, id])
 
   return (
-    <>
-      <Card>
-        <Card.Header>Details</Card.Header>
-        <Card.Body>
-          <Card.Text>Could not find Warehouse.</Card.Text>
-        </Card.Body>
-      </Card>
-    </>
+    <Card>
+      <Card.Header>Details</Card.Header>
+      <Card.Body>
+        <Card.Text>Could not find Warehouse.</Card.Text>
+      </Card.Body>
+    </Card>
+  )
+}
+
+export const Failure = ({ id }) => {
+  const { addMessage } = useFlash()
+
+  useEffect(() => {
+    addMessage(
+      `An error occured while retrieving the details for Warehouse: ${id}`,
+      {
+        skipTimeout: true,
+        variant: 'danger',
+      }
+    )
+  }, [addMessage, id])
+
+  return (
+    <Card>
+      <Card.Header>Details</Card.Header>
+      <Card.Body>
+        <Card.Text>
+          An error occured while retrieving the details for Warehouse: {id}
+        </Card.Text>
+      </Card.Body>
+    </Card>
   )
 }
 
