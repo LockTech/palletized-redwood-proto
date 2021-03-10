@@ -1,18 +1,23 @@
 import DeleteModal from 'src/components/DeleteModal/DeleteModal'
 import type { DeleteModalProps } from 'src/components/DeleteModal/DeleteModal'
+import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell/WarehouseNameCell'
 
 export interface WarehouseDeleteModalProps extends DeleteModalProps {
-  name: string
+  id: string
 }
 
 const WarehouseDeleteModal: React.FC<WarehouseDeleteModalProps> = ({
-  name,
+  id,
   ...otherProps
 }) => {
   return (
     <DeleteModal {...otherProps}>
       <p>
-        Are you sure you want to delete the <strong>{name}</strong> warehouse?
+        Are you sure you want to delete the{' '}
+        <strong>
+          <WarehouseNameCell id={id} />
+        </strong>{' '}
+        warehouse?
       </p>
       <p>
         This action{' '}
