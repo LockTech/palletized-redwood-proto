@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useFlash } from '@redwoodjs/web'
 import Alert from 'react-bootstrap/Alert'
 
+import './Notifications.css'
+
 const Message = ({ message }: { message: IFlashMessage }) => {
   const { cycleMessage } = useFlash()
 
@@ -37,7 +39,7 @@ const Notifications: React.FC = () => {
   if (!messages.length) return null
 
   return (
-    <div className="fixed-top mt-3 mx-3" style={{ right: 0 }}>
+    <div className="position-fixed mt-3 mx-3 notification-container">
       {messages.map((msg) => (
         <Message key={msg.id} message={msg} />
       ))}
