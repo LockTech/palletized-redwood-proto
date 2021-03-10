@@ -18,7 +18,12 @@ const CommonTileCard = ({ children }) => (
       to: routes.warehouses(),
     }}
     header="Upcoming Deliveries"
-    headerTooltip="The number of Active Orders at this Warehouse which have delivery-dates within the next seven (7) days."
+    headerTooltip={
+      <span>
+        Upcoming Deliveries are <em>Active Orders</em> with delivery-dates
+        within the next seven (7) days.
+      </span>
+    }
   >
     <p className="mb-0 display-4">{children}</p>
   </TileCard>
