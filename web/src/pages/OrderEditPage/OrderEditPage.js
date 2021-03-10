@@ -1,9 +1,9 @@
-import { Link, routes } from '@redwoodjs/router'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout'
+import OrderEditCell from 'src/components/order/OrderEditCell'
 
 const OrderEditPage = ({ id }) => {
   return (
@@ -12,7 +12,11 @@ const OrderEditPage = ({ id }) => {
         <Row>
           <Col>
             <h1>Edit Order</h1>
-            <p>{id}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <OrderEditCell id={id} />
           </Col>
         </Row>
       </Container>
