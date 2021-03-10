@@ -14,7 +14,7 @@ export const QUERY = gql`
 const CommonTileCard = ({ children }) => (
   <TileCard
     footer={{
-      text: 'Active Pallet Count',
+      text: 'Active Pallet List',
       // to: routes.pallets({ active: true }),
     }}
     header="Active Pallets"
