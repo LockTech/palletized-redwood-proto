@@ -21,7 +21,7 @@ const CommonTileCard = ({ children }) => (
     header="Active Orders"
     headerTooltip={
       <span>
-        Active Orders are ones which have Pallets with the status
+        Active Orders are Orders which have Pallets with the status
         &quot;Not-Shipped&quot;.
       </span>
     }
