@@ -19,7 +19,7 @@ export const schema = gql`
 
   type Mutation {
     createOrder(input: CreateOrderInput!): Order!
-    # updateOrder(id: String!, input: UpdateOrderInput!): Order!
+    updateOrder(id: String!, input: UpdateOrderInput!): Order!
     deleteOrder(id: String!): Order!
   }
 

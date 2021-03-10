@@ -11,6 +11,31 @@ import {
 const MAX_ORDER_NUMBER_LEN = 75
 const MAX_JOB_NAME_LEN = 75
 
+const commonExceptions = (input: IOrder) => {
+  throwIfIsReserved(input.orderNumber, 'Order', 'Number')
+  throwIfTooLong(input.orderNumber, MAX_ORDER_NUMBER_LEN, 'Order', 'Number')
+
+  if (input.jobName !== undefined) {
+    throwIfTooLong(input.jobName, MAX_JOB_NAME_LEN, 'Order', 'Job Name')
+  }
+}
+
+const handleCommonOrderErrors = (error) => {
+  switch (error.code) {
+    case PrismaError.UniqueConstraintViolation: {
+      throw new UserInputError(
+        'One or more fields are not unique to your organization.',
+        {
+          messages: {
+            'Order Number': ['must be unique accross all other Orders.'],
+            'Job Name': ['must be unique accross all other Orders.'],
+          },
+        }
+      )
+    }
+  }
+}
+
 // ==
 export const orders = ({ warehouseId }) => {
   if (!warehouseId) return db.order.findMany()
@@ -39,12 +64,7 @@ export const order = ({ id }) => {
 
 // ==
 export const createOrder = async ({ input }: { input: IOrder }) => {
-  throwIfIsReserved(input.orderNumber, 'Order', 'Number')
-  throwIfTooLong(input.orderNumber, MAX_ORDER_NUMBER_LEN, 'Order', 'Number')
-
-  if (input.jobName !== undefined) {
-    throwIfTooLong(input.jobName, MAX_JOB_NAME_LEN, 'Order', 'Job Name')
-  }
+  commonExceptions(input)
 
   input.id = input.orderNumber.replaceAll(' ', '-').toLowerCase()
 
@@ -54,23 +74,8 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
     })
   } catch (err) {
     handleCommonErrors(err)
-
-    switch (err.code) {
-      case PrismaError.UniqueConstraintViolation: {
-        throw new UserInputError(
-          'One or more fields are not unique to your organization.',
-          {
-            messages: {
-              'Order Number': ['must be unique accross all other Orders.'],
-              'Job Name': ['must be unique accross all other Orders.'],
-            },
-          }
-        )
-      }
-      default: {
-        throwUnexpectedError(err)
-      }
-    }
+    handleCommonOrderErrors(err)
+    throwUnexpectedError(err)
   }
 }
 //
@@ -95,6 +100,44 @@ export const orderCountInWarehouse = async ({ warehouseId, order }) => {
   } catch (err) {
     handleCommonErrors(err)
     throwUnexpectedError(err)
+  }
+}
+//
+
+// ==
+type UpdateOrderParams = {
+  id: string
+  input: IOrder
+}
+export const updateOrder = async ({ id, input }: UpdateOrderParams) => {
+  commonExceptions(input)
+
+  input.id = input.orderNumber.replaceAll(' ', '-').toLowerCase()
+
+  try {
+    return await db.order.update({
+      data: input,
+      where: {
+        id,
+      },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonOrderErrors(err)
+
+    switch (err.code) {
+      case PrismaError.RecordDoesNotExist: {
+        throw new UserInputError(`Could not find Order ${id}.`, {
+          messages: {
+            An: ['Order must exist in order to be updated.'],
+          },
+        })
+      }
+
+      default: {
+        throwUnexpectedError(err)
+      }
+    }
   }
 }
 //
