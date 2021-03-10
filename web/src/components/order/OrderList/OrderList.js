@@ -11,7 +11,7 @@ const OrderList = ({ orders }) => {
     <Row>
       {orders.map((order, index) => (
         <Col key={index} lg={4} md={6}>
-          <Card>
+          <Card className="mb-3">
             <Card.Body>
               <Card.Title>{order.jobName || order.orderNumber}</Card.Title>
               <Card.Subtitle className="mb-3 text-muted">
