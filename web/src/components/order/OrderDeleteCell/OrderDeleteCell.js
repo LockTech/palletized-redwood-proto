@@ -22,6 +22,7 @@ export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
 export const OrderDeleteCell = ({ id }) => {
   const { addMessage } = useFlash()
+
   const [deleteQuery, { called, error }] = useMutation(DELETE_ORDER_MUTATION, {
     onCompleted: () => {
       navigate(routes.orders())
@@ -35,17 +36,12 @@ export const OrderDeleteCell = ({ id }) => {
 
   useEffect(() => {
     if (called && error) {
-      addMessage(
-        <span>
-          <p>{error.name}</p>
-          <p>{error.message}</p>
-        </span>,
-        { variant: 'danger' }
-      )
+      addMessage(<span>{error.message}</span>, { variant: 'danger' })
     }
   }, [addMessage, called, error])
 
   const [deleteModalVis, setDeleteModalVis] = useState(false)
+
   const onHideDeleteModal = useCallback(() => {
     setDeleteModalVis(false)
   }, [setDeleteModalVis])
@@ -53,6 +49,7 @@ export const OrderDeleteCell = ({ id }) => {
   const onDeleteClick = useCallback(() => {
     setDeleteModalVis(true)
   }, [setDeleteModalVis])
+
   const onDeleteConfirm = useCallback(() => {
     deleteQuery({ variables: { id } })
     setDeleteModalVis(false)
