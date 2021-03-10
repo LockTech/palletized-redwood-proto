@@ -5,6 +5,7 @@ import { useFlash, useMutation } from '@redwoodjs/web'
 import Button from 'react-bootstrap/Button'
 
 import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
+import { QUERY } from 'src/components/warehouse/WarehouseListCell'
 
 export const DELETE_WAREHOUSE_MUTATION = gql`
   mutation DeleteWarehouseMutation($id: String!) {
@@ -31,6 +32,8 @@ export const WarehouseDeleteCell = ({ id }) => {
           variant: 'success',
         })
       },
+      refetchQueries: [{ query: QUERY }],
+      awaitRefetchQueries: true,
     }
   )
 
