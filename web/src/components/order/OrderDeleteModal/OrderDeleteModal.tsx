@@ -27,6 +27,9 @@ const OrderDeleteModal: React.FC<OrderDeleteModalProps> = ({
         </u>
         .
       </p>
+      <p>
+        An Order cannot be deleted if it has any <em>Active Pallets</em>.
+      </p>
     </DeleteModal>
   )
 }
