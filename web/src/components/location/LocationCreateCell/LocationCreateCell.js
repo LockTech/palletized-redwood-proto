@@ -1,4 +1,5 @@
-import { useMutation, toast } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
@@ -13,19 +14,19 @@ const LOCATION_CREATE_MUTATION = gql`
 `
 
 const LocationCreateCell = () => {
-  const [createWarehouse, { loading, error }] = useMutation(
+  const [createLocation, { loading, error }] = useMutation(
     LOCATION_CREATE_MUTATION,
     {
       onCompleted: () => {
-        navigate(routes.warehouses())
-        toast.success('Warehouse has been successfully created.')
+        navigate(routes.locations())
+        toast.success('Location has been successfully created.')
       },
     }
   )
 
   const onSave = (input) => {
     try {
-      createWarehouse({ variables: { input } })
+      createLocation({ variables: { input } })
     } catch (err) {
       // console.log(err)
     }
