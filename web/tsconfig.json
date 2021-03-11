@@ -15,5 +15,5 @@
     "types": ["jest"]
   },
   "files": ["../@types/index.d.ts"],
-  "include": ["src"]
+  "include": ["src", "../.redwood/globals"]
 }
