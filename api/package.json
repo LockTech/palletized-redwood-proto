@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@redwoodjs/api": "^0.26.2",
+    "@redwoodjs/api": "^0.27.0",
     "prisma-error-enum": "^0.1.1"
   }
 }
