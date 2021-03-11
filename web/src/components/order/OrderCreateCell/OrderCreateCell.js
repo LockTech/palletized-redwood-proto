@@ -1,4 +1,5 @@
-import { useMutation, useFlash } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
@@ -13,11 +14,10 @@ export const ORDER_CREATE_MUTATION = gql`
 `
 
 const OrderCreateCell = () => {
-  const { addMessage } = useFlash()
   const [createOrder, { loading, error }] = useMutation(ORDER_CREATE_MUTATION, {
     onCompleted: () => {
       navigate(routes.orders())
-      addMessage('Order created.', { variant: 'success' })
+      toast.success('Order successfully created.')
     },
   })
 

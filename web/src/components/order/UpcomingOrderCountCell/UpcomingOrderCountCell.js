@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useFlash } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import { routes } from '@redwoodjs/router'
 import Skeleton from 'react-loading-skeleton'
 
@@ -38,16 +38,11 @@ export const Loading = () => (
 export const Empty = () => '0'
 
 export const Failure = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(
-      `An error occured while retrieving the Upcoming-Order count in Warehouse: ${id}`,
-      {
-        variant: 'danger',
-      }
+    toast.error(
+      `An error occured while retrieving the Upcoming-Order count in Warehouse: ${id}`
     )
-  }, [addMessage, id])
+  }, [id])
 
   // perform error notification
   return <CommonTileCard>-</CommonTileCard>

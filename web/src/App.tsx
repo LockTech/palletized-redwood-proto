@@ -1,7 +1,7 @@
 import { FatalErrorBoundary } from '@redwoodjs/web'
+import { Toaster } from '@redwoodjs/web/toast'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 
-import Notifications from 'src/components/Notifications/Notifications'
 import FatalErrorPage from 'src/pages/FatalErrorPage/FatalErrorPage'
 import Routes from 'src/Routes'
 
@@ -10,7 +10,7 @@ import './index.scss'
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodApolloProvider>
-      <Notifications />
+      <Toaster />
       <Routes />
     </RedwoodApolloProvider>
   </FatalErrorBoundary>

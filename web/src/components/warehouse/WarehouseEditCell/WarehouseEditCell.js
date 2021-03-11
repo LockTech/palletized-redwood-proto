@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { useMutation, useFlash } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
@@ -29,13 +30,11 @@ const UPDATE_WAREHOUSE_MUTATION = gql`
 export const Loading = () => <LoadingCard />
 
 export const Empty = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(`Could not find Warehouse: ${id}.`, {
+    toast.error(`Could not find Warehouse: ${id}.`, {
       variant: 'danger',
     })
-  }, [addMessage, id])
+  }, [id])
 
   return (
     <Card>
@@ -45,13 +44,9 @@ export const Empty = ({ id }) => {
 }
 
 export const Failure = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(`An error occured while trying to edit Warehouse: ${id}.`, {
-      variant: 'danger',
-    })
-  }, [addMessage, id])
+    toast.error(`An error occured while trying to edit Warehouse: ${id}.`)
+  }, [id])
 
   return (
     <Card>
@@ -63,15 +58,12 @@ export const Failure = ({ id }) => {
 }
 
 export const Success = ({ warehouse }) => {
-  const { addMessage } = useFlash()
   const [updateWarehouse, { loading, error }] = useMutation(
     UPDATE_WAREHOUSE_MUTATION,
     {
       onCompleted: () => {
         navigate(routes.warehouses())
-        addMessage('Warehouse has been successfully updated.', {
-          variant: 'success',
-        })
+        toast.success('Warehouse has been successfully updated.')
       },
     }
   )

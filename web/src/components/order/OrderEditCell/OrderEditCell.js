@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { navigate, routes } from '@redwoodjs/router'
-import { useFlash, useMutation } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import Card from 'react-bootstrap/Card'
 
 import LoadingCard from 'src/components/LoadingCard'
@@ -29,13 +30,9 @@ const UPDATE_ORDER_MUTATION = gql`
 export const Loading = () => <LoadingCard />
 
 export const Empty = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(`Could not find Order: ${id}.`, {
-      variant: 'danger',
-    })
-  }, [addMessage, id])
+    toast.error(`Could not find Order: ${id}.`)
+  }, [id])
 
   return (
     <Card>
@@ -45,13 +42,9 @@ export const Empty = ({ id }) => {
 }
 
 export const Failure = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(`An error occured while trying to edit Order: ${id}.`, {
-      variant: 'danger',
-    })
-  }, [addMessage, id])
+    toast.error(`An error occured while trying to edit Order: ${id}.`)
+  }, [id])
 
   return (
     <Card>
@@ -61,13 +54,10 @@ export const Failure = ({ id }) => {
 }
 
 export const Success = ({ order }) => {
-  const { addMessage } = useFlash()
   const [updateOrder, { loading, error }] = useMutation(UPDATE_ORDER_MUTATION, {
     onCompleted: () => {
       navigate(routes.orders())
-      addMessage('Order has been successfully updated.', {
-        variant: 'success',
-      })
+      toast.success('Order has been successfully updated.')
     },
   })
 

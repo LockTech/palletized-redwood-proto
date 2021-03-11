@@ -1,4 +1,5 @@
-import { useMutation, useFlash } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
@@ -13,15 +14,12 @@ const WAREHOUSE_CREATE_MUTATION = gql`
 `
 
 const WarehouseCreateCell = () => {
-  const { addMessage } = useFlash()
   const [createWarehouse, { loading, error }] = useMutation(
     WAREHOUSE_CREATE_MUTATION,
     {
       onCompleted: () => {
         navigate(routes.warehouses())
-        addMessage('Warehouse has been successfully created.', {
-          variant: 'success',
-        })
+        toast.success('Warehouse has been successfully created.')
       },
     }
   )

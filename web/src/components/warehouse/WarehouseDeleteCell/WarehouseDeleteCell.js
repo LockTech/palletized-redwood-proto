@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useCallback, useState } from 'react'
 import { navigate, routes } from '@redwoodjs/router'
-import { useFlash, useMutation } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import Button from 'react-bootstrap/Button'
 
 import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
@@ -22,15 +23,12 @@ export const Empty = () => <div>Empty</div>
 export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
 export const WarehouseDeleteCell = ({ id }) => {
-  const { addMessage } = useFlash()
   const [deleteQuery, { called, error }] = useMutation(
     DELETE_WAREHOUSE_MUTATION,
     {
       onCompleted: () => {
         navigate(routes.warehouses())
-        addMessage('Warehouse has been successfully deleted.', {
-          variant: 'success',
-        })
+        toast.success('Warehouse has been successfully deleted.')
       },
       refetchQueries: [{ query: QUERY }],
       awaitRefetchQueries: true,
@@ -39,15 +37,9 @@ export const WarehouseDeleteCell = ({ id }) => {
 
   useEffect(() => {
     if (called && error) {
-      addMessage(
-        <span>
-          <p>{error.name}</p>
-          <p>{error.message}</p>
-        </span>,
-        { variant: 'danger' }
-      )
+      toast.error(error.message)
     }
-  }, [addMessage, called, error])
+  }, [called, error])
 
   const [deleteModalVis, setDeleteModalVis] = useState(false)
   const onHideDeleteModal = useCallback(() => {

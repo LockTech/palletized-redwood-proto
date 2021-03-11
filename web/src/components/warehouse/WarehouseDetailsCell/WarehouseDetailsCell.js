@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useFlash } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import Card from 'react-bootstrap/Card'
 
 import LoadingCard from 'src/components/LoadingCard'
@@ -19,17 +19,11 @@ export const QUERY = gql`
 export const Loading = () => <LoadingCard header="Warehouse Details" />
 
 export const Empty = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(
-      `Could not find details for Warehouse: ${id}. Are you sure the Warehouse exist?`,
-      {
-        skipTimeout: true,
-        variant: 'danger',
-      }
+    toast.error(
+      `Could not find details for Warehouse: ${id}. Are you sure the Warehouse exist?`
     )
-  }, [addMessage, id])
+  }, [id])
 
   return (
     <Card>
@@ -42,17 +36,11 @@ export const Empty = ({ id }) => {
 }
 
 export const Failure = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(
-      `An error occured while retrieving the details for Warehouse: ${id}`,
-      {
-        skipTimeout: true,
-        variant: 'danger',
-      }
+    toast.error(
+      `An error occured while retrieving the details for Warehouse: ${id}`
     )
-  }, [addMessage, id])
+  }, [id])
 
   return (
     <Card>

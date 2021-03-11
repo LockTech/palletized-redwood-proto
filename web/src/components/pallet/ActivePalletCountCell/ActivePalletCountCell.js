@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 // import { routes } from '@redwoodjs/router'
-import { useFlash } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import Skeleton from 'react-loading-skeleton'
 
 import TileCard from 'src/components/TileCard'
@@ -38,16 +38,11 @@ export const Loading = () => (
 export const Empty = () => <CommonTileCard>0</CommonTileCard>
 
 export const Failure = ({ id }) => {
-  const { addMessage } = useFlash()
-
   useEffect(() => {
-    addMessage(
-      `An error occured while retrieving the Active-Pallet count for Order: ${id}`,
-      {
-        variant: 'danger',
-      }
+    toast.error(
+      `An error occured while retrieving the Active-Pallet count for Order: ${id}`
     )
-  }, [addMessage, id])
+  }, [id])
 
   return <CommonTileCard>-</CommonTileCard>
 }

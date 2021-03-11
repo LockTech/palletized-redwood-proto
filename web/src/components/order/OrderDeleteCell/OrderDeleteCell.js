@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { navigate, routes } from '@redwoodjs/router'
-import { useFlash, useMutation } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 import Button from 'react-bootstrap/Button'
 
 import OrderDeleteModal from 'src/components/order/OrderDeleteModal'
@@ -21,14 +22,10 @@ export const Empty = () => <div>Empty</div>
 export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
 export const OrderDeleteCell = ({ id }) => {
-  const { addMessage } = useFlash()
-
   const [deleteQuery, { called, error }] = useMutation(DELETE_ORDER_MUTATION, {
     onCompleted: () => {
       navigate(routes.orders())
-      addMessage('Order has been successfully deleted.', {
-        variant: 'success',
-      })
+      toast.success('Order has been successfully deleted.')
     },
     refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
@@ -36,9 +33,9 @@ export const OrderDeleteCell = ({ id }) => {
 
   useEffect(() => {
     if (called && error) {
-      addMessage(<span>{error.message}</span>, { variant: 'danger' })
+      toast.error(error.message)
     }
-  }, [addMessage, called, error])
+  }, [called, error])
 
   const [deleteModalVis, setDeleteModalVis] = useState(false)
 
