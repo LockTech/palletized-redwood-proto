@@ -9,7 +9,7 @@ import './index.scss'
 
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
-    <RedwoodApolloProvider useAuth={() => null}>
+    <RedwoodApolloProvider>
       <Notifications />
       <Routes />
     </RedwoodApolloProvider>
