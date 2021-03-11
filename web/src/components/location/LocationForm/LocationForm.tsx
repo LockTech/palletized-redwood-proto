@@ -6,27 +6,33 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
-import Select from 'react-select'
+
+import Select from 'src/components/CreatableSelect/CreatableSelect'
 
 const LOCATION_GET_WAREHOUSES = gql`
   query LocationGetWarehouses {
     warehouses {
-      value: id
       label: name
+      value: id
     }
   }
 `
 
-export interface LocationFormData {
+export type LocationFormData = {
   name: string
   warehouse: {
-    value: string
     label: string
+    value: string
   }
 }
 
+export type LocationSaveData = {
+  name: string
+  warehouse: IWarehouse
+}
+
 export interface LocationFormProps {
-  onSave: (data: LocationFormData, id?: string) => void
+  onSave: (data: LocationSaveData, id?: string) => void
   location: ILocation
   resultError?: Error
   resultLoading?: boolean
@@ -44,9 +50,6 @@ const LocationForm: React.FC<LocationFormProps> = ({
     loading: warehousesLoading,
   } = useQuery(LOCATION_GET_WAREHOUSES)
 
-  console.log(warehousesLoading)
-  console.log(warehousesList)
-
   const {
     control,
     formState: { errors, isDirty, isValid },
@@ -62,7 +65,17 @@ const LocationForm: React.FC<LocationFormProps> = ({
   })
 
   const onSubmit = useCallback(
-    (data: LocationFormData) => onSave(data, location?.id),
+    (data: LocationFormData) =>
+      onSave(
+        {
+          name: data.name,
+          warehouse: {
+            id: data.warehouse.value,
+            name: data.warehouse.label,
+          },
+        },
+        location?.id
+      ),
     [onSave, location]
   )
 
@@ -83,6 +96,18 @@ const LocationForm: React.FC<LocationFormProps> = ({
       return 'Submit'
     }
   }, [resultLoading])
+
+  const selectComp = useCallback(
+    (field, state) => (
+      <Select
+        field={field}
+        isLoading={warehousesLoading}
+        options={warehousesList?.warehouses}
+        state={state}
+      />
+    ),
+    [warehousesList, warehousesLoading]
+  )
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
@@ -123,22 +148,7 @@ const LocationForm: React.FC<LocationFormProps> = ({
 
       <Form.Group controlId="createLocationForm.warehouse">
         <Form.Label>Warehouse</Form.Label>
-        <Controller
-          control={control}
-          name="warehouse"
-          render={({ name, onChange, ref, value }) => (
-            <Select
-              aria-labelledby="createLocationForm.warehouseHelpBlock"
-              defaultOptions
-              isLoading={warehousesLoading}
-              name={name}
-              onChange={onChange}
-              options={warehousesList?.warehouses}
-              ref={ref}
-              value={value}
-            />
-          )}
-        />
+        <Controller control={control} name="warehouse" render={selectComp} />
         <Form.Text
           className={
             !errors.warehouse && !warehousesError ? 'd-block' : 'd-none'
