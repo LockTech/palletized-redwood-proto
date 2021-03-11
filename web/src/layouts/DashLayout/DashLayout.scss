@@ -1,4 +1,6 @@
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/_mixins';
 
 :root {
    /* Relative value; determinate based on the largest item in the Navbar; currently NavActions */
