@@ -148,7 +148,14 @@ const LocationForm: React.FC<LocationFormProps> = ({
 
       <Form.Group controlId="createLocationForm.warehouse">
         <Form.Label>Warehouse</Form.Label>
-        <Controller control={control} name="warehouse" render={selectComp} />
+        <Controller
+          control={control}
+          name="warehouse"
+          rules={{
+            required: 'A Warehouse is required when creating a Location.',
+          }}
+          render={selectComp}
+        />
         <Form.Text
           className={
             !errors.warehouse && !warehousesError ? 'd-block' : 'd-none'
