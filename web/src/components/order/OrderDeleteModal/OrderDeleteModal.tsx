@@ -15,17 +15,15 @@ const OrderDeleteModal: React.FC<OrderDeleteModalProps> = ({
     <DeleteModal {...otherProps}>
       <p>
         Are you sure you want to delete order{' '}
-        <strong>
+        <code>
           <OrderNameCell id={id} />
-        </strong>
+        </code>
         ?
       </p>
       <p>
-        This action{' '}
-        <u className="text-danger">
-          <strong>cannot be undone</strong>
-        </u>
-        .
+        <strong>
+          This action <u className="text-danger">cannot be undone</u>.
+        </strong>
       </p>
       <p>
         An Order cannot be deleted if it has any <em>Active Pallets</em>.

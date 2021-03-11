@@ -14,17 +14,16 @@ const WarehouseDeleteModal: React.FC<WarehouseDeleteModalProps> = ({
     <DeleteModal {...otherProps}>
       <p>
         Are you sure you want to delete the{' '}
-        <strong>
+        <code>
           <WarehouseNameCell id={id} />
-        </strong>{' '}
+        </code>{' '}
         warehouse?
       </p>
       <p>
-        This action{' '}
-        <u className="text-danger">
-          <strong>cannot be undone</strong>
-        </u>{' '}
-        and <em>will</em> delete all Locations belonging to this warehouse.
+        <strong>
+          This action <u className="text-danger">cannot be undone</u> and{' '}
+          <em>will</em> delete all Locations belonging to this warehouse.
+        </strong>
       </p>
       <p>
         If deleted, you will have the opportunity to move each Pallet which is
