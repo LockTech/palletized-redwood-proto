@@ -4,9 +4,9 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 
 const LocationDropdown: React.FunctionComponent = () => {
-  const createLocationRoute = useMemo(() => routes.createWarehouse(), [])
+  const createLocationRoute = useMemo(() => routes.createLocation(), [])
   const createLocationMatch = useMatch(createLocationRoute).match
-  const locationsRoute = useMemo(() => routes.warehouses(), [])
+  const locationsRoute = useMemo(() => routes.locations(), [])
   const locationsMatch = useMatch(locationsRoute).match
 
   return (
