@@ -37,7 +37,7 @@ const handleCommonOrderErrors = (error) => {
     case PrismaError.RecordDoesNotExist: {
       throw new UserInputError(`Could not find Order.`, {
         messages: {
-          An: ['Order must exist in to be updated.'],
+          An: ['Order must exist to be updated.'],
         },
       })
     }
