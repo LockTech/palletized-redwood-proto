@@ -5,7 +5,6 @@ import Notifications from 'src/components/Notifications'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
 
-import './scaffold.css'
 import './index.scss'
 
 const App = () => (
