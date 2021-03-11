@@ -13,6 +13,10 @@ export const schema = gql`
     locations: [Location!]!
   }
 
+  type Mutation {
+    createLocation(input: CreateLocationInput!): Location!
+  }
+
   input CreateLocationInput {
     name: String!
     warehouseId: String!
