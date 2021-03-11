@@ -13,19 +13,31 @@ const Routes = () => {
     <Router>
       {/* General */}
       <Route path="/" page={DashboardPage} name="dashboard" />
-      <Route notfound={NotFoundPage} page={NotFoundPage} />
+      <Route notfound page={NotFoundPage} />
       {/* Orders */}
       <Route path="/order/create" page={OrderCreatePage} name="createOrder" />
       <Route path="/orders/{id}/edit" page={OrderEditPage} name="editOrder" />
       <Route path="/orders/{id}" page={OrderPage} name="order" />
       <Route path="/orders" page={OrderListPage} name="orders" />
       {/* Warehouses */}
-      <Route path="/warehouse/create" page={WarehouseCreatePage} name="createWarehouse" />
-      <Route path="/warehouses/{id}/edit" page={WHEditPage} name="editWarehouse" />
+      <Route
+        path="/warehouse/create"
+        page={WarehouseCreatePage}
+        name="createWarehouse"
+      />
+      <Route
+        path="/warehouses/{id}/edit"
+        page={WHEditPage}
+        name="editWarehouse"
+      />
       <Route path="/warehouses/{id}" page={WHPage} name="warehouse" />
       <Route path="/warehouses" page={WHListPage} name="warehouses" />
       {/* Locations */}
-      <Route path="/location/create" page={LocationCreatePage} name="createLocation" />
+      <Route
+        path="/location/create"
+        page={LocationCreatePage}
+        name="createLocation"
+      />
       <Route path="/locations" page={LocationListPage} name="locations" />
     </Router>
   )
