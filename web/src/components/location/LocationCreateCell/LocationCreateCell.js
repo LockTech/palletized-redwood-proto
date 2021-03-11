@@ -1,17 +1,50 @@
-export const QUERY = gql`
-  query LocationCreateQuery {
-    locationCreate {
+import { useMutation, useFlash } from '@redwoodjs/web'
+import { navigate, routes } from '@redwoodjs/router'
+import Card from 'react-bootstrap/Card'
+
+import LocationForm from 'src/components/location/LocationForm'
+
+const LOCATION_CREATE_MUTATION = gql`
+  mutation LocationCreateMutation($input: CreateLocationInput!) {
+    createLocation(input: $input) {
       id
     }
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+const LocationCreateCell = () => {
+  const { addMessage } = useFlash()
+  const [createWarehouse, { loading, error }] = useMutation(
+    LOCATION_CREATE_MUTATION,
+    {
+      onCompleted: () => {
+        navigate(routes.warehouses())
+        addMessage('Location has been successfully created.', {
+          variant: 'success',
+        })
+      },
+    }
+  )
 
-export const Empty = () => <div>Empty</div>
+  const onSave = (input) => {
+    try {
+      createWarehouse({ variables: { input } })
+    } catch (err) {
+      // console.log(err)
+    }
+  }
 
-export const Failure = ({ error }) => <div>Error: {error.message}</div>
-
-export const Success = ({ locationCreate }) => {
-  return JSON.stringify(locationCreate)
+  return (
+    <Card>
+      <Card.Body>
+        <LocationForm
+          onSave={onSave}
+          resultError={error}
+          resultLoading={loading}
+        />
+      </Card.Body>
+    </Card>
+  )
 }
+
+export default LocationCreateCell
