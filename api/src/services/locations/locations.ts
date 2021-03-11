@@ -8,6 +8,8 @@ import {
   throwUnexpectedError,
 } from 'src/lib/error'
 
+import { createWarehouse, warehouse } from 'src/services/warehouses/warehouses'
+
 const MAX_NAME_LEN = 75
 
 const commonExceptions = (input: ILocation) => {
@@ -15,7 +17,7 @@ const commonExceptions = (input: ILocation) => {
   throwIfTooLong(input.name, MAX_NAME_LEN, 'Location', 'Name')
 }
 
-const handleCommonOrderErrors = (error) => {
+const handleCommonLocationErrors = (error) => {
   switch (error.code) {
     case PrismaError.UniqueConstraintViolation: {
       throw new UserInputError(
@@ -52,13 +54,26 @@ export const createLocation = async ({ input }: { input: ILocation }) => {
 
   input.id = input.name.replaceAll(' ', '-').toLowerCase()
 
+  const locWarehouse = await warehouse({ id: input.warehouse.id })
+
+  if (!locWarehouse) {
+    const wh = input.warehouse
+    try {
+      await createWarehouse({ input: { id: wh.id, name: wh.name } })
+    } catch (err) {
+      handleCommonErrors(err)
+      handleCommonLocationErrors(err)
+      throwUnexpectedError(err)
+    }
+  }
+
   try {
     return await db.location.create({
       data: input,
     })
   } catch (err) {
     handleCommonErrors(err)
-    handleCommonOrderErrors(err)
+    handleCommonLocationErrors(err)
     throwUnexpectedError(err)
   }
 }
