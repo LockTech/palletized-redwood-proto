@@ -20,6 +20,7 @@ export const schema = gql`
   input CreateLocationInput {
     name: String!
     warehouseId: String!
+    warehouseName: String!
   }
 
   input UpdateLocationInput {
