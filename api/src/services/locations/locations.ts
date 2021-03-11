@@ -12,7 +12,7 @@ import { createWarehouse, warehouse } from 'src/services/warehouses/warehouses'
 
 const MAX_NAME_LEN = 75
 
-const commonExceptions = (input: ILocation) => {
+const commonExceptions = (input: CreateLocationInput) => {
   throwIfIsReserved(input.name, 'Location', 'Name')
   throwIfTooLong(input.name, MAX_NAME_LEN, 'Location', 'Name')
 }
@@ -49,17 +49,36 @@ export const locations = () => {
 //
 
 // ==
-export const createLocation = async ({ input }: { input: ILocation }) => {
+export type CreateLocationInput = {
+  name: string
+  warehouseId: string
+  warehouseName: string
+}
+export const createLocation = async ({
+  input,
+}: {
+  input: CreateLocationInput
+}) => {
   commonExceptions(input)
 
-  input.id = input.name.replaceAll(' ', '-').toLowerCase()
+  const loc = {
+    id: input.name.replaceAll(' ', '-').toLowerCase(),
+    name: input.name,
+    warehouseId: input.warehouseId,
+  }
 
-  const locWarehouse = await warehouse({ id: input.warehouse.id })
+  let locWarehouse = await warehouse({ id: input.warehouseId })
 
-  if (!locWarehouse) {
-    const wh = input.warehouse
+  console.log(`LOC: ${loc}`)
+  console.log(`LOC-WAREHOUSE: ${locWarehouse}`)
+
+  if (locWarehouse === null) {
     try {
-      await createWarehouse({ input: { id: wh.id, name: wh.name } })
+      locWarehouse = await createWarehouse({
+        input: { id: input.warehouseId, name: input.warehouseName },
+      })
+
+      loc.warehouseId = locWarehouse.id
     } catch (err) {
       handleCommonErrors(err)
       handleCommonLocationErrors(err)
@@ -69,7 +88,7 @@ export const createLocation = async ({ input }: { input: ILocation }) => {
 
   try {
     return await db.location.create({
-      data: input,
+      data: loc,
     })
   } catch (err) {
     handleCommonErrors(err)
