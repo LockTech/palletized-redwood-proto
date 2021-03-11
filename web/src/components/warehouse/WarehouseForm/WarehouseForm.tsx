@@ -10,10 +10,12 @@ export type WarehouseFormData = {
   name: string
 }
 
+export type WarehouseSaveData = WarehouseFormData
+
 export interface WarehouseFormProps {
   resultError?: Error
   resultLoading?: boolean
-  onSave: (data: WarehouseFormData, id?: string) => void
+  onSave: (data: WarehouseSaveData, id?: string) => void
   warehouse: IWarehouse
 }
 

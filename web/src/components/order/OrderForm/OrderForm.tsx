@@ -6,13 +6,15 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Spinner from 'react-bootstrap/Spinner'
 
-export interface OrderFormData {
+export type OrderFormData = {
   orderNumber: string
   jobName: string
 }
 
+export type OrderSaveData = OrderFormData
+
 export interface OrderFormProps {
-  onSave: (data: OrderFormData, id?: string) => void
+  onSave: (data: OrderSaveData, id?: string) => void
   order: IOrder
   resultError?: Error
   resultLoading?: boolean
