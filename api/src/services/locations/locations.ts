@@ -39,18 +39,46 @@ const handleCommonLocationErrors = (error) => {
         },
       })
     }
+
+    case PrismaError.ForeignConstraintViolation: {
+      throw new UserInputError('Could not find Warehouse.', {
+        messages: {
+          An: [
+            'error occured while fetching or creating a Warehouse for this Location.',
+          ],
+          Consider: [
+            'retrying or creating a Warehouse, then a Location.',
+            'contacting Support if the issue persist.',
+          ],
+        },
+      })
+    }
   }
 }
 
 // ==
-export const locations = ({ warehouseId }) => {
-  if (!warehouseId) return db.location.findMany()
-  else
-    return db.location.findMany({
-      where: {
-        warehouseId,
-      },
-    })
+export const locations = async ({ warehouseId }) => {
+  try {
+    if (!warehouseId)
+      return await db.location.findMany({
+        orderBy: {
+          name: 'asc',
+        },
+      })
+    else
+      return await db.location.findMany({
+        orderBy: {
+          name: 'asc',
+        },
+        where: {
+          warehouseId,
+        },
+      })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonLocationErrors(err)
+    throwUnexpectedError(err)
+  }
 }
 //
 
