@@ -3,7 +3,7 @@ import { routes, useMatch } from '@redwoodjs/router'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 
-const WarehouseDropdown: React.FunctionComponent = () => {
+const StorageDropdown: React.FunctionComponent = () => {
   const createWarehouseRoute = useMemo(() => routes.createWarehouse(), [])
   const createWarehouseMatch = useMatch(createWarehouseRoute).match
   const warehousesRoute = useMemo(() => routes.warehouses(), [])
@@ -26,37 +26,39 @@ const WarehouseDropdown: React.FunctionComponent = () => {
           'active'
         }
       >
-        Warehouses
+        Storage
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item
-          className={warehousesMatch && 'active'}
-          href={warehousesRoute}
-        >
-          Warehouse List
-        </Dropdown.Item>
+        <Dropdown.Header>Warehouses</Dropdown.Header>
         <Dropdown.Item
           className={createWarehouseMatch && 'active'}
           href={createWarehouseRoute}
         >
           Create Warehouse
         </Dropdown.Item>
-        <Dropdown.Divider />
         <Dropdown.Item
-          className={locationsMatch && 'active'}
-          href={locationsRoute}
+          className={warehousesMatch && 'active'}
+          href={warehousesRoute}
         >
-          Location List
+          List Warehouses
         </Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Header>Locations</Dropdown.Header>
         <Dropdown.Item
           className={createLocationMatch && 'active'}
           href={createLocationRoute}
         >
           Create Location
         </Dropdown.Item>
+        <Dropdown.Item
+          className={locationsMatch && 'active'}
+          href={locationsRoute}
+        >
+          List Locations
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   )
 }
 
-export default WarehouseDropdown
+export default StorageDropdown
