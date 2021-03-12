@@ -9,13 +9,14 @@
 //
 
 datasource DS {
-  provider = "postgresql"
-  url      = "postgresql://palletized:secret@localhost:5432/palletized?schema=palletized"
+  provider            = "postgresql"
+  url                 = "postgresql://palletized:secret@localhost:5432/palletized?schema=palletized"
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+  provider            = "prisma-client-js"
+  binaryTargets       = "native"
+  previewFeatures     = ["groupBy"]
 }
 
 // `yarn redwood prisma migrate dev`
