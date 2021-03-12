@@ -43,8 +43,14 @@ const handleCommonLocationErrors = (error) => {
 }
 
 // ==
-export const locations = () => {
-  return db.location.findMany()
+export const locations = ({ warehouseId }) => {
+  if (!warehouseId) return db.location.findMany()
+  else
+    return db.location.findMany({
+      where: {
+        warehouseId,
+      },
+    })
 }
 //
 
