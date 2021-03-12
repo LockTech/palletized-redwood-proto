@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+import CardColumns from 'react-bootstrap/CardColumns'
+import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
 export interface LocationListProps {
   locations: ILocation[]
@@ -8,20 +9,24 @@ export interface LocationListProps {
 
 const LocationList: React.FC<LocationListProps> = ({ locations }) => {
   return (
-    <Row>
+    <CardColumns>
       {locations.map((loc, index) => (
-        <Col key={index} lg={4} md={6}>
-          <Card className="mb-3">
-            <Card.Body>
-              <Card.Title>{loc.name}</Card.Title>
-              <Card.Subtitle className="text-muted">
-                {loc.warehouse.name}
-              </Card.Subtitle>
-            </Card.Body>
-          </Card>
-        </Col>
+        <Card key={index}>
+          <Card.Body>
+            <Card.Title>{loc.name}</Card.Title>
+            <Card.Subtitle className="text-muted">
+              {loc.warehouse.name}
+            </Card.Subtitle>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroupItem>Welcome</ListGroupItem>
+            <ListGroupItem>To</ListGroupItem>
+            <ListGroupItem>The</ListGroupItem>
+            <ListGroupItem>Jungle</ListGroupItem>
+          </ListGroup>
+        </Card>
       ))}
-    </Row>
+    </CardColumns>
   )
 }
 
