@@ -74,12 +74,13 @@ const DashLayout: React.FC = ({ children }) => {
                 {/*  */}
                 <Dropdown.Header>Configuration</Dropdown.Header>
                 <Dropdown.Item>Account Settings</Dropdown.Item>
-                <Dropdown.Item>Warehouse Settings</Dropdown.Item>
                 {/*  */}
+                <Dropdown.Divider />
                 <Dropdown.Header>Support</Dropdown.Header>
                 <Dropdown.Item>User Manual</Dropdown.Item>
                 <Dropdown.Item>Support Center</Dropdown.Item>
                 {/*  */}
+                <Dropdown.Divider />
                 <Dropdown.Header>Management</Dropdown.Header>
                 <Dropdown.Item className="dash-layout-switch-warehouse text-primary">
                   Switch Warehouse
