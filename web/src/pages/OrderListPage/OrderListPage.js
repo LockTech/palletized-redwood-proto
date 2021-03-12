@@ -1,28 +1,20 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, routes } from '@redwoodjs/router'
-import { useForm } from 'react-hook-form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout'
+import SwitchWarehouseForm from 'src/components/warehouse/SwitchWarehouseForm'
 import ActiveOrderListCell from 'src/components/order/ActiveOrderListCell'
 import OrderListCell from 'src/components/order/OrderListCell'
 
 const OrderListPage = ({ active = true }) => {
   const parsedActive = useMemo(() => JSON.parse(active), [active])
 
-  const { register, watch } = useForm({
-    mode: 'onChange',
-    defaultValues: {
-      selectedWarehouses: parsedActive,
-    },
-  })
-
-  const watchSelectedWarehouses = watch('selectedWarehouses', parsedActive)
+  const [isActive, setIsActive] = useState(parsedActive)
 
   return (
     <DashLayout>
@@ -46,36 +38,18 @@ const OrderListPage = ({ active = true }) => {
           <Col className="mb-3">
             <Card>
               <Card.Body>
-                <Form.Check
-                  ref={register()}
-                  className={watchSelectedWarehouses && 'mb-3'}
-                  id="selectedWarehouses"
-                  label={
-                    <span>
-                      Only include Orders which are <em>active</em> at your
-                      Selected Warehouse.
-                    </span>
-                  }
-                  name="selectedWarehouses"
-                  type="checkbox"
+                <SwitchWarehouseForm
+                  isActive={isActive}
+                  onClick={() => null}
+                  onToggleActive={(isActive) => setIsActive(isActive)}
                 />
-                {watchSelectedWarehouses && (
-                  <Button
-                    as={Link}
-                    block
-                    to={routes.warehouses()}
-                    variant="outline-primary"
-                  >
-                    Switch Warehouse
-                  </Button>
-                )}
               </Card.Body>
             </Card>
           </Col>
         </Row>
         <Row>
           <Col>
-            {watchSelectedWarehouses ? (
+            {isActive ? (
               <ActiveOrderListCell warehouseId="charleston" />
             ) : (
               <OrderListCell />
