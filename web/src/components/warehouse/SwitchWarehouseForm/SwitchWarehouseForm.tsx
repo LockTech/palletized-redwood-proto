@@ -36,7 +36,7 @@ const SwitchWarehouseForm: React.FC<SwitchWarehouseFormProps> = ({
         id="selectedWarehouses"
         label={
           <span>
-            Only include Locations which are at your Selected Warehouse.
+            Only include <em>resources</em> found at your Selected Warehouse.
           </span>
         }
         name="selectedWarehouses"
