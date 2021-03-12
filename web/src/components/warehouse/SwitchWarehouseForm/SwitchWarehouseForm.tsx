@@ -1,9 +1,57 @@
-const SwitchWarehouseForm: React.FunctionComponent = () => {
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+
+export interface SwitchWarehouseFormProps {
+  isActive: boolean
+  onClick: (isActive: boolean) => void
+  onToggleActive: (isActive: boolean) => void
+}
+
+const SwitchWarehouseForm: React.FC<SwitchWarehouseFormProps> = ({
+  isActive,
+  onClick,
+  onToggleActive,
+}) => {
+  const { register, watch } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      selectedWarehouses: isActive,
+    },
+  })
+
+  const watchSelectedWarehouses = watch('selectedWarehouses', isActive)
+
+  useEffect(() => {
+    if (watchSelectedWarehouses !== isActive) {
+      onToggleActive(watchSelectedWarehouses)
+    }
+  }, [isActive, onToggleActive, watchSelectedWarehouses])
   return (
-    <div>
-      <h2>{'SwitchWarehouseForm'}</h2>
-      <p>{'Find me in ./web/src/components/SwitchWarehouseForm/SwitchWarehouseForm.tsx'}</p>
-    </div>
+    <>
+      <Form.Check
+        ref={register()}
+        className={watchSelectedWarehouses && 'mb-3'}
+        id="selectedWarehouses"
+        label={
+          <span>
+            Only include Locations which are at your Selected Warehouse.
+          </span>
+        }
+        name="selectedWarehouses"
+        type="checkbox"
+      />
+      {watchSelectedWarehouses && (
+        <Button
+          block
+          onClick={() => onClick(isActive)}
+          variant="outline-primary"
+        >
+          Switch Warehouse
+        </Button>
+      )}
+    </>
   )
 }
 
