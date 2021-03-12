@@ -12,20 +12,17 @@ import DashLayout from 'src/layouts/DashLayout'
 import ActiveOrderListCell from 'src/components/order/ActiveOrderListCell'
 import OrderListCell from 'src/components/order/OrderListCell'
 
-const OrderListPage = ({ active }) => {
+const OrderListPage = ({ active = true }) => {
   const parsedActive = useMemo(() => JSON.parse(active), [active])
 
   const { register, watch } = useForm({
     mode: 'onChange',
     defaultValues: {
-      selectedWarehouses: parsedActive || false,
+      selectedWarehouses: parsedActive,
     },
   })
 
-  const watchSelectedWarehouses = watch(
-    'selectedWarehouses',
-    parsedActive || false
-  )
+  const watchSelectedWarehouses = watch('selectedWarehouses', parsedActive)
 
   return (
     <DashLayout>
@@ -88,10 +85,6 @@ const OrderListPage = ({ active }) => {
       </Container>
     </DashLayout>
   )
-}
-
-OrderListPage.defaultProps = {
-  active: true,
 }
 
 export default OrderListPage
