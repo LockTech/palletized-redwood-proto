@@ -10,7 +10,7 @@ export const schema = gql`
   }
 
   type Query {
-    locations: [Location!]!
+    locations(warehouseId: String = null): [Location!]!
   }
 
   type Mutation {
