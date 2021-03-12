@@ -1,4 +1,4 @@
-import { render, screen } from '@redwoodjs/testing'
+import { render } from '@redwoodjs/testing'
 import { Loading, Empty, Failure, Success } from './ActiveLocationListCell'
 import { standard } from './ActiveLocationListCell.mock'
 
