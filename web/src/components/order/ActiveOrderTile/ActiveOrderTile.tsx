@@ -5,11 +5,14 @@ import type { TileCardProps } from 'src/components/TileCard/TileCard'
 import ActiveOrderCountCell from 'src/components/order/ActiveOrderCountCell'
 
 export interface ActiveOrderTileProps extends TileCardProps {
-  warehouseId: string
+  /**
+   * Warehouse ID to retrieve Active-Orders for.
+   */
+  id: string
 }
 
 const ActiveOrderTile: React.FC<ActiveOrderTileProps> = ({
-  warehouseId,
+  id,
   ...otherProps
 }) => {
   return (
@@ -28,7 +31,7 @@ const ActiveOrderTile: React.FC<ActiveOrderTileProps> = ({
       {...otherProps}
     >
       <p className="mb-0 display-4">
-        <ActiveOrderCountCell id={warehouseId} />
+        <ActiveOrderCountCell id={id} />
       </p>
     </TileCard>
   )

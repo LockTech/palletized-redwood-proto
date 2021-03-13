@@ -5,11 +5,14 @@ import type { TileCardProps } from 'src/components/TileCard/TileCard'
 import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
 
 export interface UpcomingOrderTileProps extends TileCardProps {
-  warehouseId: string
+  /**
+   * Warehouse ID to retrieve Upcoming-Orders for.
+   */
+  id: string
 }
 
 const UpcomingOrderTile: React.FC<UpcomingOrderTileProps> = ({
-  warehouseId,
+  id,
   ...otherProps
 }) => {
   return (
@@ -28,7 +31,7 @@ const UpcomingOrderTile: React.FC<UpcomingOrderTileProps> = ({
       {...otherProps}
     >
       <p className="mb-0 display-4">
-        <UpcomingOrderCountCell id={warehouseId} />
+        <UpcomingOrderCountCell id={id} />
       </p>
     </TileCard>
   )
