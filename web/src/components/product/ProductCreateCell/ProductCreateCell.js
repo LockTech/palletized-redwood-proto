@@ -1,17 +1,40 @@
-export const QUERY = gql`
-  query ProductCreateQuery {
-    productCreate {
+import { navigate, routes } from '@redwoodjs/router'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
+import Card from 'react-bootstrap/Card'
+
+import ProductForm from 'src/components/product/ProductForm'
+
+export const PRODUCT_CREATE_MUTATION = gql`
+  mutation ProductCreateMutation($input: CreateProductInput!) {
+    createProduct(input: $input) {
       id
     }
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+const ProductCreateCell = () => {
+  const [createProduct, { loading, error }] = useMutation(
+    PRODUCT_CREATE_MUTATION,
+    {
+      onCompleted: () => {
+        navigate(routes.products())
+        toast.success('Product successfully created.')
+      },
+    }
+  )
 
-export const Empty = () => <div>Empty</div>
+  const onSave = (input) => {
+    createProduct({ variables: { input } })
+  }
 
-export const Failure = ({ error }) => <div>Error: {error.message}</div>
-
-export const Success = ({ productCreate }) => {
-  return JSON.stringify(productCreate)
+  return (
+    <Card>
+      <Card.Body>
+        <ProductForm onSave={onSave} error={error} loading={loading} />
+      </Card.Body>
+    </Card>
+  )
 }
+
+export default ProductCreateCell

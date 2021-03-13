@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout'
 
+import ProductCreateCell from 'src/components/product/ProductCreateCell'
+
 const ProductCreatePage = () => {
   return (
     <DashLayout>
@@ -15,6 +17,11 @@ const ProductCreatePage = () => {
               Create a new Product which can be tagged to any Pallet in your
               organization.
             </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <ProductCreateCell />
           </Col>
         </Row>
       </Container>
