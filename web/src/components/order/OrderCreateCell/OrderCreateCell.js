@@ -22,11 +22,7 @@ const OrderCreateCell = () => {
   })
 
   const onSave = (input) => {
-    try {
-      createOrder({ variables: { input } })
-    } catch (err) {
-      // console.log(err)
-    }
+    createOrder({ variables: { input } })
   }
 
   return (
