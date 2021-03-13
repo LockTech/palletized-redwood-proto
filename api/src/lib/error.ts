@@ -4,6 +4,34 @@ import { PrismaError } from 'prisma-error-enum'
 import { reservedCharRegEx } from 'src/lib/stringBuilder'
 
 /**
+ * Global error code reference.
+ *
+ * These errors *SHOULD* appear with any error returned by the system. Errors-codes *SHOULD* be
+ * restricted to the **Range** defined below; codes which *do not* fit *SHOULD* be restricted to
+ * the `+10000` range.
+ *
+ * Ranges:
+ * * `1000` - `1999`    - User-input error
+ * * `2000` - `2999`    - Internal, database Error
+ * * `3000` - `3999`    - Application error
+ * * ..
+ * * `10000+`           - Custom, one-off error-codes.
+ *
+ * Prefixes:
+ * * **ER** - General, system-wide errors.
+ * * **LO** - Location errors.
+ * * **OR** - Order errors.
+ * * **PP** - Pallet-Product errors.
+ * * **PR** - Product errors.
+ * * **PA** - Pallet errors.
+ * * **WA** - Warehouse errors.
+ */
+export const enum PalletizedError {
+  // General Errors
+  ReservedCharacter = 'ER1000',
+}
+
+/**
  * Checks if a would-be model's `name` contains any URI-reserved characters.
  * @param name The value to be checked for reserved characters.
  * @returns `true` if the name contains reserved characters, `false` otherwise.
