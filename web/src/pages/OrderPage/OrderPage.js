@@ -9,7 +9,7 @@ import DashLayout from 'src/layouts/DashLayout'
 import OrderDetailsCell from 'src/components/order/OrderDetailsCell'
 import OrderNameCell from 'src/components/order/OrderNameCell'
 import OrderDeleteCell from 'src/components/order/OrderDeleteCell'
-import ActivePalletCountCell from 'src/components/pallet/ActivePalletCountCell'
+import ActivePalletTile from 'src/components/pallet/ActivePalletTile'
 
 const OrderPage = ({ id }) => {
   return (
@@ -49,7 +49,7 @@ const OrderPage = ({ id }) => {
         </Row>
         <Row>
           <Col className="mb-3">
-            <ActivePalletCountCell id={id} />
+            <ActivePalletTile id={id} />
           </Col>
         </Row>
         <Row>
