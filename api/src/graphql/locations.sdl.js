@@ -11,10 +11,12 @@ export const schema = gql`
 
   type Query {
     locations(warehouseId: String = null): [Location!]!
+    location(id: String!): Location!
   }
 
   type Mutation {
     createLocation(input: CreateLocationInput!): Location!
+    deleteLocation(id: String!): Location!
   }
 
   input CreateLocationInput {

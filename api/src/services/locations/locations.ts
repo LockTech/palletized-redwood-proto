@@ -83,6 +83,20 @@ export const locations = async ({ warehouseId }) => {
 //
 
 // ==
+export const location = async ({ id }) => {
+  try {
+    return await db.location.findUnique({
+      where: { id },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonLocationErrors(err)
+    throwUnexpectedError(err)
+  }
+}
+//
+
+// ==
 export type CreateLocationInput = {
   name: string
   warehouseId: string
@@ -126,6 +140,31 @@ export const createLocation = async ({
   } catch (err) {
     handleCommonErrors(err)
     handleCommonLocationErrors(err)
+    throwUnexpectedError(err)
+  }
+}
+//
+
+// ==
+export const deleteLocation = async ({ id }) => {
+  try {
+    return await db.location.delete({
+      where: { id },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    // handleCommonLocationErrors(err) - Does not apply ATM
+
+    switch (err.code) {
+      case PrismaError.InterpretationError: {
+        throw new UserInputError('Could not find Location.', {
+          message: {
+            An: ['Location must exist to be deleted.'],
+          },
+        })
+      }
+    }
+
     throwUnexpectedError(err)
   }
 }
