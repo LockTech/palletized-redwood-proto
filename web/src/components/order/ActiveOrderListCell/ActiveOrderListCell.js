@@ -1,8 +1,10 @@
 import Alert from 'react-bootstrap/Alert'
 import Card from 'react-bootstrap/Card'
 
-import LoadingCard from 'src/components/LoadingCard'
-import OrderList from 'src/components/order/OrderList'
+import {
+  Loading as LLoading,
+  Success as LSuccess,
+} from 'src/components/order/OrderListCell'
 
 export const QUERY = gql`
   query ACTIVE_ORDERS($warehouseId: String!) {
@@ -16,7 +18,7 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <LoadingCard />
+export const Loading = LLoading
 
 export const Empty = () => (
   <Card>
@@ -47,4 +49,4 @@ export const Failure = ({ error }) => (
   </>
 )
 
-export const Success = ({ orders }) => <OrderList orders={orders} />
+export const Success = LSuccess

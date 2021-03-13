@@ -1,6 +1,7 @@
+import Card from 'react-bootstrap/Card'
+
 import {
   Loading as LLoading,
-  Empty as LEmpty,
   Failure as LFailure,
   Success as LSuccess,
 } from 'src/components/location/LocationListCell'
@@ -22,7 +23,16 @@ export const QUERY = gql`
 
 export const Loading = LLoading
 
-export const Empty = LEmpty
+export const Empty = () => (
+  <Card>
+    <Card.Body>
+      <Card.Title>No Locations Found</Card.Title>
+      <Card.Text>
+        You do not have any Locations configured for the Selected Warehouse.
+      </Card.Text>
+    </Card.Body>
+  </Card>
+)
 
 export const Failure = LFailure
 
