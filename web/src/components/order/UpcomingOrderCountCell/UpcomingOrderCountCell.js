@@ -3,8 +3,8 @@ import { toast } from '@redwoodjs/web/toast'
 import Skeleton from 'react-loading-skeleton'
 
 export const QUERY = gql`
-  query UpcomingOrderCountQuery($id: String!) {
-    count: orderCountInWarehouse(warehouseId: $id)
+  query UpcomingOrderCountQuery($id: String) {
+    count: orderCount(warehouseId: $id)
   }
 `
 

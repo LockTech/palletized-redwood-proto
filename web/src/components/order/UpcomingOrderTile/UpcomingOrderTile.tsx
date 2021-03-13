@@ -7,8 +7,10 @@ import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
 export interface UpcomingOrderTileProps extends TileCardProps {
   /**
    * Warehouse ID to retrieve Upcoming-Orders for.
+   *
+   * use `null` to retrieve **every** upcoming order for an organization.
    */
-  id: string
+  id?: string
 }
 
 const UpcomingOrderTile: React.FC<UpcomingOrderTileProps> = ({

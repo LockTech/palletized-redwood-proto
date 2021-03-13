@@ -7,8 +7,10 @@ import ActiveOrderCountCell from 'src/components/order/ActiveOrderCountCell'
 export interface ActiveOrderTileProps extends TileCardProps {
   /**
    * Warehouse ID to retrieve Active-Orders for.
+   *
+   * Use `null` to retrieve **every** active-order for an organization.
    */
-  id: string
+  id?: string
 }
 
 const ActiveOrderTile: React.FC<ActiveOrderTileProps> = ({

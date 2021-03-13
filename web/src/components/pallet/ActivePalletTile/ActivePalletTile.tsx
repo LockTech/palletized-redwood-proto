@@ -5,8 +5,10 @@ import ActivePalletCountCell from 'src/components/pallet/ActivePalletCountCell'
 export interface ActivePalletTileProps extends TileCardProps {
   /**
    * Order ID to retrieve a count for.
+   *
+   * Use `null` to retrieve a active-pallet count for an entire organization.
    */
-  id: string
+  id?: string
 }
 
 const ActivePalletTile: React.FC<ActivePalletTileProps> = ({
