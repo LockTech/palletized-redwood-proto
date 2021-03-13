@@ -6,12 +6,7 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "typings/*": ["./typings/*"]
-    },
     "typeRoots": ["./.redwood", "./node_modules/@types"],
     "types": ["jest"]
-  },
-  "files": ["./typings/index.d.ts"]
+  }
 }

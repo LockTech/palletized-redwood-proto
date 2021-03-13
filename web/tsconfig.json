@@ -2,9 +2,10 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve",
+    "baseUrl": "./",
     "paths": {
-      "src/*": ["./src/*"],
+      "src/*": ["./src/*"]
     }
   },
-  "include": ["src", "../.redwood/globals"]
+  "include": ["src", "../typings/*", "../.redwood/globals"]
 }
