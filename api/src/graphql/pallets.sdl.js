@@ -14,7 +14,7 @@ export const schema = gql`
 
   type Query {
     pallets: [Pallet!]!
-    palletCountForOrder(orderId: String!): Int!
+    palletCount(orderId: String, pallet: ComplexPalletInput): Int!
   }
 
   enum PalletStatus {
