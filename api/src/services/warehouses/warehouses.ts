@@ -1,11 +1,13 @@
-import { UserInputError } from '@redwoodjs/api'
 import { PrismaError } from 'prisma-error-enum'
+
 import { db } from 'src/lib/db'
 import {
   handleCommonErrors,
+  NoExistError,
   throwIfIsReserved,
   throwIfTooLong,
   throwUnexpectedError,
+  UniqueError,
 } from 'src/lib/error'
 
 const WAREHOUSE_NAME_MAX_LEN = 75
@@ -18,21 +20,14 @@ const commonExceptions = (input: IWarehouse) => {
 const handleCommonWarehouseErrors = (error) => {
   switch (error.code) {
     case PrismaError.UniqueConstraintViolation: {
-      throw new UserInputError(
-        'One or more fields are not unique to your organization.',
-        {
-          messages: {
-            Name: ['must not collide with any other, existing Warehouses.'],
-          },
-        }
-      )
+      throw new UniqueError({
+        Name: ['must be unique accross all other Warehouses.'],
+      })
     }
 
     case PrismaError.RecordDoesNotExist: {
-      throw new UserInputError(`Could not find Warehouse.`, {
-        messages: {
-          A: ['Warehouse must exist to be updated.'],
-        },
+      throw new NoExistError('Warehouse', {
+        A: ['Warehouse must exist to be updated.'],
       })
     }
   }
@@ -107,10 +102,8 @@ export const deleteWarehouse = async ({ id }) => {
 
     switch (err.code) {
       case PrismaError.InterpretationError: {
-        throw new UserInputError('Could not find Warehouse.', {
-          message: {
-            A: ['Warehouse must exist to be deleted.'],
-          },
+        throw new NoExistError('Warehouse', {
+          A: ['Warehouse must exist to be deleted.'],
         })
       }
     }

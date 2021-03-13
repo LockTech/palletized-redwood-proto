@@ -1,11 +1,13 @@
-import { UserInputError } from '@redwoodjs/api'
 import { PrismaError } from 'prisma-error-enum'
+
 import { db } from 'src/lib/db'
 import {
   handleCommonErrors,
+  NoExistError,
   throwIfIsReserved,
   throwIfTooLong,
   throwUnexpectedError,
+  UniqueError,
 } from 'src/lib/error'
 
 import { createWarehouse, warehouse } from 'src/services/warehouses/warehouses'
@@ -20,37 +22,28 @@ const commonExceptions = (input: CreateLocationInput) => {
 const handleCommonLocationErrors = (error) => {
   switch (error.code) {
     case PrismaError.UniqueConstraintViolation: {
-      throw new UserInputError(
-        'One or more fields are not unique to your organization.',
-        {
-          messages: {
-            Name: [
-              'must be unique accross all other Locations at the selected Warehouse.',
-            ],
-          },
-        }
-      )
+      throw new UniqueError({
+        Name: [
+          'must be unique accross all other Locations at the selected Warehouse.',
+        ],
+      })
     }
 
     case PrismaError.RecordDoesNotExist: {
-      throw new UserInputError(`Could not find Location.`, {
-        messages: {
-          A: ['Location must exist to be updated.'],
-        },
+      throw new NoExistError('Product', {
+        A: ['Product must exist to be updated.'],
       })
     }
 
     case PrismaError.ForeignConstraintViolation: {
-      throw new UserInputError('Could not find Warehouse.', {
-        messages: {
-          An: [
-            'error occured while fetching or creating a Warehouse for this Location.',
-          ],
-          Consider: [
-            'retrying or creating a Warehouse, then a Location.',
-            'contacting Support if the issue persist.',
-          ],
-        },
+      throw new NoExistError('Warehouse', {
+        An: [
+          'error occured while fetching or creating a Warehouse for your Location.',
+        ],
+        Consider: [
+          'retrying or creating the Warehouse, then the Location.',
+          'contacting Support if the issue persist.',
+        ],
       })
     }
   }

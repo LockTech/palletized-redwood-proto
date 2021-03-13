@@ -1,11 +1,13 @@
-import { UserInputError } from '@redwoodjs/api'
 import { PrismaError } from 'prisma-error-enum'
+
 import { db } from 'src/lib/db'
 import {
   handleCommonErrors,
+  NoExistError,
   throwIfIsReserved,
   throwIfTooLong,
   throwUnexpectedError,
+  UniqueError,
 } from 'src/lib/error'
 
 const MAX_ORDER_NUMBER_LEN = 75
@@ -23,22 +25,15 @@ const commonExceptions = (input: IOrder) => {
 const handleCommonOrderErrors = (error) => {
   switch (error.code) {
     case PrismaError.UniqueConstraintViolation: {
-      throw new UserInputError(
-        'One or more fields are not unique to your organization.',
-        {
-          messages: {
-            'Order Number': ['must be unique accross all other Orders.'],
-            'Job Name': ['must be unique accross all other Orders.'],
-          },
-        }
-      )
+      throw new UniqueError({
+        'Order Number': ['must be unique accross all other Orders.'],
+        'Job Name': ['must be unique accross all other Orders.'],
+      })
     }
 
     case PrismaError.RecordDoesNotExist: {
-      throw new UserInputError(`Could not find Order.`, {
-        messages: {
-          An: ['Order must exist to be updated.'],
-        },
+      throw new NoExistError('Order', {
+        An: ['Order must exist to be updated.'],
       })
     }
   }
@@ -156,10 +151,8 @@ export const deleteOrder = async ({ id }) => {
 
     switch (err.code) {
       case PrismaError.InterpretationError: {
-        throw new UserInputError('Could not find Order.', {
-          message: {
-            An: ['Order must exist to be deleted.'],
-          },
+        throw new NoExistError('Order', {
+          An: ['Order must exist to be deleted.'],
         })
       }
     }
