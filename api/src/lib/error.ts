@@ -1,6 +1,8 @@
 import { UserInputError } from '@redwoodjs/api'
 import { PrismaError } from 'prisma-error-enum'
+
 import { reservedCharRegEx } from 'src/lib/stringBuilder'
+import { PalletizedError } from 'typings/Error'
 
 /**
  * Checks if a would-be model's `name` contains any URI-reserved characters.
@@ -25,6 +27,7 @@ export const throwIfIsReserved = (
 ): void => {
   if (isReserved(name)) {
     throw new UserInputError(`Unknown character in ${service} ${field}.`, {
+      code: PalletizedError.ReservedCharacter,
       messages: {
         It: [
           'may only contain: dashes, letters, numbers, spaces, and characters not listed below.',
@@ -112,20 +115,25 @@ export const handleCommonErrors = (error: PrismaErrorType) => {
   }
 }
 
+export type UnexpectedError = Error & PrismaErrorType
 /**
  * Handles formatting and throwing a `UserInputError` for un-expected (un-handled) errors.
- * @param error A [`PrismaError`](https://www.prisma.io/docs/reference/api-reference/error-reference#prismaclientknownrequesterror)
+ * @param error An `Error` or  [`PrismaError`](https://www.prisma.io/docs/reference/api-reference/error-reference#prismaclientknownrequesterror)
  */
-export const throwUnexpectedError = (error: PrismaErrorType) => {
+export const throwUnexpectedError = (error: UnexpectedError) => {
+  // FIXME
   console.log(error)
+
+  const errorMsg = []
+
+  error.message && errorMsg.push(error.message)
+  error.code && errorMsg.push(`Encountered error-code: ${error.code}`)
+
   throw new UserInputError(
     'An unexpected internal error occured while processing your request.',
     {
       messages: {
-        'Error:': [
-          'An unexpected error occured.',
-          `Encountered error-code: ${error.code || 'undefined'}`,
-        ],
+        'Error:': errorMsg,
         Consider: [
           'trying to re-submit your request.',
           'reporting this error to Support, with the error-code above.',
