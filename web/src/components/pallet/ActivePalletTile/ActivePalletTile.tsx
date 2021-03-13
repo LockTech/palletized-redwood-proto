@@ -1,9 +1,37 @@
-const ActivePalletTile: React.FunctionComponent = () => {
+import TileCard from 'src/components/TileCard/TileCard'
+import type { TileCardProps } from 'src/components/TileCard/TileCard'
+import ActivePalletCountCell from 'src/components/pallet/ActivePalletCountCell'
+
+export interface ActivePalletTileProps extends TileCardProps {
+  /**
+   * Order ID to retrieve a count for.
+   */
+  id: string
+}
+
+const ActivePalletTile: React.FC<ActivePalletTileProps> = ({
+  id,
+  ...otherProps
+}) => {
   return (
-    <div>
-      <h2>{'ActivePalletTile'}</h2>
-      <p>{'Find me in ./web/src/components/ActivePalletTile/ActivePalletTile.tsx'}</p>
-    </div>
+    <TileCard
+      footer={{
+        text: 'Active Pallet List',
+        // to: routes.pallets({ active: true }),
+      }}
+      header="Active Pallets"
+      headerTooltip={
+        <span>
+          Active Pallets are Pallets which have been tagged to an Order, and
+          that have the <em>Not-Shipped</em> status.
+        </span>
+      }
+      {...otherProps}
+    >
+      <p className="mb-0 display-4">
+        <ActivePalletCountCell id={id} />
+      </p>
+    </TileCard>
   )
 }
 
