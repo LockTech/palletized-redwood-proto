@@ -3,8 +3,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
-import ActiveOrderCountCell from 'src/components/order/ActiveOrderCountCell'
-import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
+import ActiveOrderTile from 'src/components/order/ActiveOrderTile'
+import UpcomingOrderTile from 'src/components/order/UpcomingOrderTile'
 
 const DashboardPage = () => {
   return (
@@ -21,10 +21,10 @@ const DashboardPage = () => {
         </Row>
         <Row>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <ActiveOrderCountCell id="charleston" />
+            <ActiveOrderTile id="charleston" />
           </Col>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <UpcomingOrderCountCell id="charleston" />
+            <UpcomingOrderTile id="charleston" />
           </Col>
         </Row>
       </Container>

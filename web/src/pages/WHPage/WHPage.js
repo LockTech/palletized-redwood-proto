@@ -8,8 +8,8 @@ import Col from 'react-bootstrap/Col'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
 import WarehouseDeleteCell from 'src/components/warehouse/WarehouseDeleteCell'
-import ActiveOrderCountCell from 'src/components/order/ActiveOrderCountCell'
-import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
+import ActiveOrderTile from 'src/components/order/ActiveOrderTile'
+import UpcomingOrderTile from 'src/components/order/UpcomingOrderTile'
 import WarehouseDetailsCell from 'src/components/warehouse/WarehouseDetailsCell'
 import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell'
 
@@ -54,10 +54,10 @@ const WHPage = ({ id }) => {
         </Row>
         <Row>
           <Col className="mb-3" xs={12} md={6}>
-            <ActiveOrderCountCell id={id} />
+            <ActiveOrderTile id={id} />
           </Col>
           <Col className="mb-3" xs={12} md={6}>
-            <UpcomingOrderCountCell id={id} />
+            <UpcomingOrderTile id={id} />
           </Col>
         </Row>
         <Row>
