@@ -96,29 +96,28 @@ export const createLocation = async ({
   commonExceptions(input)
 
   const loc = {
-    id: input.name.replaceAll(' ', '-').toLowerCase(),
-    name: input.name,
-    warehouseId: input.warehouseId,
+    id: null,
+    name: null,
+    warehouseId: null,
   }
 
   let locWarehouse = await warehouse({ id: input.warehouseId })
-
-  console.log(`LOC: ${loc}`)
-  console.log(`LOC-WAREHOUSE: ${locWarehouse}`)
 
   if (locWarehouse === null) {
     try {
       locWarehouse = await createWarehouse({
         input: { id: input.warehouseId, name: input.warehouseName },
       })
-
-      loc.warehouseId = locWarehouse.id
     } catch (err) {
       handleCommonErrors(err)
       handleCommonLocationErrors(err)
       throwUnexpectedError(err)
     }
   }
+
+  loc.warehouseId = locWarehouse.id
+  loc.id = locWarehouse.id + '-' + input.name.replaceAll(' ', '-').toLowerCase()
+  loc.name = input.name
 
   try {
     return await db.location.create({
