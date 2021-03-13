@@ -1,4 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
+import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -11,14 +12,10 @@ const ProductListPage = () => {
       <Container className="palletized-container">
         <Row>
           <Col>
-            <h1>ProductListPage</h1>
-            <p>
-              Find me in{' '}
-              <code>./web/src/pages/ProductListPage/ProductListPage.js</code>
-            </p>
-            <p>
-              My default route is named <code>productList</code>, link to me
-              with `<Link to={routes.products()}>ProductList</Link>`
+            <h1>Products</h1>
+            <p className="text-muted">
+              A list of Products, accessible across your organization, that can
+              be tagged to Pallets.
             </p>
           </Col>
         </Row>
