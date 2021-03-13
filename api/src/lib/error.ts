@@ -2,7 +2,6 @@ import { UserInputError } from '@redwoodjs/api'
 import { PrismaError } from 'prisma-error-enum'
 
 import { reservedCharRegEx } from 'src/lib/stringBuilder'
-import { PalletizedError } from 'typings/Error'
 
 /**
  * Checks if a would-be model's `name` contains any URI-reserved characters.
