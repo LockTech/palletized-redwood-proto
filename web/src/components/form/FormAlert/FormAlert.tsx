@@ -1,9 +1,15 @@
-const FormAlert: React.FunctionComponent = () => {
+import { FormError } from '@redwoodjs/forms'
+import Alert from 'react-bootstrap/Alert'
+
+export interface FormAlertProps {
+  error: Error
+}
+
+const FormAlert: React.FC<FormAlertProps> = ({ error }) => {
   return (
-    <div>
-      <h2>{'FormAlert'}</h2>
-      <p>{'Find me in ./web/src/components/FormAlert/FormAlert.tsx'}</p>
-    </div>
+    <Alert className={error ? 'd-block' : 'd-none'} variant="danger">
+      <FormError error={error} listClassName="mb-0" titleClassName="mb-0" />
+    </Alert>
   )
 }
 
