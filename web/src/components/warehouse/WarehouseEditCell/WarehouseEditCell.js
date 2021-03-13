@@ -77,8 +77,8 @@ export const Success = ({ warehouse }) => {
       <Card.Body>
         <WarehouseForm
           onSave={onSave}
-          resultError={error}
-          resultLoading={loading}
+          error={error}
+          loading={loading}
           warehouse={warehouse}
         />
       </Card.Body>

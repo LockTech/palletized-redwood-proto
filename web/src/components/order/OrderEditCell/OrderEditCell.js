@@ -70,8 +70,8 @@ export const Success = ({ order }) => {
       <Card.Body>
         <OrderForm
           onSave={onSave}
-          resultError={error}
-          resultLoading={loading}
+          error={error}
+          loading={loading}
           order={order}
         />
       </Card.Body>

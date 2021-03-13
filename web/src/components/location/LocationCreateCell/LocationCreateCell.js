@@ -45,8 +45,8 @@ const LocationCreateCell = () => {
       <Card.Body>
         <LocationForm
           onSave={onSave}
-          resultError={error}
-          resultLoading={loading}
+          error={error}
+          loading={loading}
         />
       </Card.Body>
     </Card>

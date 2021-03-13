@@ -16,15 +16,15 @@ export type OrderSaveData = OrderFormData
 export interface OrderFormProps {
   onSave: (data: OrderSaveData, id?: string) => void
   order?: IOrder
-  resultError?: Error
-  resultLoading?: boolean
+  error?: Error
+  loading?: boolean
 }
 
 const OrderForm: React.FC<OrderFormProps> = ({
   onSave,
   order,
-  resultError,
-  resultLoading,
+  error,
+  loading,
 }) => {
   const {
     formState: { errors, isDirty, isValid },
@@ -46,7 +46,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
-      <FormAlert error={resultError} />
+      <FormAlert error={error} />
 
       <Form.Group controlId="createOrderForm.orderNumber">
         <Form.Label>Order Number</Form.Label>
@@ -102,8 +102,8 @@ const OrderForm: React.FC<OrderFormProps> = ({
       </Form.Group>
 
       <SubmitButton
-        disabled={resultLoading || !isValid || !isDirty}
-        loading={resultLoading}
+        disabled={loading || !isValid || !isDirty}
+        loading={loading}
       />
       <ResetButton reset={reset} />
     </Form>

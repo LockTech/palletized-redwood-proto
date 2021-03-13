@@ -37,8 +37,8 @@ const WarehouseCreateCell = () => {
       <Card.Body>
         <WarehouseForm
           onSave={onSave}
-          resultError={error}
-          resultLoading={loading}
+          error={error}
+          loading={loading}
         />
       </Card.Body>
     </Card>

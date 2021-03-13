@@ -13,16 +13,16 @@ export type WarehouseFormData = {
 export type WarehouseSaveData = WarehouseFormData
 
 export interface WarehouseFormProps {
-  resultError?: Error
-  resultLoading?: boolean
+  error?: Error
+  loading?: boolean
   onSave: (data: WarehouseSaveData, id?: string) => void
   warehouse: IWarehouse
 }
 
 const WarehouseForm: React.FC<WarehouseFormProps> = ({
   onSave,
-  resultError,
-  resultLoading,
+  error,
+  loading,
   warehouse,
 }) => {
   const {
@@ -42,7 +42,7 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
-      <FormAlert error={resultError} />
+      <FormAlert error={error} />
 
       <Form.Group controlId="createWarehouseForm.name">
         <Form.Label>Warehouse Name</Form.Label>
@@ -72,8 +72,8 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
       </Form.Group>
 
       <SubmitButton
-        disabled={resultLoading || !isValid || !isDirty}
-        loading={resultLoading}
+        disabled={loading || !isValid || !isDirty}
+        loading={loading}
       />
       <ResetButton reset={reset} />
     </Form>

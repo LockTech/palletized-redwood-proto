@@ -33,15 +33,15 @@ export type LocationSaveData = {
 export interface LocationFormProps {
   onSave: (data: LocationSaveData, id?: string) => void
   location: ILocation
-  resultError?: Error
-  resultLoading?: boolean
+  error?: Error
+  loading?: boolean
 }
 
 const LocationForm: React.FC<LocationFormProps> = ({
   onSave,
   location,
-  resultError,
-  resultLoading,
+  error,
+  loading,
 }) => {
   const {
     data: warehousesList,
@@ -92,7 +92,7 @@ const LocationForm: React.FC<LocationFormProps> = ({
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
-      <FormAlert error={resultError} />
+      <FormAlert error={error} />
 
       <Form.Group controlId="createLocationForm.name">
         <Form.Label>Name</Form.Label>
@@ -149,8 +149,8 @@ const LocationForm: React.FC<LocationFormProps> = ({
       </Form.Group>
 
       <SubmitButton
-        disabled={resultLoading || !isValid || !isDirty}
-        loading={resultLoading}
+        disabled={loading || !isValid || !isDirty}
+        loading={loading}
       />
       <ResetButton reset={reset} />
     </Form>
