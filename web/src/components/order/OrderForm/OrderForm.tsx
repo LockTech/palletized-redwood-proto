@@ -1,10 +1,11 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { FormError } from '@redwoodjs/forms'
 import Alert from 'react-bootstrap/Alert'
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import Spinner from 'react-bootstrap/Spinner'
+
+import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
+import ResetButton from 'src/components/form/ResetButton/ResetButton'
 
 export type OrderFormData = {
   orderNumber: string
@@ -15,7 +16,7 @@ export type OrderSaveData = OrderFormData
 
 export interface OrderFormProps {
   onSave: (data: OrderSaveData, id?: string) => void
-  order: IOrder
+  order?: IOrder
   resultError?: Error
   resultLoading?: boolean
 }
@@ -43,24 +44,6 @@ const OrderForm: React.FC<OrderFormProps> = ({
     (data: OrderFormData) => onSave(data, order?.id),
     [onSave, order]
   )
-
-  const submitButtonChild: React.ReactNode = useMemo(() => {
-    if (resultLoading) {
-      return (
-        <>
-          <Spinner
-            animation="border"
-            className="mr-2"
-            size="sm"
-            variant="light"
-          />
-          Submitting...
-        </>
-      )
-    } else {
-      return 'Submit'
-    }
-  }, [resultLoading])
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
@@ -95,7 +78,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
           A <em>unique</em> number or name used to identify this Order.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
-          {errors && errors.orderNumber && errors.orderNumber.message}
+          {errors?.orderNumber?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -125,17 +108,11 @@ const OrderForm: React.FC<OrderFormProps> = ({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button
-        block
-        className="d-flex align-items-center justify-content-center"
+      <SubmitButton
         disabled={resultLoading || !isValid || !isDirty}
-        type="submit"
-      >
-        {submitButtonChild}
-      </Button>
-      <Button block variant="outline-secondary" onClick={() => reset()}>
-        Reset Fields
-      </Button>
+        loading={resultLoading}
+      />
+      <ResetButton reset={reset} />
     </Form>
   )
 }

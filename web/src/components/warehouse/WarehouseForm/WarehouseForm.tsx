@@ -1,10 +1,11 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { FormError } from '@redwoodjs/forms'
 import Alert from 'react-bootstrap/Alert'
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import Spinner from 'react-bootstrap/Spinner'
+
+import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
+import ResetButton from 'src/components/form/ResetButton/ResetButton'
 
 export type WarehouseFormData = {
   name: string
@@ -39,24 +40,6 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
     (data: WarehouseFormData) => onSave(data, warehouse?.id),
     [onSave, warehouse]
   )
-
-  const submitButtonChild: React.ReactNode = useMemo(() => {
-    if (resultLoading) {
-      return (
-        <>
-          <Spinner
-            animation="border"
-            className="mr-2"
-            size="sm"
-            variant="light"
-          />
-          Submitting...
-        </>
-      )
-    } else {
-      return 'Submit'
-    }
-  }, [resultLoading])
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
@@ -95,17 +78,11 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button
-        block
-        className="d-flex align-items-center justify-content-center"
+      <SubmitButton
         disabled={resultLoading || !isValid || !isDirty}
-        type="submit"
-      >
-        {submitButtonChild}
-      </Button>
-      <Button block variant="outline-secondary" onClick={() => reset()}>
-        Reset Fields
-      </Button>
+        loading={resultLoading}
+      />
+      <ResetButton reset={reset} />
     </Form>
   )
 }
