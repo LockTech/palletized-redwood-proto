@@ -10,6 +10,7 @@ import NavLink from 'src/components/NavLink/NavLink'
 
 import WarehouseDropdown from 'src/components/warehouse/WarehouseDropdown/WarehouseDropdown'
 import OrderDropdown from 'src/components/order/OrderDropdown/OrderDropdown'
+import ProductDropdown from 'src/components/product/ProductDropdown/ProductDropdown'
 
 import './DashLayout.scss'
 
@@ -57,6 +58,7 @@ const DashLayout: React.FC = ({ children }) => {
             <NavLink linkTo={routes.dashboard()}>Dashboard</NavLink>
             <WarehouseDropdown />
             <OrderDropdown />
+            <ProductDropdown />
           </Nav>
           <Nav className="dash-layout-nav-actions">
             <Dropdown as={Nav.Item}>
