@@ -67,6 +67,18 @@ export const throwIfTooLong = (
   return
 }
 
+export class UniqueError extends UserInputError {
+  constructor(properties: Record<string, string[]>) {
+    super('One or more fields are not unique to your organization.', properties)
+  }
+}
+
+export class NoExistError extends UserInputError {
+  constructor(resourceName: string, properties: Record<string, string[]>) {
+    super('One or more fields are not unique to your organization.', properties)
+  }
+}
+
 export type PrismaErrorType = {
   code: string
   clientVersion: string
