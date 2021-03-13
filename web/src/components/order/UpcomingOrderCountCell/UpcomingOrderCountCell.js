@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
 import { toast } from '@redwoodjs/web/toast'
-import { routes } from '@redwoodjs/router'
 import Skeleton from 'react-loading-skeleton'
-
-import TileCard from 'src/components/TileCard'
 
 export const QUERY = gql`
   query UpcomingOrderCountQuery($id: String!) {
@@ -11,29 +8,7 @@ export const QUERY = gql`
   }
 `
 
-const CommonTileCard = ({ children }) => (
-  <TileCard
-    footer={{
-      text: 'Upcoming Deliveries',
-      to: routes.warehouses(),
-    }}
-    header="Upcoming Deliveries"
-    headerTooltip={
-      <span>
-        Upcoming Deliveries are <em>Active Orders</em> with delivery-dates
-        within the next seven (7) days.
-      </span>
-    }
-  >
-    <p className="mb-0 display-4">{children}</p>
-  </TileCard>
-)
-
-export const Loading = () => (
-  <CommonTileCard>
-    <Skeleton />
-  </CommonTileCard>
-)
+export const Loading = () => <Skeleton />
 
 export const Empty = () => '0'
 
@@ -44,8 +19,7 @@ export const Failure = ({ id }) => {
     )
   }, [id])
 
-  // perform error notification
-  return <CommonTileCard>-</CommonTileCard>
+  return '-'
 }
 
-export const Success = ({ count }) => <CommonTileCard>{count}</CommonTileCard>
+export const Success = ({ count }) => count
