@@ -26,7 +26,7 @@ import { reservedCharRegEx } from 'src/lib/stringBuilder'
  * * **PA** - Pallet errors.
  * * **WA** - Warehouse errors.
  */
-export const enum PalletizedError {
+export enum PalletizedError {
   // General Errors
   ReservedCharacter = 'ER1000',
 }
