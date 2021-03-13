@@ -65,8 +65,14 @@ export const orders = ({ warehouseId }) => {
 //
 
 // ==
-export const order = ({ id }) => {
-  return db.order.findUnique({ where: { id } })
+export const order = async ({ id }) => {
+  try {
+    return await db.order.findUnique({ where: { id } })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonOrderErrors(err)
+    throwUnexpectedError(err)
+  }
 }
 //
 
