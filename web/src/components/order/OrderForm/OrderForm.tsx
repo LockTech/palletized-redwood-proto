@@ -1,9 +1,8 @@
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { FormError } from '@redwoodjs/forms'
-import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
 
+import FormAlert from 'src/components/form/FormAlert/FormAlert'
 import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
 import ResetButton from 'src/components/form/ResetButton/ResetButton'
 
@@ -47,13 +46,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
-      <Alert className={resultError ? 'd-block' : 'd-none'} variant="danger">
-        <FormError
-          error={resultError}
-          listClassName="mb-0"
-          titleClassName="mb-0"
-        />
-      </Alert>
+      <FormAlert error={resultError} />
 
       <Form.Group controlId="createOrderForm.orderNumber">
         <Form.Label>Order Number</Form.Label>

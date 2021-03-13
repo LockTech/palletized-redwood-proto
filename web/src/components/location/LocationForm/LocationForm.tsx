@@ -1,10 +1,9 @@
 import { useCallback } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { FormError } from '@redwoodjs/forms'
 import { useQuery } from '@redwoodjs/web'
-import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
 
+import FormAlert from 'src/components/form/FormAlert/FormAlert'
 import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
 import ResetButton from 'src/components/form/ResetButton/ResetButton'
 import Select from 'src/components/form/CreatableSelect/CreatableSelect'
@@ -93,13 +92,7 @@ const LocationForm: React.FC<LocationFormProps> = ({
 
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)} validated={isValid}>
-      <Alert className={resultError ? 'd-block' : 'd-none'} variant="danger">
-        <FormError
-          error={resultError}
-          listClassName="mb-0"
-          titleClassName="mb-0"
-        />
-      </Alert>
+      <FormAlert error={resultError} />
 
       <Form.Group controlId="createLocationForm.name">
         <Form.Label>Name</Form.Label>
