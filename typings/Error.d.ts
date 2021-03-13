@@ -21,7 +21,7 @@
  * * **PA** - Pallet errors.
  * * **WA** - Warehouse errors.
  */
-export declare const PalletizedError: {
+declare enum PalletizedError {
   // General Errors
-  readonly ReservedCharacter: 'ER1000'
+  ReservedCharacter = 'ER1000',
 }
