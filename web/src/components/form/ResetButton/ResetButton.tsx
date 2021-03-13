@@ -1,9 +1,20 @@
-const ResetButton: React.FunctionComponent = () => {
+import Button from 'react-bootstrap/Button'
+import type { ButtonProps } from 'react-bootstrap/Button'
+
+export interface ResetButtonProps extends ButtonProps {
+  reset: () => void
+}
+
+const ResetButton: React.FC<ResetButtonProps> = ({ reset, ...otherProps }) => {
   return (
-    <div>
-      <h2>{'ResetButton'}</h2>
-      <p>{'Find me in ./web/src/components/ResetButton/ResetButton.tsx'}</p>
-    </div>
+    <Button
+      block
+      variant="outline-secondary"
+      onClick={() => reset()}
+      {...otherProps}
+    >
+      Reset Fields
+    </Button>
   )
 }
 
