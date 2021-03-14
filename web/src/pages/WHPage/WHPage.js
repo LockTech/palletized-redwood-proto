@@ -54,10 +54,10 @@ const WHPage = ({ id }) => {
         </Row>
         <Row>
           <Col className="mb-3" xs={12} md={6}>
-            <ActiveOrderTile id={id} />
+            <ActiveOrderTile warehouseId={id} />
           </Col>
           <Col className="mb-3" xs={12} md={6}>
-            <UpcomingOrderTile id={id} />
+            <UpcomingOrderTile warehouseId={id} />
           </Col>
         </Row>
         <Row>
