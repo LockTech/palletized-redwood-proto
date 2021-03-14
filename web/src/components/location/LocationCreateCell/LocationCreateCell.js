@@ -4,6 +4,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
 import LocationForm from 'src/components/location/LocationForm'
+import LocationTooltip from 'src/components/location/LocationTooltip'
 
 const LOCATION_CREATE_MUTATION = gql`
   mutation LocationCreateMutation($input: CreateLocationInput!) {
@@ -42,12 +43,12 @@ const LocationCreateCell = () => {
 
   return (
     <Card>
+      <Card.Header className="d-flex flex-direction-row align-items-center justify-content-between">
+        New Location
+        <LocationTooltip />
+      </Card.Header>
       <Card.Body>
-        <LocationForm
-          onSave={onSave}
-          error={error}
-          loading={loading}
-        />
+        <LocationForm onSave={onSave} error={error} loading={loading} />
       </Card.Body>
     </Card>
   )
