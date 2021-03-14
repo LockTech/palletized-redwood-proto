@@ -11,8 +11,8 @@ const LocationTooltip: React.FunctionComponent = () => {
       overlay={
         <Tooltip id="locationTooltip">
           <span>
-            Locations are areas of your <em>Warehouse</em> where{' '}
-            <em>Pallets</em> can be stored.
+            Locations are distinct areas of your <em>Warehouse</em> where{' '}
+            <em>Pallets</em> are stored.
           </span>
         </Tooltip>
       }
