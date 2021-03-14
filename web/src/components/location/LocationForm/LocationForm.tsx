@@ -151,7 +151,8 @@ const LocationForm: React.FC<LocationFormProps> = ({
           id="createLocationForm.warehouseHelpBlock"
           muted
         >
-          Entering a non-existant Warehouse will create one with the name given.
+          Entering a non-existant Warehouse will create a Warehouse with the
+          name given.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
           {errors?.warehouse?.value?.message}
