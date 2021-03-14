@@ -90,7 +90,7 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
 //
 
 // ==
-export const orderCount = async ({ warehouseId, order }) => {
+export const orderCount = async ({ warehouseId, locationId, order }) => {
   // Empty query if warehouseId = null
   const warehouseQuery = !warehouseId
     ? null
@@ -98,10 +98,18 @@ export const orderCount = async ({ warehouseId, order }) => {
         pallets: {
           some: {
             location: {
-              warehouseId: {
-                equals: warehouseId,
-              },
+              warehouseId,
             },
+          },
+        },
+      }
+
+  const locationQuery = !locationId
+    ? null
+    : {
+        pallets: {
+          some: {
+            locationId,
           },
         },
       }
@@ -111,6 +119,7 @@ export const orderCount = async ({ warehouseId, order }) => {
       where: {
         ...order,
         ...warehouseQuery,
+        ...locationQuery,
       },
     })
   } catch (err) {

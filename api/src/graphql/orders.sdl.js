@@ -13,6 +13,7 @@ export const schema = gql`
     order(id: String!): Order
     orderCount(
       warehouseId: String = null
+      locationId: String = null
       order: ComplexOrderInput = null
     ): Int!
   }
