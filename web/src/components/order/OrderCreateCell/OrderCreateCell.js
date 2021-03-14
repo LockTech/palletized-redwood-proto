@@ -4,6 +4,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
 import OrderForm from 'src/components/order/OrderForm'
+import OrderTooltip from 'src/components/order/OrderTooltip'
 
 export const ORDER_CREATE_MUTATION = gql`
   mutation OrderCreateMutation($input: CreateOrderInput!) {
@@ -27,12 +28,12 @@ const OrderCreateCell = () => {
 
   return (
     <Card>
+      <Card.Header className="d-flex flex-direction-row justify-content-between">
+        New Order
+        <OrderTooltip />
+      </Card.Header>
       <Card.Body>
-        <OrderForm
-          onSave={onSave}
-          error={error}
-          loading={loading}
-        />
+        <OrderForm onSave={onSave} error={error} loading={loading} />
       </Card.Body>
     </Card>
   )
