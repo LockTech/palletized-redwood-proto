@@ -1,8 +1,16 @@
 import { atom } from '@salvoravida/recoil'
 
-const SelectedWarehouseAtom = atom({
+export type SelectedWarehouseType = {
+  id: string
+  name: string
+}
+
+const SelectedWarehouseAtom = atom<SelectedWarehouseType>({
   key: 'selectedWarehouse',
-  default: 'charleston', // '' in prod
+  default: {
+    id: 'charleston',
+    name: 'Charleston',
+  }, // '' in prod-loaded from server or localStorage
 })
 
 export default SelectedWarehouseAtom

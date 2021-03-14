@@ -1,12 +1,17 @@
+import { useRecoilValue } from '@salvoravida/recoil'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+
+import SelectedWarehouseAtom from 'src/atoms/SelectedWarehouseAtom/SelectedWarehouseAtom'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
 import ActiveOrderTile from 'src/components/order/ActiveOrderTile'
 import UpcomingOrderTile from 'src/components/order/UpcomingOrderTile'
 
 const DashboardPage = () => {
+  const selectedWarehouse = useRecoilValue(SelectedWarehouseAtom)
+
   return (
     <DashLayout>
       <Container className="palletized-container">
@@ -29,10 +34,10 @@ const DashboardPage = () => {
         </Row>
         <Row>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <ActiveOrderTile warehouseId="charleston" />
+            <ActiveOrderTile warehouseId={selectedWarehouse.id} />
           </Col>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <UpcomingOrderTile warehouseId="charleston" />
+            <UpcomingOrderTile warehouseId={selectedWarehouse.id} />
           </Col>
         </Row>
       </Container>

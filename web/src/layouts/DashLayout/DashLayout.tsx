@@ -7,7 +7,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import { BsPeopleCircle } from 'react-icons/bs'
 
 import NavLink from 'src/components/NavLink/NavLink'
-
 import WarehouseDropdown from 'src/components/warehouse/WarehouseDropdown/WarehouseDropdown'
 import OrderDropdown from 'src/components/order/OrderDropdown/OrderDropdown'
 import ProductDropdown from 'src/components/product/ProductDropdown/ProductDropdown'

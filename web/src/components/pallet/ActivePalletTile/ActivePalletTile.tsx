@@ -24,8 +24,8 @@ const ActivePalletTile: React.FC<ActivePalletTileProps> = ({
       header="Active Pallets"
       headerTooltip={
         <span>
-          Active Pallets are Pallets which have been tagged to an Order, and
-          that have the <em>Not-Shipped</em> status.
+          Active Pallets are <em>Pallets</em> which have been tagged to an{' '}
+          <em>Order</em>, and that have the <em>Not-Shipped</em> status.
         </span>
       }
       {...otherProps}

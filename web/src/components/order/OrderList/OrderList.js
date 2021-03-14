@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
 import OrderDeleteCell from 'src/components/order/OrderDeleteCell'
+import PalletCountCell from 'src/components/pallet/PalletCountCell'
 
 const OrderList = ({ orders }) => {
   return (
@@ -15,6 +16,16 @@ const OrderList = ({ orders }) => {
             <Card.Subtitle className="mb-3 text-muted">
               {order.jobName ? order.orderNumber : 'No Job-Name Specified'}
             </Card.Subtitle>
+            <Card.Text className="d-flex flex-direction-row justify-content-between">
+              <strong>
+                Pallets in <em>Selected Warehouse</em>:
+              </strong>
+              <PalletCountCell
+                pallet={{
+                  orderId: order.id,
+                }}
+              />
+            </Card.Text>
             <Button
               as={Link}
               block

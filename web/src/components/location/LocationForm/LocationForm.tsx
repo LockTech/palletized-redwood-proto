@@ -1,7 +1,10 @@
 import { useCallback } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useQuery } from '@redwoodjs/web'
+import { useRecoilValue } from '@salvoravida/recoil'
 import Form from 'react-bootstrap/Form'
+
+import SelectedWarehouseAtom from 'src/atoms/SelectedWarehouseAtom/SelectedWarehouseAtom'
 
 import FormAlert from 'src/components/form/FormAlert/FormAlert'
 import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
@@ -50,6 +53,8 @@ const LocationForm: React.FC<LocationFormProps> = ({
     loading: warehousesLoading,
   } = useQuery(LOCATION_GET_WAREHOUSES)
 
+  const selectedWarehouse = useRecoilValue(SelectedWarehouseAtom)
+
   const {
     control,
     formState: { errors, isDirty, isValid },
@@ -60,7 +65,9 @@ const LocationForm: React.FC<LocationFormProps> = ({
     mode: 'onChange',
     defaultValues: {
       name: '',
-      warehouse: null,
+      warehouse: selectedWarehouse
+        ? { value: selectedWarehouse.id, label: selectedWarehouse.name }
+        : null,
     },
   })
 

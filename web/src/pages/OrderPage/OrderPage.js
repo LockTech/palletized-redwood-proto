@@ -26,7 +26,7 @@ const OrderPage = ({ id }) => {
         <Row>
           <Col>
             <Alert className="details-alert-container" variant="info">
-              You are currently viewing details for Order:&nbsp;
+              You are currently viewing details for&nbsp;
               <strong>
                 <OrderNameCell id={id} />
               </strong>
@@ -40,7 +40,7 @@ const OrderPage = ({ id }) => {
               as={Link}
               block
               to={routes.editOrder({ id })}
-              variant="outline-secondary"
+              variant="outline-primary"
             >
               Edit
             </Button>

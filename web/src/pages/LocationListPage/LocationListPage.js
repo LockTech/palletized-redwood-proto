@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, routes } from '@redwoodjs/router'
+import { useRecoilValue } from '@salvoravida/recoil'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
@@ -10,11 +11,13 @@ import DashLayout from 'src/layouts/DashLayout/DashLayout'
 import SwitchWarehouseForm from 'src/components/warehouse/SwitchWarehouseForm'
 import LocationListCell from 'src/components/location/LocationListCell'
 import ActiveLocationListCell from 'src/components/location/ActiveLocationListCell'
+import SelectedWarehouseAtom from 'src/atoms/SelectedWarehouseAtom/SelectedWarehouseAtom'
 
 const LocationListPage = ({ active = true }) => {
   const parsedActive = useMemo(() => JSON.parse(active), [active])
-
   const [isActive, setIsActive] = useState(parsedActive)
+
+  const selectedWarehouse = useRecoilValue(SelectedWarehouseAtom)
 
   return (
     <DashLayout>
@@ -55,7 +58,7 @@ const LocationListPage = ({ active = true }) => {
         <Row>
           <Col>
             {isActive ? (
-              <ActiveLocationListCell warehouseId="columbia" />
+              <ActiveLocationListCell warehouseId={selectedWarehouse.id} />
             ) : (
               <LocationListCell />
             )}
