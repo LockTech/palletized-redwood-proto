@@ -117,7 +117,7 @@ const LocationForm: React.FC<LocationFormProps> = ({
           A <em>unique</em> name used to identify this Location.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
-          {errors && errors.name && errors.name.message}
+          {errors?.name?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -127,6 +127,10 @@ const LocationForm: React.FC<LocationFormProps> = ({
           control={control}
           name="warehouse"
           rules={{
+            maxLength: {
+              value: 75,
+              message: 'Warehouse names can be no longer than 75 characters.',
+            },
             required: 'A Warehouse is required when creating a Location.',
           }}
           render={selectComp}
@@ -138,10 +142,19 @@ const LocationForm: React.FC<LocationFormProps> = ({
           id="createLocationForm.warehouseHelpBlock"
           muted
         >
-          The Warehouse which this Location belong to.
+          The Warehouse which this Location will belong to.
+        </Form.Text>
+        <Form.Text
+          className={
+            !errors.warehouse && !warehousesError ? 'd-block' : 'd-none'
+          }
+          id="createLocationForm.warehouseHelpBlock"
+          muted
+        >
+          Entering a non-existant Warehouse will create one with the name given.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
-          {errors && errors.warehouse && errors.warehouse.value.message}
+          {errors?.warehouse?.value?.message}
         </Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
           {warehousesError && warehousesError.message}
