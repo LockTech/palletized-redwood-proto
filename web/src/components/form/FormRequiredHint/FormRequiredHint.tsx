@@ -4,7 +4,9 @@ const FormRequiredHint: React.FC = () => {
   return (
     <FormText>
       <p>
-        <em>* - Required Field(s)</em>
+        <small>
+          <em>* - Required Field(s)</em>
+        </small>
       </p>
     </FormText>
   )
