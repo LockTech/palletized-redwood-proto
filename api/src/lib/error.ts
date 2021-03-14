@@ -97,13 +97,21 @@ export const throwIfTooLong = (
 
 export class UniqueError extends UserInputError {
   constructor(properties: Record<string, string[]>) {
-    super('One or more fields are not unique to your organization.', properties)
+    console.log(properties)
+    super('One or more fields are not unique to your organization.', {
+      messages: properties,
+    })
   }
 }
 
 export class NoExistError extends UserInputError {
   constructor(resourceName: string, properties: Record<string, string[]>) {
-    super('One or more fields are not unique to your organization.', properties)
+    super(
+      `A referenced ${resourceName} does not exist for your organization.`,
+      {
+        messages: properties,
+      }
+    )
   }
 }
 
