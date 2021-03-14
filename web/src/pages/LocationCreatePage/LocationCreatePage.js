@@ -13,7 +13,7 @@ const LocationCreatePage = () => {
           <Col>
             <h1>Create Location</h1>
             <p className="text-muted">
-              Create a new Location which can have Pallets tagged to it.
+              Create a Location for a new or existing Warehouse.
             </p>
           </Col>
         </Row>
