@@ -1,9 +1,12 @@
-const FormRequiredHint: React.FunctionComponent = () => {
+import FormText from 'react-bootstrap/FormText'
+
+const FormRequiredHint: React.FC = () => {
   return (
-    <div>
-      <h2>{'FormRequiredHint'}</h2>
-      <p>{'Find me in ./web/src/components/FormRequiredHint/FormRequiredHint.tsx'}</p>
-    </div>
+    <FormText>
+      <p>
+        <em>* - Required Fields</em>
+      </p>
+    </FormText>
   )
 }
 
