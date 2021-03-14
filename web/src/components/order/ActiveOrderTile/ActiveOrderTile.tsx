@@ -26,8 +26,8 @@ const ActiveOrderTile: React.FC<ActiveOrderTileProps> = ({
       header="Active Orders"
       headerTooltip={
         <span>
-          Active Orders are Orders which have Pallets with the status
-          &quot;Not-Shipped&quot;.
+          Active Orders are <em>Orders</em> which have <em>Pallets</em> with the
+          status &quot;Not-Shipped&quot;.
         </span>
       }
       {...otherProps}
