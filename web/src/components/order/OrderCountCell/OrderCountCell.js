@@ -8,7 +8,7 @@ export const QUERY = gql`
     $locationId: String
     $order: ComplexOrderInput
   ) {
-    count: orderCount(
+    count: countOrders(
       warehouseId: $warehouseId
       locationId: $locationId
       order: $order

@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton'
 
 export const QUERY = gql`
   query ActivePalletCountQuery($pallet: ComplexPalletInput) {
-    count: palletCount(pallet: $pallet)
+    count: countPallets(pallet: $pallet)
   }
 `
 

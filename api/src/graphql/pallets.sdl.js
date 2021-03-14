@@ -19,7 +19,7 @@ export const schema = gql`
 
   type Query {
     pallets: [Pallet!]!
-    palletCount(pallet: ComplexPalletInput): Int!
+    countPallets(pallet: ComplexPalletInput): Int!
   }
 
   input CreatePalletInput {

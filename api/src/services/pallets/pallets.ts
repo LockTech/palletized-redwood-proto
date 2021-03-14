@@ -14,7 +14,7 @@ export const pallet = ({ id }) => {
 //
 
 // ==
-export const palletCount = async ({ pallet }) => {
+export const countPallets = async ({ pallet }) => {
   try {
     return await db.pallet.count({
       where: {

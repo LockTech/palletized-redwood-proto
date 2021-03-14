@@ -145,7 +145,7 @@ export const createLocation = async ({
 //
 
 // ==
-export const locationCount = async ({ location }) => {
+export const countLocations = async ({ location }) => {
   try {
     return await db.location.count({
       where: {

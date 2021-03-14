@@ -90,7 +90,7 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
 //
 
 // ==
-export const orderCount = async ({ warehouseId, locationId, order }) => {
+export const countOrders = async ({ warehouseId, locationId, order }) => {
   // Empty query if warehouseId = null
   const warehouseQuery = !warehouseId
     ? null

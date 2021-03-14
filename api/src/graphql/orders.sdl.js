@@ -11,7 +11,7 @@ export const schema = gql`
   type Query {
     orders(warehouseId: String): [Order!]!
     order(id: String!): Order
-    orderCount(
+    countOrders(
       warehouseId: String = null
       locationId: String = null
       order: ComplexOrderInput = null
