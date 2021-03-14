@@ -6,6 +6,8 @@ import Card from 'react-bootstrap/Card'
 
 import LoadingCard from 'src/components/LoadingCard'
 import OrderForm from 'src/components/order/OrderForm'
+import OrderNameCell from 'src/components/order/OrderNameCell'
+import OrderTooltip from '../OrderTooltip/OrderTooltip'
 
 export const QUERY = gql`
   query FindOrderById($id: String!) {
@@ -27,6 +29,18 @@ const UPDATE_ORDER_MUTATION = gql`
   }
 `
 
+const commonHeader = (id) => (
+  <Card.Header className="d-flex flex-direction-row align-items-center justify-content-between">
+    <span>
+      Editing Order:&nbsp;
+      <strong>
+        <OrderNameCell id={id} />
+      </strong>
+    </span>
+    <OrderTooltip />
+  </Card.Header>
+)
+
 export const Loading = () => <LoadingCard />
 
 export const Empty = ({ id }) => {
@@ -36,6 +50,7 @@ export const Empty = ({ id }) => {
 
   return (
     <Card>
+      {commonHeader(id)}
       <Card.Body>Could not find Order: {id}.</Card.Body>
     </Card>
   )
@@ -48,7 +63,8 @@ export const Failure = ({ id }) => {
 
   return (
     <Card>
-      <Card.Body>An error occured while trying to edit Order: {id}.</Card.Body>
+      {commonHeader(id)}
+      <Card.Body>An error occured while trying to edit the Order.</Card.Body>
     </Card>
   )
 }
@@ -67,6 +83,7 @@ export const Success = ({ order }) => {
 
   return (
     <Card>
+      {commonHeader(order.id)}
       <Card.Body>
         <OrderForm
           onSave={onSave}

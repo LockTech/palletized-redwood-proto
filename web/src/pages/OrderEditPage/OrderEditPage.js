@@ -1,11 +1,9 @@
-import Alert from 'react-bootstrap/Alert'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
 import DashLayout from 'src/layouts/DashLayout'
 import OrderEditCell from 'src/components/order/OrderEditCell'
-import OrderNameCell from 'src/components/order/OrderNameCell'
 
 const OrderEditPage = ({ id }) => {
   return (
@@ -17,17 +15,6 @@ const OrderEditPage = ({ id }) => {
             <p className="text-muted">
               Alter the details for an existing Order.
             </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Alert variant="info">
-              You are currently editing Order:{' '}
-              <strong>
-                <OrderNameCell id={id} />
-              </strong>
-              .
-            </Alert>
           </Col>
         </Row>
         <Row>
