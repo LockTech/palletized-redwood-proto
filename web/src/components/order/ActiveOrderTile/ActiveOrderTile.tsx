@@ -32,7 +32,7 @@ const ActiveOrderTile: React.FC<ActiveOrderTileProps> = ({
       }
       {...otherProps}
     >
-      <p className="mb-0 display-4">
+      <p className="mb-0 display-4 text-monospace">
         <OrderCountCell warehouseId={warehouseId} />
       </p>
     </TileCard>

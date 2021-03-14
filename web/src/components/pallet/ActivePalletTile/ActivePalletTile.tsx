@@ -30,7 +30,7 @@ const ActivePalletTile: React.FC<ActivePalletTileProps> = ({
       }
       {...otherProps}
     >
-      <p className="mb-0 display-4">
+      <p className="mb-0 display-4 text-monospace">
         <PalletCountCell
           pallet={{
             orderId: id,
