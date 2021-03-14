@@ -35,13 +35,13 @@ const TileCard: React.FC<TileCardProps> = ({
     <Card {...cardProps}>
       {header && (
         <Card.Header {...cardHeaderProps}>
-          <div className="d-flex flex-direction-row align-items-center">
+          <div className="d-flex flex-direction-row align-items-center justify-content-between">
             <span>{header}</span>
             {headerTooltip && (
               <OverlayTrigger
-                trigger={['click', 'hover']}
-                placement="bottom"
-                delay={{ show: 30, hide: 500 }}
+                trigger={['click', 'hover', 'focus']}
+                placement="bottom-end"
+                delay={{ show: 30, hide: 250 }}
                 overlay={
                   <Tooltip id="tilecard-tooltip">
                     <span>{headerTooltip}</span>
