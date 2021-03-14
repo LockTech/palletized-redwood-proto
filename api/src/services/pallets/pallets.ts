@@ -14,14 +14,11 @@ export const pallet = ({ id }) => {
 //
 
 // ==
-export const palletCount = async ({ orderId, pallet }) => {
-  const orderQuery = !orderId ? null : { orderId: orderId }
-
+export const palletCount = async ({ pallet }) => {
   try {
     return await db.pallet.count({
       where: {
         ...pallet,
-        ...orderQuery,
       },
     })
   } catch (err) {

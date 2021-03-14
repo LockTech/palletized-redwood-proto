@@ -1,4 +1,9 @@
 export const schema = gql`
+  enum PalletStatus {
+    ACTIVE
+    SHIPPED
+  }
+
   type Pallet {
     id: String!
     name: String!
@@ -14,12 +19,7 @@ export const schema = gql`
 
   type Query {
     pallets: [Pallet!]!
-    palletCount(orderId: String, pallet: ComplexPalletInput): Int!
-  }
-
-  enum PalletStatus {
-    ACTIVE
-    SHIPPED
+    palletCount(pallet: ComplexPalletInput): Int!
   }
 
   input CreatePalletInput {
@@ -37,5 +37,13 @@ export const schema = gql`
   input ComplexPalletInput {
     id: String
     name: String
+    updatedAt: DateTime
+    createdAt: DateTime
+    location: ComplexLocationInput
+    locationId: String
+    order: ComplexOrderInput
+    orderId: String
+    PalletProduct: [ComplexPalletProductInput]
+    status: PalletStatus
   }
 `

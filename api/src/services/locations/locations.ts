@@ -46,6 +46,12 @@ const handleCommonLocationErrors = (error) => {
         ],
       })
     }
+
+    case PrismaError.InterpretationError: {
+      throw new NoExistError('Location', {
+        A: ['Location must exist to be deleted.'],
+      })
+    }
   }
 }
 
@@ -139,6 +145,22 @@ export const createLocation = async ({
 //
 
 // ==
+export const locationCount = async ({ location }) => {
+  try {
+    return await db.location.count({
+      where: {
+        ...location,
+      },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonLocationErrors(err)
+    throwUnexpectedError(err)
+  }
+}
+//
+
+// ==
 export const deleteLocation = async ({ id }) => {
   try {
     return await db.location.delete({
@@ -146,18 +168,7 @@ export const deleteLocation = async ({ id }) => {
     })
   } catch (err) {
     handleCommonErrors(err)
-    // handleCommonLocationErrors(err) - Does not apply ATM
-
-    switch (err.code) {
-      case PrismaError.InterpretationError: {
-        throw new UserInputError('Could not find Location.', {
-          message: {
-            An: ['Location must exist to be deleted.'],
-          },
-        })
-      }
-    }
-
+    handleCommonLocationErrors(err)
     throwUnexpectedError(err)
   }
 }

@@ -1,6 +1,6 @@
 import TileCard from 'src/components/TileCard/TileCard'
 import type { TileCardProps } from 'src/components/TileCard/TileCard'
-import ActivePalletCountCell from 'src/components/pallet/ActivePalletCountCell'
+import PalletCountCell from 'src/components/pallet/PalletCountCell'
 
 export interface ActivePalletTileProps extends TileCardProps {
   /**
@@ -31,7 +31,11 @@ const ActivePalletTile: React.FC<ActivePalletTileProps> = ({
       {...otherProps}
     >
       <p className="mb-0 display-4">
-        <ActivePalletCountCell id={id} />
+        <PalletCountCell
+          pallet={{
+            orderId: id,
+          }}
+        />
       </p>
     </TileCard>
   )

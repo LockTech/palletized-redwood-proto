@@ -37,5 +37,8 @@ export const schema = gql`
     id: String
     orderNumber: String
     jobName: String
+    updatedAt: DateTime
+    createdAt: DateTime
+    pallets: [ComplexPalletInput]
   }
 `

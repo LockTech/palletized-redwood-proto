@@ -23,8 +23,7 @@ const LocationListPage = ({ active = true }) => {
           <Col>
             <h1>Locations</h1>
             <p className="text-muted">
-              A list of the Locations which can be used when tagging Pallets to
-              a Warehouse.
+              A list of the Locations accessible by your organization.
             </p>
           </Col>
         </Row>

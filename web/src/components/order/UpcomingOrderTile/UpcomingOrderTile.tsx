@@ -2,7 +2,7 @@ import { routes } from '@redwoodjs/router'
 
 import TileCard from 'src/components/TileCard/TileCard'
 import type { TileCardProps } from 'src/components/TileCard/TileCard'
-import UpcomingOrderCountCell from 'src/components/order/UpcomingOrderCountCell'
+import OrderCountCell from 'src/components/order/OrderCountCell'
 
 export interface UpcomingOrderTileProps extends TileCardProps {
   /**
@@ -10,11 +10,11 @@ export interface UpcomingOrderTileProps extends TileCardProps {
    *
    * use `null` to retrieve **every** upcoming order for an organization.
    */
-  id?: string
+  warehouseId?: string
 }
 
 const UpcomingOrderTile: React.FC<UpcomingOrderTileProps> = ({
-  id,
+  warehouseId,
   ...otherProps
 }) => {
   return (
@@ -33,7 +33,7 @@ const UpcomingOrderTile: React.FC<UpcomingOrderTileProps> = ({
       {...otherProps}
     >
       <p className="mb-0 display-4">
-        <UpcomingOrderCountCell id={id} />
+        <OrderCountCell warehouseId={warehouseId} />
       </p>
     </TileCard>
   )

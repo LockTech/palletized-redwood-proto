@@ -29,10 +29,10 @@ const DashboardPage = () => {
         </Row>
         <Row>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <ActiveOrderTile id="charleston" />
+            <ActiveOrderTile warehouseId="charleston" />
           </Col>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <UpcomingOrderTile id="charleston" />
+            <UpcomingOrderTile warehouseId="charleston" />
           </Col>
         </Row>
       </Container>

@@ -12,6 +12,7 @@ export const schema = gql`
   type Query {
     locations(warehouseId: String = null): [Location!]!
     location(id: String!): Location!
+    locationCount(location: ComplexLocationInput): Int!
   }
 
   type Mutation {
@@ -28,5 +29,15 @@ export const schema = gql`
   input UpdateLocationInput {
     name: String
     warehouseId: String
+  }
+
+  input ComplexLocationInput {
+    id: String
+    name: String
+    updatedAt: DateTime
+    createdAt: DateTime
+    warehouse: ComplexWarehouseInput
+    warehouseId: String
+    pallets: [ComplexPalletInput]
   }
 `

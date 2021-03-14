@@ -22,4 +22,14 @@ export const schema = gql`
     palletId: String
     productId: String
   }
+
+  input ComplexPalletProductInput {
+    id: String
+    pallet: ComplexPalletInput
+    palletId: String
+    product: ComplexProductInput
+    productId: String
+    updatedAt: DateTime
+    createdAt: DateTime
+  }
 `

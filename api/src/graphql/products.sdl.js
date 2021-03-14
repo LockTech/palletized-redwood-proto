@@ -22,4 +22,12 @@ export const schema = gql`
   input UpdateProductInput {
     name: String
   }
+
+  input ComplexProductInput {
+    id: String
+    name: String
+    updatedAt: DateTime
+    createdAt: DateTime
+    PalletProduct: [ComplexPalletProductInput]
+  }
 `

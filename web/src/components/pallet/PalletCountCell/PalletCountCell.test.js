@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing'
-import { Loading, Empty, Failure, Success } from './ActivePalletCountCell'
-import { standard } from './ActivePalletCountCell.mock'
+import { Loading, Empty, Failure, Success } from './PalletCountCell'
+import { standard } from './PalletCountCell.mock'
 
 describe('activePalletCountCell', () => {
   it('renders Loading successfully', () => {
