@@ -1,5 +1,5 @@
-import { Loading, Empty, Failure, Success } from './ActiveOrderCountCell'
-import { standard } from './ActiveOrderCountCell.mock'
+import { Loading, Empty, Failure, Success } from './OrderCountCell'
+import { standard } from './OrderCountCell.mock'
 
 export const loading = () => {
   return Loading ? <Loading /> : null

@@ -3,9 +3,9 @@ import { toast } from '@redwoodjs/web/toast'
 import Skeleton from 'react-loading-skeleton'
 
 export const QUERY = gql`
-  query ActiveOrderCountQuery($id: String) {
-    count: orderCount(warehouseId: $id)
-    # Pending check for order.status
+  query ActiveOrderCountQuery($warehouseId: String, $order: ComplexOrderInput) {
+    count: orderCount(warehouseId: $warehouseId, order: $order)
+    # Pending check for an order's pallet's status
   }
 `
 
