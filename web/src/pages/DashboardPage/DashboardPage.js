@@ -14,8 +14,16 @@ const DashboardPage = () => {
           <Col>
             <h1>Dashboard</h1>
             <p className="text-muted">
-              A quick overview of the Jobs, Orders, and Pallets at:{' '}
-              <strong>Charleston</strong>
+              A quick overview of your organization and the resources Palletized
+              is keeping track of.
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <h2>Current Warehouse</h2>
+            <p className="text-muted">
+              You current, Selected Warehouse-at a glance.
             </p>
           </Col>
         </Row>
