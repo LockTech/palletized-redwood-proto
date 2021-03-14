@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import FormAlert from 'src/components/form/FormAlert/FormAlert'
 import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
 import ResetButton from 'src/components/form/ResetButton/ResetButton'
+import FormRequiredHint from 'src/components/form/FormRequiredHint/FormRequiredHint'
 
 export type WarehouseFormData = {
   name: string
@@ -45,7 +46,7 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
       <FormAlert error={error} />
 
       <Form.Group controlId="createWarehouseForm.name">
-        <Form.Label>Warehouse Name</Form.Label>
+        <Form.Label>Warehouse Name *</Form.Label>
         <Form.Control
           aria-describedby="createWarehouseForm.nameHelpBlock"
           isInvalid={errors.name !== undefined}
@@ -70,6 +71,8 @@ const WarehouseForm: React.FC<WarehouseFormProps> = ({
           {errors && errors.name && errors.name.message}
         </Form.Control.Feedback>
       </Form.Group>
+
+      <FormRequiredHint />
 
       <SubmitButton
         disabled={loading || !isValid || !isDirty}

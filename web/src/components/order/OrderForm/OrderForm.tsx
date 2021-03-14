@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import FormAlert from 'src/components/form/FormAlert/FormAlert'
 import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
 import ResetButton from 'src/components/form/ResetButton/ResetButton'
+import FormRequiredHint from 'src/components/form/FormRequiredHint/FormRequiredHint'
 
 export type OrderFormData = {
   orderNumber: string
@@ -49,7 +50,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
       <FormAlert error={error} />
 
       <Form.Group controlId="createOrderForm.orderNumber">
-        <Form.Label>Order Number</Form.Label>
+        <Form.Label>Order Number *</Form.Label>
         <Form.Control
           aria-describedby="createOrderForm.orderNumberHelpBlock"
           isInvalid={errors.orderNumber !== undefined}
@@ -76,7 +77,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
       </Form.Group>
 
       <Form.Group controlId="createOrderForm.jobName">
-        <Form.Label>Job Name</Form.Label>
+        <Form.Label>Job Name *</Form.Label>
         <Form.Control
           aria-describedby="createOrderForm.jobNameHelpBlock"
           isInvalid={errors.jobName !== undefined}
@@ -100,6 +101,8 @@ const OrderForm: React.FC<OrderFormProps> = ({
           {errors && errors.jobName && errors.jobName.message}
         </Form.Control.Feedback>
       </Form.Group>
+
+      <FormRequiredHint />
 
       <SubmitButton
         disabled={loading || !isValid || !isDirty}

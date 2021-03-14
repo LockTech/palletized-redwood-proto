@@ -7,6 +7,7 @@ import FormAlert from 'src/components/form/FormAlert/FormAlert'
 import SubmitButton from 'src/components/form/SubmitButton/SubmitButton'
 import ResetButton from 'src/components/form/ResetButton/ResetButton'
 import Select from 'src/components/form/CreatableSelect/CreatableSelect'
+import FormRequiredHint from 'src/components/form/FormRequiredHint/FormRequiredHint'
 
 const LOCATION_GET_WAREHOUSES = gql`
   query LocationGetWarehouses {
@@ -95,7 +96,7 @@ const LocationForm: React.FC<LocationFormProps> = ({
       <FormAlert error={error} />
 
       <Form.Group controlId="createLocationForm.name">
-        <Form.Label>Name</Form.Label>
+        <Form.Label>Name *</Form.Label>
         <Form.Control
           aria-describedby="createLocationForm.nameHelpBlock"
           isInvalid={errors.name !== undefined}
@@ -122,7 +123,7 @@ const LocationForm: React.FC<LocationFormProps> = ({
       </Form.Group>
 
       <Form.Group controlId="createLocationForm.warehouse">
-        <Form.Label>Warehouse</Form.Label>
+        <Form.Label>Warehouse *</Form.Label>
         <Controller
           control={control}
           name="warehouse"
@@ -161,6 +162,8 @@ const LocationForm: React.FC<LocationFormProps> = ({
           {warehousesError && warehousesError.message}
         </Form.Control.Feedback>
       </Form.Group>
+
+      <FormRequiredHint />
 
       <SubmitButton
         disabled={loading || !isValid || !isDirty}
