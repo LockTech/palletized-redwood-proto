@@ -23,7 +23,7 @@ const OrderListPage = ({ active = true }) => {
           <Col>
             <h1>Orders</h1>
             <p className="text-muted">
-              A list of Orders which Pallets can be tagged to.
+              A list of the Orders which can be used across your organization.
             </p>
           </Col>
         </Row>
