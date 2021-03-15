@@ -24,7 +24,7 @@ const handleCommonLocationErrors = (error) => {
     case PrismaError.UniqueConstraintViolation: {
       throw new UniqueError({
         Name: [
-          'must be unique accross all other Locations at the Selected Warehouse.',
+          'must be unique accross all other Locations at the selected Warehouse.',
         ],
       })
     }
