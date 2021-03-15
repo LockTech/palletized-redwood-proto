@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import Button from 'react-bootstrap/Button'
 
+import useQueryError from 'src/hooks/UseQueryError/useQueryError'
+
 import LocationDeleteModal from 'src/components/location/LocationDeleteModal'
-import { QUERY } from 'src/components/location/LocationListCell'
 
 export const DELETE_LOCATION_MUTATION = gql`
   mutation DeleteLocationMutation($id: String!) {
@@ -21,7 +22,7 @@ export const Empty = () => <div>Empty</div>
 
 export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
-export const LocationDeleteCell = ({ id, warehouseId }) => {
+export const LocationDeleteCell = ({ id, relistQuery, warehouseId }) => {
   const [deleteQuery, { called, error }] = useMutation(
     DELETE_LOCATION_MUTATION,
     {
@@ -29,16 +30,12 @@ export const LocationDeleteCell = ({ id, warehouseId }) => {
         navigate(routes.locations())
         toast.success('Location has been successfully deleted.')
       },
-      refetchQueries: [{ query: QUERY }],
+      refetchQueries: [{ query: relistQuery, variables: { warehouseId } }],
       awaitRefetchQueries: true,
     }
   )
 
-  useEffect(() => {
-    if (called && error) {
-      toast.error(error.message)
-    }
-  }, [called, error])
+  useQueryError(called, error)
 
   const [deleteModalVis, setDeleteModalVis] = useState(false)
 
