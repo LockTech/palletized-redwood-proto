@@ -10,7 +10,6 @@ import Row from 'react-bootstrap/Row'
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
 import SwitchWarehouseForm from 'src/components/warehouse/SwitchWarehouseForm'
 import LocationListCell from 'src/components/location/LocationListCell'
-import ActiveLocationListCell from 'src/components/location/ActiveLocationListCell'
 import DefaultWarehouseAtom from 'src/atoms/DefaultWarehouseAtom/DefaultWarehouseAtom'
 
 const LocationListPage = ({ active = true }) => {
@@ -48,6 +47,7 @@ const LocationListPage = ({ active = true }) => {
               <Card.Body>
                 <SwitchWarehouseForm
                   isActive={isActive}
+                  name="Locations"
                   onClick={() => null}
                   onToggleActive={(isActive) => setIsActive(isActive)}
                 />
@@ -57,11 +57,9 @@ const LocationListPage = ({ active = true }) => {
         </Row>
         <Row>
           <Col>
-            {isActive ? (
-              <ActiveLocationListCell warehouseId={defaultWarehouse.id} />
-            ) : (
-              <LocationListCell />
-            )}
+            <LocationListCell
+              warehouseId={isActive ? defaultWarehouse.id : null}
+            />
           </Col>
         </Row>
       </Container>

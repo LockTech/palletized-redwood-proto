@@ -1,20 +1,24 @@
 import { useMemo, useState } from 'react'
 import { Link, routes } from '@redwoodjs/router'
+import { useRecoilValue } from '@salvoravida/recoil'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
+import DefaultWarehouseAtom from 'src/atoms/DefaultWarehouseAtom/DefaultWarehouseAtom'
+
 import DashLayout from 'src/layouts/DashLayout'
 import SwitchWarehouseForm from 'src/components/warehouse/SwitchWarehouseForm'
-import ActiveOrderListCell from 'src/components/order/ActiveOrderListCell'
 import OrderListCell from 'src/components/order/OrderListCell'
 
 const OrderListPage = ({ active = true }) => {
   const parsedActive = useMemo(() => JSON.parse(active), [active])
 
   const [isActive, setIsActive] = useState(parsedActive)
+
+  const defaultWarehouse = useRecoilValue(DefaultWarehouseAtom)
 
   return (
     <DashLayout>
@@ -40,6 +44,7 @@ const OrderListPage = ({ active = true }) => {
               <Card.Body>
                 <SwitchWarehouseForm
                   isActive={isActive}
+                  name="Orders"
                   onClick={() => null}
                   onToggleActive={(isActive) => setIsActive(isActive)}
                 />
@@ -49,11 +54,9 @@ const OrderListPage = ({ active = true }) => {
         </Row>
         <Row>
           <Col>
-            {isActive ? (
-              <ActiveOrderListCell warehouseId="charleston" />
-            ) : (
-              <OrderListCell />
-            )}
+            <OrderListCell
+              warehouseId={isActive ? defaultWarehouse.id : null}
+            />
           </Col>
         </Row>
       </Container>

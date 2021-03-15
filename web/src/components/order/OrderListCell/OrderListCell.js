@@ -5,8 +5,8 @@ import LoadingCard from 'src/components/LoadingCard'
 import OrderList from 'src/components/order/OrderList'
 
 export const QUERY = gql`
-  query ORDERS {
-    orders {
+  query OrderListQuery($warehouseId: String = null) {
+    orders(warehouseId: $warehouseId) {
       id
       orderNumber
       jobName

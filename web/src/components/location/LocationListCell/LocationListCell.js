@@ -5,8 +5,8 @@ import LoadingCard from 'src/components/LoadingCard'
 import LocationList from 'src/components/location/LocationList'
 
 export const QUERY = gql`
-  query LOCATIONS {
-    locations {
+  query LocationListQuery($warehouseId: String = null) {
+    locations(warehouseId: $warehouseId) {
       id
       name
       updatedAt
@@ -48,6 +48,4 @@ export const Failure = ({ error }) => (
   </>
 )
 
-export const Success = ({ locations }) => (
-  <LocationList locations={locations} relistQuery={QUERY} />
-)
+export const Success = ({ locations }) => <LocationList locations={locations} />
