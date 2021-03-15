@@ -3,6 +3,8 @@ import { routes, useMatch } from '@redwoodjs/router'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 
+import NavDropdown from 'src/components/NavDropdown/NavDropdown'
+
 const ProductDropdown: React.FC = () => {
   const createProductRoute = useMemo(() => routes.createProduct(), [])
   const createProductMatch = useMatch(createProductRoute).match
@@ -18,18 +20,12 @@ const ProductDropdown: React.FC = () => {
         Products
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item
-          className={createProductMatch && 'active'}
-          href={createProductRoute}
-        >
+        <NavDropdown active={createProductMatch} to={createProductRoute}>
           Create Product
-        </Dropdown.Item>
-        <Dropdown.Item
-          className={productsMatch && 'active'}
-          href={productsRoute}
-        >
+        </NavDropdown>
+        <NavDropdown active={productsMatch} to={productsRoute}>
           List Products
-        </Dropdown.Item>
+        </NavDropdown>
       </Dropdown.Menu>
     </Dropdown>
   )

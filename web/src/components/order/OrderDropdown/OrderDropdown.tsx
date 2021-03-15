@@ -3,6 +3,8 @@ import { routes, useMatch } from '@redwoodjs/router'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 
+import NavDropdown from 'src/components/NavDropdown/NavDropdown'
+
 const OrderDropdown: React.FunctionComponent = () => {
   const createOrderRoute = useMemo(() => routes.createOrder(), [])
   const createOrderMatch = useMatch(createOrderRoute).match
@@ -18,15 +20,12 @@ const OrderDropdown: React.FunctionComponent = () => {
         Orders
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item
-          className={createOrderMatch && 'active'}
-          href={createOrderRoute}
-        >
+        <NavDropdown active={createOrderMatch} to={createOrderRoute}>
           Create Order
-        </Dropdown.Item>
-        <Dropdown.Item className={ordersMatch && 'active'} href={ordersRoute}>
+        </NavDropdown>
+        <NavDropdown active={ordersMatch} to={ordersRoute}>
           List Orders
-        </Dropdown.Item>
+        </NavDropdown>
       </Dropdown.Menu>
     </Dropdown>
   )
