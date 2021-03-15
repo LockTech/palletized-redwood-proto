@@ -3,14 +3,14 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
-import SelectedWarehouseAtom from 'src/atoms/SelectedWarehouseAtom/SelectedWarehouseAtom'
+import DefaultWarehouseAtom from 'src/atoms/DefaultWarehouseAtom/DefaultWarehouseAtom'
 
 import DashLayout from 'src/layouts/DashLayout/DashLayout'
 import ActiveOrderTile from 'src/components/order/ActiveOrderTile'
 import UpcomingOrderTile from 'src/components/order/UpcomingOrderTile'
 
 const DashboardPage = () => {
-  const selectedWarehouse = useRecoilValue(SelectedWarehouseAtom)
+  const defaultWarehouse = useRecoilValue(DefaultWarehouseAtom)
 
   return (
     <DashLayout>
@@ -34,10 +34,10 @@ const DashboardPage = () => {
         </Row>
         <Row>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <ActiveOrderTile warehouseId={selectedWarehouse.id} />
+            <ActiveOrderTile warehouseId={defaultWarehouse.id} />
           </Col>
           <Col sm={12} md={6} className="mb-3 mb-md-0">
-            <UpcomingOrderTile warehouseId={selectedWarehouse.id} />
+            <UpcomingOrderTile warehouseId={defaultWarehouse.id} />
           </Col>
         </Row>
       </Container>

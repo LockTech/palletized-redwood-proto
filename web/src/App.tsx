@@ -7,7 +7,7 @@ import FatalErrorPage from 'src/pages/FatalErrorPage/FatalErrorPage'
 import Routes from 'src/Routes'
 
 import './index.scss'
-import AtomProvider from './components/AtomProvider/AtomProvider'
+import AtomProvider from './atoms/AtomProvider/AtomProvider'
 
 const App = () => {
   return (

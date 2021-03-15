@@ -11,13 +11,13 @@ import DashLayout from 'src/layouts/DashLayout/DashLayout'
 import SwitchWarehouseForm from 'src/components/warehouse/SwitchWarehouseForm'
 import LocationListCell from 'src/components/location/LocationListCell'
 import ActiveLocationListCell from 'src/components/location/ActiveLocationListCell'
-import SelectedWarehouseAtom from 'src/atoms/SelectedWarehouseAtom/SelectedWarehouseAtom'
+import DefaultWarehouseAtom from 'src/atoms/DefaultWarehouseAtom/DefaultWarehouseAtom'
 
 const LocationListPage = ({ active = true }) => {
   const parsedActive = useMemo(() => JSON.parse(active), [active])
   const [isActive, setIsActive] = useState(parsedActive)
 
-  const selectedWarehouse = useRecoilValue(SelectedWarehouseAtom)
+  const defaultWarehouse = useRecoilValue(DefaultWarehouseAtom)
 
   return (
     <DashLayout>
@@ -58,7 +58,7 @@ const LocationListPage = ({ active = true }) => {
         <Row>
           <Col>
             {isActive ? (
-              <ActiveLocationListCell warehouseId={selectedWarehouse.id} />
+              <ActiveLocationListCell warehouseId={defaultWarehouse.id} />
             ) : (
               <LocationListCell />
             )}

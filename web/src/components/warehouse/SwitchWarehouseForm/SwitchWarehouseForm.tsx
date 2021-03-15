@@ -17,32 +17,32 @@ const SwitchWarehouseForm: React.FC<SwitchWarehouseFormProps> = ({
   const { register, watch } = useForm({
     mode: 'onChange',
     defaultValues: {
-      selectedWarehouses: isActive,
+      defaultWarehouses: isActive,
     },
   })
 
-  const watchSelectedWarehouses = watch('selectedWarehouses', isActive)
+  const watchDefaultWarehouses = watch('defaultWarehouses', isActive)
 
   useEffect(() => {
-    if (watchSelectedWarehouses !== isActive) {
-      onToggleActive(watchSelectedWarehouses)
+    if (watchDefaultWarehouses !== isActive) {
+      onToggleActive(watchDefaultWarehouses)
     }
-  }, [isActive, onToggleActive, watchSelectedWarehouses])
+  }, [isActive, onToggleActive, watchDefaultWarehouses])
   return (
     <>
       <Form.Check
         ref={register()}
-        className={watchSelectedWarehouses && 'mb-3'}
-        id="selectedWarehouses"
+        className={watchDefaultWarehouses && 'mb-3'}
+        id="defaultWarehouses"
         label={
           <span>
             Only include <em>resources</em> found at your Selected Warehouse.
           </span>
         }
-        name="selectedWarehouses"
+        name="defaultWarehouses"
         type="checkbox"
       />
-      {watchSelectedWarehouses && (
+      {watchDefaultWarehouses && (
         <Button
           block
           onClick={() => onClick(isActive)}
