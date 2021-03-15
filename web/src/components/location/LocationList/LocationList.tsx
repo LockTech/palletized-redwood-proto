@@ -7,13 +7,17 @@ import PalletCountCell from 'src/components/pallet/PalletCountCell'
 
 export interface LocationListProps {
   locations: ILocation[]
+  relistQuery: string
 }
 
 const countContainerClasses =
   'd-flex flex-direction-row justify-content-between'
 const countCountClasses = 'text-monospace'
 
-const LocationList: React.FC<LocationListProps> = ({ locations }) => {
+const LocationList: React.FC<LocationListProps> = ({
+  locations,
+  relistQuery,
+}) => {
   return (
     <CardColumns>
       {locations.map((loc, index) => (
@@ -35,7 +39,11 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                 <PalletCountCell pallet={{ locationId: loc.id }} />
               </span>
             </Card.Text>
-            <LocationDeleteCell id={loc.id} warehouseId={loc.warehouse.id} />
+            <LocationDeleteCell
+              id={loc.id}
+              relistQuery={relistQuery}
+              warehouseId={loc.warehouse.id}
+            />
           </Card.Body>
         </Card>
       ))}
