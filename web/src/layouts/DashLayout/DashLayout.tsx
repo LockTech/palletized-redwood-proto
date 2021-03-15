@@ -1,10 +1,13 @@
 import { useCallback, useState } from 'react'
 import { Link, routes } from '@redwoodjs/router'
+import { useRecoilValue } from '@salvoravida/recoil'
 import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { BsPeopleCircle } from 'react-icons/bs'
+
+import DefaultWarehouseAtom from 'src/atoms/DefaultWarehouseAtom/DefaultWarehouseAtom'
 
 import NavLink from 'src/components/NavLink/NavLink'
 import WarehouseDropdown from 'src/components/warehouse/WarehouseDropdown/WarehouseDropdown'
@@ -33,6 +36,8 @@ const DashLayout: React.FC = ({ children }) => {
     }
   }, [navbarExpanded, setNavbarExpanded])
 
+  const defaultWarehouse = useRecoilValue(DefaultWarehouseAtom)
+
   return (
     <>
       <Navbar
@@ -48,7 +53,7 @@ const DashLayout: React.FC = ({ children }) => {
             className="dash-layout-link-light text-decoration-none"
             to={routes.dashboard()}
           >
-            Palletized
+            {defaultWarehouse.name}
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
