@@ -7,14 +7,14 @@ import FatalErrorPage from 'src/pages/FatalErrorPage/FatalErrorPage'
 import Routes from 'src/Routes'
 
 import './index.scss'
-import AtomProvider from './atoms/AtomProvider/AtomProvider'
+import UserDefaultWarehouseCell from './components/user/UserDefaultWarehouseCell'
 
 const App = () => {
   return (
     <FatalErrorBoundary page={FatalErrorPage}>
       <RedwoodApolloProvider>
         <RecoilRoot>
-          <AtomProvider />
+          <UserDefaultWarehouseCell id="ryan" />
           <Toaster />
           <Routes />
         </RecoilRoot>
