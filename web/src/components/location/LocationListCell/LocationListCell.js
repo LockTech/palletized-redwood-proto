@@ -48,4 +48,6 @@ export const Failure = ({ error }) => (
   </>
 )
 
-export const Success = ({ locations }) => <LocationList locations={locations} />
+export const Success = ({ locations }) => (
+  <LocationList locations={locations} relistQuery={QUERY} />
+)
