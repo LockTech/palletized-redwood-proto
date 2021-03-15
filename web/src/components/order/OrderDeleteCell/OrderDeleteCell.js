@@ -4,7 +4,9 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import Button from 'react-bootstrap/Button'
 
-import OrderDeleteModal from 'src/components/order/OrderDeleteModal'
+import DeleteModal from 'src/components/DeleteModal'
+import OrderNameCell from 'src/components/order/OrderNameCell'
+
 import { QUERY } from 'src/components/order/OrderListCell'
 
 export const DELETE_ORDER_MUTATION = gql`
@@ -54,12 +56,27 @@ export const OrderDeleteCell = ({ id }) => {
 
   return (
     <>
-      <OrderDeleteModal
-        id={id}
+      <DeleteModal
         onConfirm={onDeleteConfirm}
         onHide={onHideDeleteModal}
         show={deleteModalVis}
-      />
+      >
+        <p>
+          Are you sure you want to delete order{' '}
+          <code>
+            <OrderNameCell id={id} />
+          </code>
+          ?
+        </p>
+        <p>
+          <strong>
+            This action <u className="text-danger">cannot be undone</u>.
+          </strong>
+        </p>
+        <p>
+          An Order cannot be deleted if it has any <em>Active Pallets</em>.
+        </p>
+      </DeleteModal>
       <Button block onClick={onDeleteClick} variant="outline-danger">
         Delete
       </Button>

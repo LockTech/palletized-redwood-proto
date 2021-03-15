@@ -6,7 +6,9 @@ import Button from 'react-bootstrap/Button'
 
 import useQueryError from 'src/hooks/UseQueryError/useQueryError'
 
-import LocationDeleteModal from 'src/components/location/LocationDeleteModal'
+import DeleteModal from 'src/components/DeleteModal'
+import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell'
+import LocationNameCell from 'src/components/location/LocationNameCell'
 
 export const DELETE_LOCATION_MUTATION = gql`
   mutation DeleteLocationMutation($id: String!) {
@@ -22,7 +24,7 @@ export const Empty = () => <div>Empty</div>
 
 export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
-export const LocationDeleteCell = ({ id, relistQuery, warehouseId }) => {
+export const LocationDeleteCell = ({ id, warehouseId }) => {
   const [deleteQuery, { called, error }] = useMutation(
     DELETE_LOCATION_MUTATION,
     {
@@ -30,8 +32,6 @@ export const LocationDeleteCell = ({ id, relistQuery, warehouseId }) => {
         navigate(routes.locations())
         toast.success('Location has been successfully deleted.')
       },
-      refetchQueries: [{ query: relistQuery, variables: { warehouseId } }],
-      awaitRefetchQueries: true,
     }
   )
 
@@ -54,13 +54,28 @@ export const LocationDeleteCell = ({ id, relistQuery, warehouseId }) => {
 
   return (
     <>
-      <LocationDeleteModal
-        id={id}
+      <DeleteModal
         onConfirm={onDeleteConfirm}
         onHide={onHideDeleteModal}
         show={deleteModalVis}
-        warehouseId={warehouseId}
-      />
+      >
+        <p>
+          Are you sure you want to delete Location{' '}
+          <code>
+            <LocationNameCell id={id} />
+          </code>{' '}
+          from Warehouse{' '}
+          <code>
+            <WarehouseNameCell id={warehouseId} />
+          </code>
+          ?
+        </p>
+        <p>
+          <strong>
+            This action <u className="text-danger">cannot be undone</u>.
+          </strong>
+        </p>
+      </DeleteModal>
       <Button block onClick={onDeleteClick} variant="outline-danger">
         Delete
       </Button>

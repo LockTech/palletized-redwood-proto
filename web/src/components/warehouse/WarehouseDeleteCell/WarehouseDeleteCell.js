@@ -6,7 +6,9 @@ import Button from 'react-bootstrap/Button'
 
 import useQueryError from 'src/hooks/UseQueryError/useQueryError'
 
-import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
+import DeleteModal from 'src/components//DeleteModal'
+import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell'
+
 import { QUERY } from 'src/components/warehouse/WarehouseListCell'
 
 export const DELETE_WAREHOUSE_MUTATION = gql`
@@ -54,12 +56,29 @@ export const WarehouseDeleteCell = ({ id }) => {
 
   return (
     <>
-      <WarehouseDeleteModal
-        id={id}
+      <DeleteModal
         onConfirm={onDeleteConfirm}
         onHide={onHideDeleteModal}
         show={deleteModalVis}
-      />
+      >
+        <p>
+          Are you sure you want to delete the{' '}
+          <code>
+            <WarehouseNameCell id={id} />
+          </code>{' '}
+          warehouse?
+        </p>
+        <p>
+          <strong>
+            This action <u className="text-danger">cannot be undone</u> and{' '}
+            <em>will</em> delete all Locations belonging to this warehouse.
+          </strong>
+        </p>
+        <p>
+          If deleted, you will have the opportunity to move each Pallet which is
+          tagged to a will-be-deleted Location.
+        </p>
+      </DeleteModal>
       <Button block onClick={onDeleteClick} variant="outline-danger">
         Delete
       </Button>

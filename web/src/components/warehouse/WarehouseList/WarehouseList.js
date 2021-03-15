@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
 import LocaleTime from 'src/components/LocaleTime'
-import WarehouseDeleteCell from '../WarehouseDeleteCell/WarehouseDeleteCell'
 
 const WarehouseList = ({ warehouses }) => {
   return (
@@ -48,7 +47,6 @@ const WarehouseList = ({ warehouses }) => {
             >
               Switch to Warehouse
             </Button>
-            <WarehouseDeleteCell id={warehouse.id} />
           </Card.Body>
         </Card>
       ))}

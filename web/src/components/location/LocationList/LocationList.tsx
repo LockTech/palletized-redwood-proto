@@ -1,23 +1,18 @@
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
-import LocationDeleteCell from 'src/components/location/LocationDeleteCell'
 import OrderCountCell from 'src/components/order/OrderCountCell'
 import PalletCountCell from 'src/components/pallet/PalletCountCell'
 
 export interface LocationListProps {
   locations: ILocation[]
-  relistQuery: string
 }
 
 const countContainerClasses =
   'd-flex flex-direction-row justify-content-between'
 const countCountClasses = 'text-monospace'
 
-const LocationList: React.FC<LocationListProps> = ({
-  locations,
-  relistQuery,
-}) => {
+const LocationList: React.FC<LocationListProps> = ({ locations }) => {
   return (
     <CardColumns>
       {locations.map((loc, index) => (
@@ -39,11 +34,6 @@ const LocationList: React.FC<LocationListProps> = ({
                 <PalletCountCell pallet={{ locationId: loc.id }} />
               </span>
             </Card.Text>
-            <LocationDeleteCell
-              id={loc.id}
-              relistQuery={relistQuery}
-              warehouseId={loc.warehouse.id}
-            />
           </Card.Body>
         </Card>
       ))}

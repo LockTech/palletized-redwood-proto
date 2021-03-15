@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
-import OrderDeleteCell from 'src/components/order/OrderDeleteCell'
 import PalletCountCell from 'src/components/pallet/PalletCountCell'
 
 const OrderList = ({ orders }) => {
@@ -42,7 +41,6 @@ const OrderList = ({ orders }) => {
             >
               Edit
             </Button>
-            <OrderDeleteCell id={order.id} />
           </Card.Body>
         </Card>
       ))}
