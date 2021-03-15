@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
 import { useCallback, useState } from 'react'
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import Button from 'react-bootstrap/Button'
+
+import useQueryError from 'src/hooks/UseQueryError/useQueryError'
 
 import WarehouseDeleteModal from 'src/components/warehouse/WarehouseDeleteModal'
 import { QUERY } from 'src/components/warehouse/WarehouseListCell'
@@ -35,13 +36,10 @@ export const WarehouseDeleteCell = ({ id }) => {
     }
   )
 
-  useEffect(() => {
-    if (called && error) {
-      toast.error(error.message)
-    }
-  }, [called, error])
+  useQueryError(called, error)
 
   const [deleteModalVis, setDeleteModalVis] = useState(false)
+
   const onHideDeleteModal = useCallback(() => {
     setDeleteModalVis(false)
   }, [setDeleteModalVis])
