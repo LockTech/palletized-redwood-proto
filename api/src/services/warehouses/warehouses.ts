@@ -30,6 +30,12 @@ const handleCommonWarehouseErrors = (error) => {
         A: ['Warehouse must exist to be updated.'],
       })
     }
+
+    case PrismaError.InterpretationError: {
+      throw new NoExistError('Location', {
+        A: ['Location must exist to be deleted.'],
+      })
+    }
   }
 }
 

@@ -30,7 +30,7 @@ export const schema = gql`
   }
 
   input UpdateOrderInput {
-    orderNumber: String!
+    orderNumber: String
     jobName: String
   }
 

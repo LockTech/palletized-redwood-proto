@@ -31,6 +31,7 @@ model Warehouse {
   updatedAt           DateTime            @updatedAt @default(now())
   createdAt           DateTime            @default(now())
   locations           Location[]
+  defaultUsers        UserProfile[]
 }
 
 //
@@ -105,4 +106,15 @@ model PalletProduct {
   createdAt           DateTime            @default(now())
 
   @@unique([palletId, productId])
+}
+
+//
+model UserProfile {
+  @@map(name: "user_profile")
+
+  id                  String              @id
+  warehouse           Warehouse           @relation(fields: [warehouseId], references: [id])
+  warehouseId         String
+  updatedAt           DateTime            @updatedAt @default(now())
+  createdAt           DateTime            @default(now())
 }
