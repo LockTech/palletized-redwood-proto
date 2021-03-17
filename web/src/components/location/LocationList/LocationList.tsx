@@ -1,3 +1,5 @@
+import { Link, routes } from '@redwoodjs/router'
+import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
@@ -34,6 +36,14 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                 <PalletCountCell pallet={{ locationId: loc.id }} />
               </span>
             </Card.Text>
+            <Button
+              as={Link}
+              block
+              to={routes.location({ id: loc.id })}
+              variant="outline-primary"
+            >
+              Details
+            </Button>
           </Card.Body>
         </Card>
       ))}
