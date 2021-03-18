@@ -5,16 +5,15 @@ import type { TileCardProps } from 'src/components/TileCard/TileCard'
 import OrderCountCell from 'src/components/order/OrderCountCell'
 
 export interface ActiveOrderTileProps extends TileCardProps {
-  /**
-   * Warehouse ID to retrieve Active-Orders for.
-   *
-   * Use `null` to retrieve **every** active-order for an organization.
-   */
-  warehouseId?: string
+  order: IOrder
 }
 
+/**
+ * Retrieves a formatted, using `<TileCard>`, **count** of the number of *active orders*: Orders which have
+ * Pallets-which have the status of `'not-shipped'`.
+ */
 const ActiveOrderTile: React.FC<ActiveOrderTileProps> = ({
-  warehouseId,
+  order,
   ...otherProps
 }) => {
   return (
@@ -33,7 +32,15 @@ const ActiveOrderTile: React.FC<ActiveOrderTileProps> = ({
       {...otherProps}
     >
       <p className="mb-0 display-4 text-monospace">
-        <OrderCountCell warehouseId={warehouseId} />
+        <OrderCountCell
+          order={{
+            ...order,
+            pallets: {
+              ...(order.pallets || null),
+              // pallet.status === 'not-shipped'
+            },
+          }}
+        />
       </p>
     </TileCard>
   )

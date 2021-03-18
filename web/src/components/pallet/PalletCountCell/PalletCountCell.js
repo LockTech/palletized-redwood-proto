@@ -3,7 +3,7 @@ import { toast } from '@redwoodjs/web/toast'
 import Skeleton from 'react-loading-skeleton'
 
 export const QUERY = gql`
-  query ActivePalletCountQuery($pallet: ComplexPalletInput) {
+  query ActivePalletCountQuery($pallet: QueryPalletInput) {
     count: countPallets(pallet: $pallet)
   }
 `

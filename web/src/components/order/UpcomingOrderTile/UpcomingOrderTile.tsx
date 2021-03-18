@@ -5,16 +5,15 @@ import type { TileCardProps } from 'src/components/TileCard/TileCard'
 import OrderCountCell from 'src/components/order/OrderCountCell'
 
 export interface UpcomingOrderTileProps extends TileCardProps {
-  /**
-   * Warehouse ID to retrieve Upcoming-Orders for.
-   *
-   * use `null` to retrieve **every** upcoming order for an organization.
-   */
-  warehouseId?: string
+  order?: IOrder
 }
 
+/**
+ * Retrieve a formatted, using `<TileCard>`, **count** of *up-coming orders*: `Active Orders` which
+ * have delivery dates within the next seven (7) days.
+ */
 const UpcomingOrderTile: React.FC<UpcomingOrderTileProps> = ({
-  warehouseId,
+  order,
   ...otherProps
 }) => {
   return (
@@ -33,7 +32,12 @@ const UpcomingOrderTile: React.FC<UpcomingOrderTileProps> = ({
       {...otherProps}
     >
       <p className="mb-0 display-4 text-monospace">
-        <OrderCountCell warehouseId={warehouseId} />
+        <OrderCountCell
+          order={{
+            ...order,
+            // order.shipdate.day <= NOW().day
+          }}
+        />
       </p>
     </TileCard>
   )
