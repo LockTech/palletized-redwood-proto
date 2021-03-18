@@ -26,7 +26,7 @@ const OrderPage = ({ id }) => {
         <Row>
           <Col>
             <Alert className="details-alert-container" variant="info">
-              You are currently viewing details for&nbsp;
+              You are currently viewing details for Order:&nbsp;
               <strong>
                 <OrderNameCell id={id} />
               </strong>
@@ -44,6 +44,8 @@ const OrderPage = ({ id }) => {
             >
               Edit
             </Button>
+          </Col>
+          <Col className="mb-3" xs={12}>
             <OrderDeleteCell id={id} />
           </Col>
         </Row>

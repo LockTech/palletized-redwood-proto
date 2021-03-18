@@ -29,16 +29,16 @@ const WHPage = ({ id }) => {
         <Row>
           <Col>
             <Alert className="details-alert-container" variant="info">
-              You are currently viewing details for the&nbsp;
+              You are currently viewing details for Warehouse:&nbsp;
               <strong>
                 <WarehouseNameCell id={id} />
               </strong>
-              &nbsp;Warehouse.
+              .
             </Alert>
           </Col>
         </Row>
-        <Row className="mb-3">
-          <Col>
+        <Row>
+          <Col className="mb-3">
             <Button block variant="primary">
               Switch to Warehouse
             </Button>
@@ -50,15 +50,21 @@ const WHPage = ({ id }) => {
             >
               Edit
             </Button>
+          </Col>
+          <Col className="mb-3">
             <WarehouseDeleteCell id={id} />
           </Col>
         </Row>
         <Row>
           <Col className="mb-3" xs={12} md={6}>
-            <ActiveOrderTile warehouseId={id} />
+            <ActiveOrderTile
+              order={{ pallets: { location: { warehouseId: id } } }}
+            />
           </Col>
           <Col className="mb-3" xs={12} md={6}>
-            <UpcomingOrderTile warehouseId={id} />
+            <UpcomingOrderTile
+              order={{ pallets: { location: { warehouseId: id } } }}
+            />
           </Col>
         </Row>
         <Row>
