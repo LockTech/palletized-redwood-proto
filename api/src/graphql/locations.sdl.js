@@ -12,7 +12,7 @@ export const schema = gql`
   type Query {
     locations(warehouseId: String = null): [Location!]!
     location(id: String!): Location!
-    countLocations(location: ComplexLocationInput): Int!
+    countLocations(location: QueryLocationInput): Int!
   }
 
   type Mutation {
@@ -31,13 +31,13 @@ export const schema = gql`
     warehouseId: String
   }
 
-  input ComplexLocationInput {
+  input QueryLocationInput {
     id: String
     name: String
     updatedAt: DateTime
     createdAt: DateTime
-    warehouse: ComplexWarehouseInput
+    warehouse: QueryWarehouseInput
     warehouseId: String
-    pallets: [ComplexPalletInput]
+    pallets: QueryPalletInput
   }
 `

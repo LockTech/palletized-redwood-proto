@@ -26,11 +26,11 @@ export const schema = gql`
     name: String
   }
 
-  input ComplexWarehouseInput {
+  input QueryWarehouseInput {
     id: String
     name: String
     updatedAt: DateTime
     createdAt: DateTime
-    locations: [ComplexLocationInput]
+    locations: QueryLocationInput
   }
 `

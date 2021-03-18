@@ -19,7 +19,7 @@ export const schema = gql`
 
   type Query {
     pallets: [Pallet!]!
-    countPallets(pallet: ComplexPalletInput): Int!
+    countPallets(pallet: QueryPalletInput): Int!
   }
 
   input CreatePalletInput {
@@ -34,16 +34,16 @@ export const schema = gql`
     orderId: String
   }
 
-  input ComplexPalletInput {
+  input QueryPalletInput {
     id: String
     name: String
     updatedAt: DateTime
     createdAt: DateTime
-    location: ComplexLocationInput
+    location: QueryLocationInput
     locationId: String
-    order: ComplexOrderInput
+    order: QueryOrderInput
     orderId: String
-    PalletProduct: [ComplexPalletProductInput]
+    PalletProduct: QueryPalletProductInput
     status: PalletStatus
   }
 `

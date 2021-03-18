@@ -23,11 +23,11 @@ export const schema = gql`
     productId: String
   }
 
-  input ComplexPalletProductInput {
+  input QueryPalletProductInput {
     id: String
-    pallet: ComplexPalletInput
+    pallet: QueryPalletInput
     palletId: String
-    product: ComplexProductInput
+    product: QueryProductInput
     productId: String
     updatedAt: DateTime
     createdAt: DateTime

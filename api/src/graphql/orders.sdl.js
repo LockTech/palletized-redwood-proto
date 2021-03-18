@@ -11,11 +11,7 @@ export const schema = gql`
   type Query {
     orders(warehouseId: String): [Order!]!
     order(id: String!): Order
-    countOrders(
-      warehouseId: String = null
-      locationId: String = null
-      order: ComplexOrderInput = null
-    ): Int!
+    countOrders(order: QueryOrderInput = null): Int!
   }
 
   type Mutation {
@@ -34,12 +30,12 @@ export const schema = gql`
     jobName: String
   }
 
-  input ComplexOrderInput {
+  input QueryOrderInput {
     id: String
     orderNumber: String
     jobName: String
     updatedAt: DateTime
     createdAt: DateTime
-    pallets: [ComplexPalletInput]
+    pallets: QueryPalletInput
   }
 `
