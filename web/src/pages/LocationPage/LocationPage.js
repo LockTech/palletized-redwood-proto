@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
-import DashLayout from 'src/layouts/DashLayout'
+import DashLayout from 'src/layouts/DashLayout/DashLayout'
 
 import LocationNameCell from 'src/components/location/LocationNameCell/LocationNameCell'
 import LocationDeleteCell from 'src/components/location/LocationDeleteCell/LocationDeleteCell'
@@ -40,7 +40,7 @@ const LocationPage = ({ id, warehouse }) => {
             <Button
               as={Link}
               block
-              to={routes.editLocation({ IDBKeyRange })}
+              to={routes.editLocation({ id })}
               variant="outline-primary"
             >
               Edit Location
