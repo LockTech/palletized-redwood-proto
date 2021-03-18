@@ -47,6 +47,7 @@ const OrderListPage = ({ active = true }) => {
                   name="Orders"
                   onClick={() => null}
                   onToggleActive={(isActive) => setIsActive(isActive)}
+                  resourceName="Orders"
                 />
               </Card.Body>
             </Card>

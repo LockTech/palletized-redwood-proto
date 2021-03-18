@@ -25,7 +25,7 @@ const LocationListPage = ({ active = true }) => {
           <Col>
             <h1>Locations</h1>
             <p className="text-muted">
-              A list of all the Locations accessible by your organization.
+              A list of the Locations accessible by your organization.
             </p>
           </Col>
         </Row>
@@ -50,6 +50,7 @@ const LocationListPage = ({ active = true }) => {
                   name="Locations"
                   onClick={() => null}
                   onToggleActive={(isActive) => setIsActive(isActive)}
+                  resourceName="Locations"
                 />
               </Card.Body>
             </Card>
