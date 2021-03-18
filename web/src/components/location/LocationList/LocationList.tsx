@@ -39,7 +39,10 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
             <Button
               as={Link}
               block
-              to={routes.location({ id: loc.id })}
+              to={routes.location({
+                id: loc.id,
+                warehouse: loc.warehouse.id,
+              })}
               variant="outline-primary"
             >
               Details
