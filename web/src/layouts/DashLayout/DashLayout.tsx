@@ -68,8 +68,8 @@ const DashLayout: React.FC = ({ children }) => {
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle
                 id="dash-layout-nav-actions-dropdown"
-                as={Nav.Link}
                 className="dash-layout-nav-actions-toggle d-flex flex-row align-items-center text-decoration-none"
+                variant="outline-primary"
               >
                 <span className="d-flex flex-column">
                   <span>Ryan Lockard</span>
