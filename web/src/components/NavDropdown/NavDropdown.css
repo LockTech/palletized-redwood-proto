@@ -8,3 +8,12 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+.nav-dropdown .link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-dropdown .link:active {
+  color: var(--light);
+}

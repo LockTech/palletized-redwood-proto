@@ -13,12 +13,14 @@ const NavDropdown: React.FC<NavDropdownProps> = ({ active, children, to }) => {
   const [classNames, setClassNames] = useState('')
 
   useEffect(() => {
-    setClassNames(`nav-dropdown${active ? ' active' : ''}`)
+    setClassNames(`nav-dropdown ${active ? 'active text-light' : 'text-dark'}`)
   }, [active, setClassNames])
 
   return (
-    <DropdownItem as={Link} className={classNames} to={to}>
-      {children}
+    <DropdownItem className={classNames}>
+      <Link className="link" to={to}>
+        {children}
+      </Link>
     </DropdownItem>
   )
 }
