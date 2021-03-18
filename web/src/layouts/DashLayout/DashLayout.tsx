@@ -60,9 +60,9 @@ const DashLayout: React.FC = ({ children }) => {
         <Navbar.Collapse>
           <Nav className="mr-auto layout-nav-links">
             <NavLink linkTo={routes.dashboard()}>Dashboard</NavLink>
-            <WarehouseDropdown />
             <OrderDropdown />
             <ProductDropdown />
+            <WarehouseDropdown />
           </Nav>
           <Nav className="dash-layout-nav-actions">
             <Dropdown as={Nav.Item}>
