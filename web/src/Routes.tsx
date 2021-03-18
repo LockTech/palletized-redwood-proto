@@ -38,6 +38,11 @@ const Routes = () => {
         page={LocationCreatePage}
         name="createLocation"
       />
+      <Route
+        path="/locations/{id}/edit"
+        page={LocationEditPage}
+        name="editLocation"
+      />
       <Route path="/locations/{id}" page={LocationPage} name="location" />
       <Route path="/locations" page={LocationListPage} name="locations" />
       {/* Products */}
