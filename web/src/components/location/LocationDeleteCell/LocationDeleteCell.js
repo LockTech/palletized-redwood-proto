@@ -63,11 +63,15 @@ export const LocationDeleteCell = ({ id, warehouseId }) => {
           Are you sure you want to delete Location{' '}
           <code>
             <LocationNameCell id={id} />
-          </code>{' '}
-          from Warehouse{' '}
-          <code>
-            <WarehouseNameCell id={warehouseId} />
           </code>
+          {warehouseId && (
+            <span>
+              &nbsp;from Warehouse{' '}
+              <code>
+                <WarehouseNameCell id={warehouseId} />
+              </code>
+            </span>
+          )}
           ?
         </p>
         <p>
