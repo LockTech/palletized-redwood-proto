@@ -1,17 +1,65 @@
 import { Link, routes } from '@redwoodjs/router'
+import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
-const LocationPage = () => {
+import DashLayout from 'src/layouts/DashLayout'
+
+import LocationNameCell from 'src/components/location/LocationNameCell/LocationNameCell'
+import LocationDeleteCell from 'src/components/location/LocationDeleteCell/LocationDeleteCell'
+import ActiveOrderTile from 'src/components/order/ActiveOrderTile/ActiveOrderTile'
+import ActivePalletTile from 'src/components/pallet/ActivePalletTile/ActivePalletTile'
+
+const LocationPage = ({ id, warehouse }) => {
   return (
-    <>
-      <h1>LocationPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/LocationPage/LocationPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>location</code>, link to me with `
-        <Link to={routes.location()}>Location</Link>`
-      </p>
-    </>
+    <DashLayout>
+      <Container className="palletized-container">
+        <Row>
+          <Col>
+            <h1>Location Details</h1>
+            <p className="text-muted">
+              A detailed overview of a Location&apos;s current-status.
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Alert variant="info">
+              You are currently viewing details for Location:&nbsp;
+              <strong>
+                <LocationNameCell id={id} />
+              </strong>
+              .
+            </Alert>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-3" xs={12}>
+            <Button
+              as={Link}
+              block
+              to={routes.editLocation({ IDBKeyRange })}
+              variant="outline-primary"
+            >
+              Edit Location
+            </Button>
+          </Col>
+          <Col className="mb-3" xs={12}>
+            <LocationDeleteCell id={id} warehouseId={warehouse} />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-3" xs={12} md={6}>
+            <ActiveOrderTile order={{ pallets: { locationId: id } }} />
+          </Col>
+          <Col className="mb-3" xs={12} md={6}>
+            <ActivePalletTile pallet={{ locationId: id }} />
+          </Col>
+        </Row>
+      </Container>
+    </DashLayout>
   )
 }
 
