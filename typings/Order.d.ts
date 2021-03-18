@@ -4,4 +4,5 @@ declare interface IOrder {
   jobName?: string
   createdAt?: string
   updatedAt?: string
+  pallets?: IPallet
 }
