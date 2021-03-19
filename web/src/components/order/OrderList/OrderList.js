@@ -23,9 +23,7 @@ const OrderList = ({ orders }) => {
                 {order.jobName ? order.orderNumber : 'No Job-Name Specified'}
               </Card.Subtitle>
               <Card.Text className="d-flex flex-direction-row justify-content-between">
-                <strong>
-                  Pallets in <em>selected Warehouse</em>:
-                </strong>
+                <strong>Pallets in Selected Warehouse:</strong>
                 <PalletCountCell
                   pallet={{
                     orderId: order.id,
