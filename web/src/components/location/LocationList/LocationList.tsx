@@ -4,16 +4,14 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import OrderCountCell from 'src/components/order/OrderCountCell'
-import PalletCountCell from 'src/components/pallet/PalletCountCell'
+import OrderCountCell from 'src/components/order/OrderCountCell/OrderCountCell'
+import PalletCountCell from 'src/components/pallet/PalletCountCell/PalletCountCell'
 
 export interface LocationListProps {
   locations: ILocation[]
 }
 
-const countContainerClasses =
-  'd-flex flex-direction-row justify-content-between'
-const countCountClasses = 'text-monospace'
+const countContainerClasses = 'd-flex flex-direction-row align-items-center'
 
 const LocationList: React.FC<LocationListProps> = ({ locations }) => {
   return (
@@ -27,16 +25,12 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                 {loc.warehouse.name}
               </Card.Subtitle>
               <Card.Text className={countContainerClasses}>
-                <strong>Order Count:</strong>
-                <span className={countCountClasses}>
-                  <OrderCountCell order={{ pallets: { locationId: loc.id } }} />
-                </span>
+                <strong>Order Count:&nbsp;</strong>
+                <OrderCountCell order={{ pallets: { locationId: loc.id } }} />
               </Card.Text>
               <Card.Text className={countContainerClasses}>
-                <strong>Pallet Count:</strong>
-                <span className={countCountClasses}>
-                  <PalletCountCell pallet={{ locationId: loc.id }} />
-                </span>
+                <strong>Pallet Count:&nbsp;</strong>
+                <PalletCountCell pallet={{ locationId: loc.id }} />
               </Card.Text>
               <Button
                 as={Link}
