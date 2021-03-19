@@ -64,10 +64,13 @@ const LocationForm: React.FC<LocationFormProps> = ({
   } = useForm<LocationFormData>({
     mode: 'onChange',
     defaultValues: {
-      name: '',
-      warehouse: defaultWarehouse
-        ? { value: defaultWarehouse.id, label: defaultWarehouse.name }
-        : null,
+      name: location?.name || '',
+      warehouse:
+        location?.warehouse !== undefined
+          ? { value: location.warehouse.id, label: location.warehouse.id }
+          : defaultWarehouse !== undefined
+          ? { value: defaultWarehouse.id, label: defaultWarehouse.name }
+          : null,
     },
   })
 
