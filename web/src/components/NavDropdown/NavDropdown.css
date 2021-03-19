@@ -9,11 +9,11 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-.nav-dropdown .link {
+.nav-dropdown.link {
   text-decoration: none;
-  color: inherit;
+  color: var(--dark);
 }
 
-.nav-dropdown .link:active {
+.nav-dropdown.link:active {
   color: var(--light);
 }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@redwoodjs/router'
-import DropdownItem from 'react-bootstrap/DropdownItem'
 
 import './NavDropdown.css'
 
@@ -13,15 +12,13 @@ const NavDropdown: React.FC<NavDropdownProps> = ({ active, children, to }) => {
   const [classNames, setClassNames] = useState('')
 
   useEffect(() => {
-    setClassNames(`nav-dropdown ${active ? 'active text-light' : 'text-dark'}`)
+    setClassNames(` ${active ? 'active text-light' : ''}`)
   }, [active, setClassNames])
 
   return (
-    <DropdownItem className={classNames}>
-      <Link className="link" to={to}>
-        {children}
-      </Link>
-    </DropdownItem>
+    <Link className={`link dropdown-item nav-dropdown ${classNames}`} to={to}>
+      {children}
+    </Link>
   )
 }
 
