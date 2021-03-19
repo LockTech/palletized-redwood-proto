@@ -27,15 +27,7 @@ const LocationCreateCell = () => {
 
   const onSave = (input) => {
     try {
-      createLocation({
-        variables: {
-          input: {
-            name: input.name,
-            warehouseId: input.warehouse.id,
-            warehouseName: input.warehouse.name,
-          },
-        },
-      })
+      createLocation({ variables: { input } })
     } catch (err) {
       // console.log(err)
     }
