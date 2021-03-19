@@ -7,7 +7,7 @@ import FatalErrorPage from 'src/pages/FatalErrorPage/FatalErrorPage'
 import Routes from 'src/Routes'
 
 import './index.scss'
-import UserDefaultWarehouseCell from './components/user/UserDefaultWarehouseCell'
+import UserDefaultWarehouseCell from './components/user/UserDefaultWarehouseCell/UserDefaultWarehouseCell'
 
 const App = () => {
   return (
