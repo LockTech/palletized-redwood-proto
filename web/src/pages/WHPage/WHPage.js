@@ -38,10 +38,12 @@ const WHPage = ({ id }) => {
           </Col>
         </Row>
         <Row>
-          <Col className="mb-3">
+          <Col className="mb-3" xs={12}>
             <Button block variant="primary">
               Switch to Warehouse
             </Button>
+          </Col>
+          <Col className="mb-3" xs={12}>
             <Button
               as={Link}
               block
@@ -51,7 +53,7 @@ const WHPage = ({ id }) => {
               Edit
             </Button>
           </Col>
-          <Col className="mb-3">
+          <Col className="mb-3" xs={12}>
             <WarehouseDeleteCell id={id} />
           </Col>
         </Row>
