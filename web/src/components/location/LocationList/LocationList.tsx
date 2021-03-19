@@ -29,7 +29,7 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
               <Card.Text className={countContainerClasses}>
                 <strong>Order Count:</strong>
                 <span className={countCountClasses}>
-                  <OrderCountCell locationId={loc.id} />
+                  <OrderCountCell order={{ pallets: { locationId: loc.id } }} />
                 </span>
               </Card.Text>
               <Card.Text className={countContainerClasses}>
@@ -48,6 +48,14 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                 variant="outline-primary"
               >
                 Details
+              </Button>
+              <Button
+                as={Link}
+                block
+                to={routes.editLocation({ id: loc.id })}
+                variant="outline-secondary"
+              >
+                Edit
               </Button>
             </Card.Body>
           </Card>
