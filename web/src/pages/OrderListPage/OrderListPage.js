@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Link, routes } from '@redwoodjs/router'
+import { useCallback, useMemo } from 'react'
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useRecoilValue } from '@salvoravida/recoil'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -9,14 +9,16 @@ import Row from 'react-bootstrap/Row'
 
 import DefaultWarehouseAtom from 'src/atoms/DefaultWarehouseAtom/DefaultWarehouseAtom'
 
-import DashLayout from 'src/layouts/DashLayout'
-import SwitchWarehouseForm from 'src/components/warehouse/SwitchWarehouseForm'
-import OrderListCell from 'src/components/order/OrderListCell'
+import DashLayout from 'src/layouts/DashLayout/DashLayout'
+import SwitchWarehouseForm from 'src/components/warehouse/SwitchWarehouseForm/SwitchWarehouseForm'
+import OrderListCell from 'src/components/order/OrderListCell/OrderListCell'
 
 const OrderListPage = ({ active = true }) => {
-  const parsedActive = useMemo(() => JSON.parse(active), [active])
+  const isActive = useMemo(() => JSON.parse(active), [active])
 
-  const [isActive, setIsActive] = useState(parsedActive)
+  const toggleActive = useCallback((active) => {
+    navigate(routes.orders({ active }))
+  }, [])
 
   const defaultWarehouse = useRecoilValue(DefaultWarehouseAtom)
 
@@ -46,7 +48,7 @@ const OrderListPage = ({ active = true }) => {
                   isActive={isActive}
                   name="Orders"
                   onClick={() => null}
-                  onToggleActive={(isActive) => setIsActive(isActive)}
+                  onToggleActive={toggleActive}
                   resourceName="Orders"
                 />
               </Card.Body>

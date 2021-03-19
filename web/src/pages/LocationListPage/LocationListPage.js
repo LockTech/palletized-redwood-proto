@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Link, routes } from '@redwoodjs/router'
+import { useCallback, useMemo } from 'react'
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useRecoilValue } from '@salvoravida/recoil'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -13,8 +13,11 @@ import LocationListCell from 'src/components/location/LocationListCell'
 import DefaultWarehouseAtom from 'src/atoms/DefaultWarehouseAtom/DefaultWarehouseAtom'
 
 const LocationListPage = ({ active = true }) => {
-  const parsedActive = useMemo(() => JSON.parse(active), [active])
-  const [isActive, setIsActive] = useState(parsedActive)
+  const isActive = useMemo(() => JSON.parse(active), [active])
+
+  const toggleActive = useCallback((active) => {
+    navigate(routes.orders({ active }))
+  }, [])
 
   const defaultWarehouse = useRecoilValue(DefaultWarehouseAtom)
 
@@ -49,7 +52,7 @@ const LocationListPage = ({ active = true }) => {
                   isActive={isActive}
                   name="Locations"
                   onClick={() => null}
-                  onToggleActive={(isActive) => setIsActive(isActive)}
+                  onToggleActive={toggleActive}
                   resourceName="Locations"
                 />
               </Card.Body>
