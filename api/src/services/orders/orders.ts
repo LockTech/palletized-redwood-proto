@@ -90,36 +90,35 @@ export const createOrder = async ({ input }: { input: IOrder }) => {
 //
 
 // ==
-export const countOrders = async ({ warehouseId, locationId, order }) => {
-  // Empty query if warehouseId = null
-  const warehouseQuery = !warehouseId
-    ? null
-    : {
+export const countOrders = async ({ order }) => {
+  let query = {}
+
+  // If we're counting-by-some-condition
+  if (order) {
+    if (order.pallets) {
+      query = {
+        ...query,
+        // Re structuring pallet-condition to meet Prisma requirements
         pallets: {
           some: {
-            location: {
-              warehouseId,
-            },
+            ...order.pallets,
           },
         },
       }
 
-  const locationQuery = !locationId
-    ? null
-    : {
-        pallets: {
-          some: {
-            locationId,
-          },
-        },
-      }
+      delete order.pallets
+    }
+  }
+
+  query = {
+    ...query,
+    ...order,
+  }
 
   try {
     return await db.order.count({
       where: {
-        ...order,
-        ...warehouseQuery,
-        ...locationQuery,
+        ...query,
       },
     })
   } catch (err) {
