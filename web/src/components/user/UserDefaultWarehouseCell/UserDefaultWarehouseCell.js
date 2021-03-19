@@ -29,6 +29,7 @@ export const Loading = () => {
       })
     }
   }, [setDefaultWarehouse])
+
   return null
 }
 
@@ -39,6 +40,7 @@ export const Failure = () => {
       { duration: 2500 }
     )
   }, [])
+
   return null
 }
 
