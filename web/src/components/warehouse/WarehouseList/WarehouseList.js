@@ -4,7 +4,10 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import LocaleTime from 'src/components/LocaleTime/LocaleTime'
+import OrderCountCell from 'src/components/order/OrderCountCell/OrderCountCell'
+import PalletCountCell from 'src/components/pallet/PalletCountCell/PalletCountCell'
+
+const countContainerClasses = 'd-flex flex-direction-row'
 
 const WarehouseList = ({ warehouses }) => {
   return (
@@ -14,16 +17,20 @@ const WarehouseList = ({ warehouses }) => {
           <Card>
             <Card.Body>
               <Card.Title>{warehouse.name}</Card.Title>
-              <Card.Subtitle className="d-flex align-items-center mb-3 text-muted">
-                <strong>Date Created:</strong>
-                &nbsp;
-                <LocaleTime datetime={warehouse.createdAt} />
-              </Card.Subtitle>
-              <Card.Subtitle className="d-flex align-items-center mb-3 text-muted">
-                <strong>Last Updated:</strong>
-                &nbsp;
-                <LocaleTime datetime={warehouse.updatedAt} />
-              </Card.Subtitle>
+              <Card.Text className={countContainerClasses}>
+                <strong>Active Orders:&nbsp;</strong>
+                <OrderCountCell
+                  order={{
+                    pallets: { location: { warehouseId: warehouse.id } },
+                  }}
+                />
+              </Card.Text>
+              <Card.Text className={countContainerClasses}>
+                <strong>Active Orders:&nbsp;</strong>
+                <PalletCountCell
+                  pallet={{ location: { warehouseId: warehouse.id } }}
+                />
+              </Card.Text>
               <Button
                 as={Link}
                 block
