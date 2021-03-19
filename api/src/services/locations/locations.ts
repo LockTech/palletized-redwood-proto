@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client'
 import { PrismaError } from 'prisma-error-enum'
 
 import { db } from 'src/lib/db'
@@ -14,7 +15,7 @@ import { createWarehouse, warehouse } from 'src/services/warehouses/warehouses'
 
 const MAX_NAME_LEN = 75
 
-const commonExceptions = (input: CreateLocationInput) => {
+const commonExceptions = (input: ILocation) => {
   throwIfIsReserved(input.name, 'Location', 'Name')
   throwIfTooLong(input.name, MAX_NAME_LEN, 'Location', 'Name')
 }
@@ -53,6 +54,35 @@ const handleCommonLocationErrors = (error) => {
       })
     }
   }
+}
+
+const locationDataPrep = async (
+  input: ILocation
+): Promise<Prisma.LocationUncheckedUpdateInput> => {
+  const loc = {
+    id: undefined,
+    name: undefined,
+    warehouseId: undefined,
+  }
+
+  let locWarehouse = await warehouse({ id: input.warehouse.id })
+
+  if (locWarehouse === null) {
+    try {
+      locWarehouse = await createWarehouse({
+        input: { id: input.id, name: input.name },
+      })
+    } catch (err) {
+      handleCommonErrors(err)
+      handleCommonLocationErrors(err)
+      throwUnexpectedError(err)
+    }
+  }
+
+  loc.warehouseId = locWarehouse.id
+  loc.id = locWarehouse.id + '-' + input.name.replaceAll(' ', '-').toLowerCase()
+  loc.name = input.name
+  return loc
 }
 
 // ==
@@ -96,41 +126,18 @@ export const location = async ({ id }) => {
 //
 
 // ==
-export type CreateLocationInput = {
-  name: string
-  warehouseId: string
-  warehouseName: string
-}
-export const createLocation = async ({
-  input,
-}: {
-  input: CreateLocationInput
-}) => {
+export const createLocation = async ({ input }: { input: ILocation }) => {
   commonExceptions(input)
 
-  const loc = {
-    id: null,
-    name: null,
-    warehouseId: null,
+  let loc = undefined
+
+  try {
+    loc = await locationDataPrep(input)
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonLocationErrors(err)
+    throwUnexpectedError(err)
   }
-
-  let locWarehouse = await warehouse({ id: input.warehouseId })
-
-  if (locWarehouse === null) {
-    try {
-      locWarehouse = await createWarehouse({
-        input: { id: input.warehouseId, name: input.warehouseName },
-      })
-    } catch (err) {
-      handleCommonErrors(err)
-      handleCommonLocationErrors(err)
-      throwUnexpectedError(err)
-    }
-  }
-
-  loc.warehouseId = locWarehouse.id
-  loc.id = locWarehouse.id + '-' + input.name.replaceAll(' ', '-').toLowerCase()
-  loc.name = input.name
 
   try {
     return await db.location.create({
@@ -151,6 +158,37 @@ export const countLocations = async ({ location }) => {
       where: {
         ...location,
       },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonLocationErrors(err)
+    throwUnexpectedError(err)
+  }
+}
+//
+
+// ==
+export type UpdateWarehouseInput = {
+  id: string
+  input: ILocation
+}
+export const updateLocation = async ({ id, input }: UpdateWarehouseInput) => {
+  commonExceptions(input)
+
+  let loc = undefined
+
+  try {
+    loc = await locationDataPrep(input)
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonLocationErrors(err)
+    throwUnexpectedError(err)
+  }
+
+  try {
+    return await db.location.update({
+      where: { id },
+      data: loc,
     })
   } catch (err) {
     handleCommonErrors(err)
