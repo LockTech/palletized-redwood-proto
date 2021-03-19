@@ -2,7 +2,7 @@ import { atom } from '@salvoravida/recoil'
 
 const DefaultWarehouseAtom = atom<IUserDefaultWarehouse>({
   key: 'defaultWarehouseAtom',
-  default: null, // '' in prod-loaded from server or localStorage
+  default: null,
 })
 
 export default DefaultWarehouseAtom
