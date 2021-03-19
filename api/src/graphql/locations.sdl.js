@@ -17,18 +17,22 @@ export const schema = gql`
 
   type Mutation {
     createLocation(input: CreateLocationInput!): Location!
+    updateLocation(id: String!, input: UpdateLocationInput!): Location!
     deleteLocation(id: String!): Location!
+  }
+
+  input LocationWarehouseInput {
+    id: String!
+    name: String!
   }
 
   input CreateLocationInput {
     name: String!
-    warehouseId: String!
-    warehouseName: String!
+    warehouse: LocationWarehouseInput!
   }
-
   input UpdateLocationInput {
     name: String
-    warehouseId: String
+    warehouse: LocationWarehouseInput
   }
 
   input QueryLocationInput {
