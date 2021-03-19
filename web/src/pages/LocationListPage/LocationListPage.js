@@ -16,7 +16,7 @@ const LocationListPage = ({ active = true }) => {
   const isActive = useMemo(() => JSON.parse(active), [active])
 
   const toggleActive = useCallback((active) => {
-    navigate(routes.orders({ active }))
+    navigate(routes.locations({ active }))
   }, [])
 
   const defaultWarehouse = useRecoilValue(DefaultWarehouseAtom)
