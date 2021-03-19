@@ -11,7 +11,7 @@ export interface LocationListProps {
   locations: ILocation[]
 }
 
-const countContainerClasses = 'd-flex flex-direction-row align-items-center'
+const countContainerClasses = 'd-flex flex-direction-row'
 
 const LocationList: React.FC<LocationListProps> = ({ locations }) => {
   return (
