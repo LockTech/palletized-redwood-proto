@@ -13,7 +13,7 @@ const WarehouseCreatePage = () => {
           <Col>
             <h1>Create Warehouse</h1>
             <p className="text-muted">
-              Create a new Warehouse accessible by all members of your
+              Create a new Warehouse, accessible by all members of your
               organization.
             </p>
           </Col>
