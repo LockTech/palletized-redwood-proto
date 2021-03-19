@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 
 export interface SwitchWarehouseFormProps {
   isActive: boolean
-  onClick: (isActive: boolean) => void
+  onClickSwitch: (isActive: boolean) => void
   onToggleActive: (isActive: boolean) => void
   /**
    * Provide further clarification as to which *resource* is being filtered.
@@ -20,7 +20,7 @@ export interface SwitchWarehouseFormProps {
  */
 const SwitchWarehouseForm: React.FC<SwitchWarehouseFormProps> = ({
   isActive,
-  onClick,
+  onClickSwitch,
   onToggleActive,
   resourceName,
 }) => {
@@ -56,7 +56,7 @@ const SwitchWarehouseForm: React.FC<SwitchWarehouseFormProps> = ({
       {watchDefaultWarehouses && (
         <Button
           block
-          onClick={() => onClick(isActive)}
+          onClick={() => onClickSwitch(isActive)}
           variant="outline-primary"
         >
           Switch Warehouse
