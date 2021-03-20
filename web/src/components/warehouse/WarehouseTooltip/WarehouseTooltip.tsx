@@ -11,8 +11,7 @@ const WarehouseTooltip: React.FunctionComponent = () => {
       overlay={
         <Tooltip id="locationTooltip">
           <span>
-            Warehouses may be an entire, distinct property or a sub-section of
-            one.
+            A Warehouse is an entire property or a distinct section of one.
           </span>
         </Tooltip>
       }
