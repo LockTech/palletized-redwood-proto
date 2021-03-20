@@ -1,11 +1,11 @@
+import CommonTooltip from 'src/components/CommonTooltip/CommonTooltip'
+
 const ProductTooltip: React.FunctionComponent = () => {
   return (
-    <div>
-      <h2>{'ProductTooltip'}</h2>
-      <p>
-        {'Find me in ./web/src/components/ProductTooltip/ProductTooltip.tsx'}
-      </p>
-    </div>
+    <CommonTooltip>
+      Locations are distinct areas of your <em>Warehouse</em> where{' '}
+      <em>Pallets</em> are stored.
+    </CommonTooltip>
   )
 }
 
