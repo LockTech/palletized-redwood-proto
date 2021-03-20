@@ -3,8 +3,8 @@ import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
-import LocationForm from 'src/components/location/LocationForm'
-import LocationTooltip from 'src/components/location/LocationTooltip'
+import LocationForm from 'src/components/location/LocationForm/LocationForm'
+import LocationTooltip from 'src/components/location/LocationTooltip/LocationTooltip'
 
 const LOCATION_CREATE_MUTATION = gql`
   mutation LocationCreateMutation($input: CreateLocationInput!) {
