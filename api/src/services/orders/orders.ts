@@ -27,7 +27,6 @@ const handleCommonOrderErrors = (error) => {
     case PrismaError.UniqueConstraintViolation: {
       throw new UniqueError({
         'Order Number': ['must be unique accross all other Orders.'],
-        'Job Name': ['must be unique accross all other Orders.'],
       })
     }
 
