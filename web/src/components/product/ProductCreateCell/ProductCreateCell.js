@@ -31,7 +31,7 @@ const ProductCreateCell = () => {
 
   return (
     <Card>
-      <Card.Header className="d-flex flex-direction-row justify-content-between">
+      <Card.Header className="d-flex flex-direction-row align-items-center justify-content-between">
         New Product
         <ProductTooltip />
       </Card.Header>
