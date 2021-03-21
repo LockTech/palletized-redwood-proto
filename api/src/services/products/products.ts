@@ -10,18 +10,23 @@ import {
   UniqueError,
 } from 'src/lib/error'
 
-const MAX_PRODUCT_NAME_LEN = 75
+const MAX_PART_NUMBER_LEN = 75
 
 const commonExceptions = (input: IProduct) => {
-  throwIfIsReserved(input.name, 'Product', 'Name')
-  throwIfTooLong(input.name, MAX_PRODUCT_NAME_LEN, 'Product', 'Name')
+  throwIfIsReserved(input.partNumber, 'Product', 'Part Number')
+  throwIfTooLong(
+    input.partNumber,
+    MAX_PART_NUMBER_LEN,
+    'Product',
+    'Part Number'
+  )
 }
 
 const handleCommonProductErrors = (error) => {
   switch (error.code) {
     case PrismaError.UniqueConstraintViolation: {
       throw new UniqueError({
-        Name: ['must be unique accross all other Products.'],
+        'Product Number': ['must be unique accross all other Products.'],
       })
     }
 
@@ -43,7 +48,7 @@ export const products = () => {
 export const createProduct = async ({ input }: { input: IProduct }) => {
   commonExceptions(input)
 
-  input.id = input.name.replaceAll(' ', '-').toLowerCase()
+  input.id = input.partNumber.replaceAll(' ', '-').toLowerCase()
 
   try {
     return await db.product.create({
