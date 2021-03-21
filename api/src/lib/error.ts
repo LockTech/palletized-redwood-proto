@@ -1,6 +1,7 @@
 import { UserInputError } from '@redwoodjs/api'
 import { PrismaError } from 'prisma-error-enum'
 
+import { logger } from 'src/lib/logger'
 import { reservedCharRegEx } from 'src/lib/stringBuilder'
 
 /**
@@ -132,6 +133,8 @@ export type PrismaErrorType = {
 export const handleCommonErrors = (error: PrismaErrorType) => {
   switch (error.code) {
     case PrismaError.ConnectionTimedOut: {
+      logger.error({ error }, 'Connection to Database timed-out.')
+
       throw new UserInputError(
         'An internal error occured while processing your request.',
         {
@@ -146,6 +149,8 @@ export const handleCommonErrors = (error: PrismaErrorType) => {
       )
     }
     case PrismaError.TimedOutFetchingConnectionFromThePool: {
+      logger.error({ error }, 'Request for Pooled connection timed-out.')
+
       throw new UserInputError(
         'An internal error occured while processing your request.',
         {
@@ -168,19 +173,19 @@ export type UnexpectedError = Error & PrismaErrorType
  * @param error An `Error` or  [`PrismaError`](https://www.prisma.io/docs/reference/api-reference/error-reference#prismaclientknownrequesterror)
  */
 export const throwUnexpectedError = (error: UnexpectedError) => {
-  // FIXME
-  console.log(error)
+  logger.error({ error }, 'Request for Pooled connection timed-out.')
 
+  // FIXME - Improve how the user is notified of the unexpected error; used for support
   const errorMsg = []
 
-  error.message && errorMsg.push(error.message)
+  // error.message && errorMsg.push(error.message)
   error.code && errorMsg.push(`Encountered error-code: ${error.code}`)
 
   throw new UserInputError(
     'An unexpected internal error occured while processing your request.',
     {
       messages: {
-        // 'Error:': errorMsg,
+        'Error:': errorMsg,
         Consider: [
           'trying to re-submit your request.',
           'reporting this error to Support, with the error-code above.',
