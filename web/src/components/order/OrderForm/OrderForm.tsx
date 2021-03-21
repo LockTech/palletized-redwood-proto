@@ -77,7 +77,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
       </Form.Group>
 
       <Form.Group controlId="createOrderForm.jobName">
-        <Form.Label>Job Name *</Form.Label>
+        <Form.Label>Job Name</Form.Label>
         <Form.Control
           aria-describedby="createOrderForm.jobNameHelpBlock"
           isInvalid={errors.jobName !== undefined}
@@ -98,7 +98,7 @@ const OrderForm: React.FC<OrderFormProps> = ({
           A more human-friendly way of identifying this Order.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
-          {errors && errors.jobName && errors.jobName.message}
+          {errors?.jobName?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
