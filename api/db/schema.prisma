@@ -8,6 +8,10 @@
 //    Ex: Adding a field to an existing Model.
 //
 
+// ID's SHOULD generated using some @unique field on a model.
+// ID's SHOULD be completely unique-with no respect for case sensetivity.
+// ID's SHOULD NOT contain any URL-reserved character. (RFC3986 | https://pretty-rfc.herokuapp.com/RFC3986#reserved)
+
 datasource DS {
   provider            = "postgresql"
   url                 = "postgresql://palletized:secret@localhost:5432/palletized?schema=palletized"
@@ -54,7 +58,8 @@ model Product {
   @@map(name: "products")
 
   id                  String              @id
-  name                String              @unique
+  partNumber          String              @unique
+  description         String?
   updatedAt           DateTime?           @updatedAt @default(now())
   createdAt           DateTime            @default(now())
   palletProducts      PalletProduct[]
@@ -66,7 +71,7 @@ model Order {
 
   id                  String              @id
   orderNumber         String              @unique
-  jobName             String?             @unique
+  jobName             String?
   updatedAt           DateTime            @updatedAt @default(now())
   createdAt           DateTime            @default(now())
   pallets             Pallet[]
@@ -77,7 +82,7 @@ model Pallet {
   @@map(name: "pallets")
 
   id                  String              @id
-  name                String
+  name                String              @unique
   updatedAt           DateTime            @updatedAt @default(now())
   createdAt           DateTime            @default(now())
   location            Location?           @relation(fields: [locationId], references: [id])
