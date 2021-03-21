@@ -8,7 +8,8 @@ import ResetButton from 'src/components/form/ResetButton/ResetButton'
 import FormRequiredHint from 'src/components/form/FormRequiredHint/FormRequiredHint'
 
 export type ProductFormData = {
-  name: string
+  partNumber: string
+  description: string
 }
 
 export type ProductSaveData = ProductFormData
@@ -34,7 +35,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
   } = useForm<ProductFormData>({
     mode: 'onChange',
     defaultValues: {
-      name: product ? product.name : '',
+      partNumber: product ? product.partNumber : '',
+      description: product ? product.description : '',
     },
   })
 
@@ -50,30 +52,59 @@ const ProductForm: React.FC<ProductFormProps> = ({
     <Form noValidate onSubmit={handleSubmit(onSubmit)}>
       <FormAlert error={error} />
 
-      <Form.Group controlId="createProductForm.name">
-        <Form.Label>Name *</Form.Label>
+      <Form.Group controlId="createProductForm.partNumber">
+        <Form.Label>Part Number *</Form.Label>
         <Form.Control
-          aria-describedby="craeteProductForm.nameHelpBlock"
-          isInvalid={errors.name !== undefined}
-          placeholder="Name"
-          name="name"
+          aria-describedby="craeteProductForm.partNumberHelpBlock"
+          isInvalid={errors.partNumber !== undefined}
+          placeholder="Part Number"
+          name="partNumber"
           ref={register({
             maxLength: {
               value: 75,
-              message: 'Product Names can be no longer than 75 characters.',
+              message:
+                'Product Part Numbers can be no longer than 75 characters.',
             },
-            required: 'A Name is required when creating a Product',
+            required: 'A Part Numbers is required when creating a Product',
           })}
         />
         <Form.Text
-          className={!errors.name ? 'd-block' : 'd-none'}
-          id="craeteProductForm.nameHelpBlock"
+          className={!errors.partNumber ? 'd-block' : 'd-none'}
+          id="craeteProductForm.partNumberHelpBlock"
           muted
         >
-          A <em>unique</em> name used to identify this Product.
+          A <em>unique</em> name or number used to identify this Product.
         </Form.Text>
         <Form.Control.Feedback type="invalid">
-          {errors?.name?.message}
+          {errors?.partNumber?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group controlId="createProductForm.description">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          aria-describedby="craeteProductForm.descriptionHelpBlock"
+          isInvalid={errors.description !== undefined}
+          placeholder="Description"
+          name="description"
+          ref={register({
+            maxLength: {
+              value: 75,
+              message:
+                'Product Part Numbers can be no longer than 75 characters.',
+            },
+            required: 'A Part Numbers is required when creating a Product',
+          })}
+        />
+        <Form.Text
+          className={!errors.description ? 'd-block' : 'd-none'}
+          id="craeteProductForm.descriptionHelpBlock"
+          muted
+        >
+          A human-friendly way of identifying this Product.
+        </Form.Text>
+        <Form.Control.Feedback type="invalid">
+          {errors?.description?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
