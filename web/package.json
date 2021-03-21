@@ -13,9 +13,10 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/forms": "^0.27.1",
-    "@redwoodjs/router": "^0.27.1",
-    "@redwoodjs/web": "^0.27.1",
+    "@redwoodjs/auth": "^0.27.2-canary.26",
+    "@redwoodjs/forms": "^0.27.2-canary.26",
+    "@redwoodjs/router": "^0.27.2-canary.26",
+    "@redwoodjs/web": "^0.27.2-canary.26",
     "@salvoravida/recoil": "^0.1.4",
     "bootstrap": "^4.6.0",
     "react": "17.0.1",
