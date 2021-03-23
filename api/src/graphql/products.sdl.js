@@ -1,7 +1,7 @@
 export const schema = gql`
   type Product {
     id: String!
-    productName: String!
+    partNumber: String!
     description: String
     updatedAt: DateTime
     createdAt: DateTime!
@@ -10,6 +10,7 @@ export const schema = gql`
 
   type Query {
     products: [Product!]!
+    product(id: String!): Product!
   }
 
   type Mutation {
@@ -17,18 +18,19 @@ export const schema = gql`
   }
 
   input CreateProductInput {
-    productName: String!
+    partNumber: String!
     description: String
   }
 
   input UpdateProductInput {
-    productName: String
+    partNumber: String
     description: String
   }
 
   input QueryProductInput {
     id: String
-    name: String
+    partNumber: String
+    description: String
     updatedAt: DateTime
     createdAt: DateTime
     PalletProduct: QueryPalletProductInput
