@@ -1,7 +1,7 @@
-import ProductDropdown from './PalletDropdown'
+import PalletDropdown from './PalletDropdown'
 
 export const generated = () => {
-  return <ProductDropdown />
+  return <PalletDropdown />
 }
 
-export default { title: 'Components/ProductDropdown' }
+export default { title: 'Components/PalletDropdown' }

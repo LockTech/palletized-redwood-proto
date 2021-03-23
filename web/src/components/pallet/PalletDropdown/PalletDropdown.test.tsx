@@ -1,11 +1,11 @@
 import { render } from '@redwoodjs/testing'
 
-import ProductDropdown from './PalletDropdown'
+import PalletDropdown from './PalletDropdown'
 
-describe('ProductDropdown', () => {
+describe('PalletDropdown', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<ProductDropdown />)
+      render(<PalletDropdown />)
     }).not.toThrow()
   })
 })
