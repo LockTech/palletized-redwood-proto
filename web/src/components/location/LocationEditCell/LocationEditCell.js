@@ -89,7 +89,6 @@ export const Success = ({ location }) => {
   )
 
   const onSave = (input, id) => {
-    console.log(input)
     updateLocation({ variables: { id, input } })
   }
 
