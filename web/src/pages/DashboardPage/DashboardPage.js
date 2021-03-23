@@ -28,7 +28,7 @@ const DashboardPage = () => {
           <Col>
             <h2>Current Warehouse</h2>
             <p className="text-muted">
-              You current, Selected Warehouse-at a glance.
+              Your current, Selected Warehouse-at a glance.
             </p>
           </Col>
         </Row>
