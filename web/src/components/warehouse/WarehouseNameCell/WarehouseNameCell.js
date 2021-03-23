@@ -2,7 +2,7 @@ import Skeleton from 'react-loading-skeleton'
 
 export const QUERY = gql`
   query WarehouseNameQuery($id: String!) {
-    warehouse: warehouse(id: $id) {
+    warehouse(id: $id) {
       name
     }
   }
