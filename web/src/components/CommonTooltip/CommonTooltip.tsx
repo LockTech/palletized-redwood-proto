@@ -6,9 +6,9 @@ import { BsInfoCircle } from 'react-icons/bs'
 import type { IconBaseProps } from 'react-icons'
 
 export interface CommonTooltipProps {
-  iconProps: Partial<IconBaseProps>
-  overlayProps: Partial<OverlayTriggerProps>
-  tooltipProps: Partial<TooltipProps>
+  iconProps?: Partial<IconBaseProps>
+  overlayProps?: Partial<OverlayTriggerProps>
+  tooltipProps?: Partial<TooltipProps>
 }
 
 const CommonTooltip: React.FC<CommonTooltipProps> = ({
