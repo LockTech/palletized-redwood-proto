@@ -58,6 +58,13 @@ const Routes = () => {
         page={ProductEditPage}
         name="editProduct"
       />
+      {/* Pallets */}
+      <Route path="/pallets" page={PalletListPage} name="pallets" />
+      <Route
+        path="/pallet/create"
+        page={PalletCreatePage}
+        name="createPallet"
+      />
     </Router>
   )
 }
