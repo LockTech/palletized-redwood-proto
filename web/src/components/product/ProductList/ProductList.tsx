@@ -9,8 +9,6 @@ export interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
-  console.log('render test')
-
   return (
     <Row>
       {products.map((product, index) => (

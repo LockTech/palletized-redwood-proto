@@ -42,7 +42,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
   const onSubmit = useCallback(
     (data: ProductFormData) => {
-      console.log(data)
       onSave(data, product?.id)
     },
     [onSave, product]
