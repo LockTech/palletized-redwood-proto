@@ -2,15 +2,13 @@ import Alert from 'react-bootstrap/Alert'
 import Card from 'react-bootstrap/Card'
 
 import LoadingCard from 'src/components/LoadingCard/LoadingCard'
-import WarehouseList from 'src/components/warehouse/WarehouseList'
+import WarehouseList from 'src/components/warehouse/WarehouseList/WarehouseList'
 
 export const QUERY = gql`
   query WAREHOUSES {
     warehouses {
       id
       name
-      updatedAt
-      createdAt
     }
   }
 `

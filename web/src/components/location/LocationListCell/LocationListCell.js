@@ -9,8 +9,6 @@ export const QUERY = gql`
     locations(warehouseId: $warehouseId) {
       id
       name
-      updatedAt
-      createdAt
       warehouse {
         id
         name
