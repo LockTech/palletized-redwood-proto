@@ -15,6 +15,7 @@ export const schema = gql`
 
   type Mutation {
     createProduct(input: CreateProductInput!): Product!
+    updateProduct(id: String!, input: UpdateProductInput!): Product!
   }
 
   input CreateProductInput {

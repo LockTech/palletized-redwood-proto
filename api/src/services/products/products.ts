@@ -81,6 +81,31 @@ export const createProduct = async ({ input }: { input: IProduct }) => {
 //
 
 // ==
+type UpdateProductParams = {
+  id: string
+  input: IProduct
+}
+export const updateProduct = async ({ id, input }: UpdateProductParams) => {
+  commonExceptions(input)
+
+  input.id = input.partNumber.replaceAll(' ', '-').toLowerCase()
+
+  try {
+    return await db.product.update({
+      data: input,
+      where: {
+        id,
+      },
+    })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonProductErrors(err)
+    throwUnexpectedError(err)
+  }
+}
+//
+
+// ==
 export const Product = {
   PalletProduct: (_obj, { root }) =>
     db.product.findUnique({ where: { id: root.id } }).palletProducts(),
