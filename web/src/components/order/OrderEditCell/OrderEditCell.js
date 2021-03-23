@@ -29,8 +29,10 @@ const UPDATE_ORDER_MUTATION = gql`
   }
 `
 
+const commonHeaderClasses =
+  'd-flex flex-direction-row align-items-center justify-content-between'
 const commonHeader = (id) => (
-  <Card.Header className="d-flex flex-direction-row align-items-center justify-content-between">
+  <Card.Header className={commonHeaderClasses}>
     <span>
       Editing Order:&nbsp;
       <strong>
@@ -83,7 +85,14 @@ export const Success = ({ order }) => {
 
   return (
     <Card>
-      {commonHeader(order.id)}
+      {/* Intentional repeat to not have un-needed request */}
+      <Card.Header className={commonHeaderClasses}>
+        <span>
+          Editing Order:&nbsp;
+          <strong>{order.jobName || order.orderNumber}</strong>
+        </span>
+        <OrderTooltip />
+      </Card.Header>
       <Card.Body>
         <OrderForm
           onSave={onSave}

@@ -4,8 +4,10 @@ import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import Card from 'react-bootstrap/Card'
 
-import LoadingCard from 'src/components/LoadingCard'
-import WarehouseForm from 'src/components/warehouse/WarehouseForm'
+import LoadingCard from 'src/components/LoadingCard/LoadingCard'
+import WarehouseForm from 'src/components/warehouse/WarehouseForm/WarehouseForm'
+import WarehouseNameCell from 'src/components/warehouse/WarehouseNameCell/WarehouseNameCell'
+import WarehouseTooltip from 'src/components/warehouse/WarehouseTooltip/WarehouseTooltip'
 
 export const QUERY = gql`
   query FindWarehouseById($id: String!) {
@@ -27,6 +29,20 @@ const UPDATE_WAREHOUSE_MUTATION = gql`
   }
 `
 
+const commonHeaderClasses =
+  'd-flex flex-direction-row align-items-center justify-content-between'
+const commonHeader = (id) => (
+  <Card.Header className={commonHeaderClasses}>
+    <span>
+      Editing Warehouse:&nbsp;
+      <strong>
+        <WarehouseNameCell id={id} />
+      </strong>
+    </span>
+    <WarehouseTooltip />
+  </Card.Header>
+)
+
 export const Loading = () => <LoadingCard />
 
 export const Empty = ({ id }) => {
@@ -38,6 +54,7 @@ export const Empty = ({ id }) => {
 
   return (
     <Card>
+      {commonHeader(id)}
       <Card.Body>Could not find Warehouse: {id}.</Card.Body>
     </Card>
   )
@@ -50,6 +67,7 @@ export const Failure = ({ id }) => {
 
   return (
     <Card>
+      {commonHeader(id)}
       <Card.Body>
         An error occured while trying to edit Warehouse: {id}.
       </Card.Body>
@@ -74,6 +92,14 @@ export const Success = ({ warehouse }) => {
 
   return (
     <Card>
+      {/* Intentional repeat to not have un-needed request */}
+      <Card.Header className={commonHeaderClasses}>
+        <span>
+          Editing Warehouse:&nbsp;
+          <strong>{warehouse.name}</strong>
+        </span>
+        <WarehouseTooltip />
+      </Card.Header>
       <Card.Body>
         <WarehouseForm
           onSave={onSave}
