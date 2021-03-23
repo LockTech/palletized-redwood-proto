@@ -13,6 +13,7 @@ import NavLink from 'src/components/NavLink/NavLink'
 import WarehouseDropdown from 'src/components/warehouse/WarehouseDropdown/WarehouseDropdown'
 import OrderDropdown from 'src/components/order/OrderDropdown/OrderDropdown'
 import ProductDropdown from 'src/components/product/ProductDropdown/ProductDropdown'
+import PalletDropdown from 'src/components/pallet/PalletDropdown/PalletDropdown'
 
 import './DashLayout.scss'
 
@@ -60,6 +61,7 @@ const DashLayout: React.FC = ({ children }) => {
         <Navbar.Collapse>
           <Nav className="mr-auto layout-nav-links">
             <NavLink linkTo={routes.dashboard()}>Dashboard</NavLink>
+            <PalletDropdown />
             <OrderDropdown />
             <ProductDropdown />
             <WarehouseDropdown />
