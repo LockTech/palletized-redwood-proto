@@ -39,8 +39,26 @@ const handleCommonProductErrors = (error) => {
 }
 
 // ==
-export const products = () => {
-  return db.product.findMany()
+export const products = async () => {
+  try {
+    return await db.product.findMany()
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonProductErrors(err)
+    throwUnexpectedError(err)
+  }
+}
+//
+
+// ==
+export const product = async ({ id }: { id: string }) => {
+  try {
+    return await db.product.findUnique({ where: { id } })
+  } catch (err) {
+    handleCommonErrors(err)
+    handleCommonProductErrors(err)
+    throwUnexpectedError(err)
+  }
 }
 //
 
