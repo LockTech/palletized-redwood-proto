@@ -1,8 +1,8 @@
 import Alert from 'react-bootstrap/Alert'
 import Card from 'react-bootstrap/Card'
 
-import LoadingCard from 'src/components/LoadingCard'
-import OrderList from 'src/components/order/OrderList'
+import LoadingCard from 'src/components/LoadingCard/LoadingCard'
+import OrderList from 'src/components/order/OrderList/OrderList'
 
 export const QUERY = gql`
   query OrderListQuery($warehouseId: String = null) {
@@ -10,8 +10,6 @@ export const QUERY = gql`
       id
       orderNumber
       jobName
-      updatedAt
-      createdAt
     }
   }
 `
@@ -38,7 +36,7 @@ export const Failure = ({ error }) => (
       <Card.Body>
         <Card.Title>No Orders Found</Card.Title>
         <Card.Text>
-          You do not have any Orders configured for your organization.
+          An error occured while fetching your organization&apos;s Order list.
         </Card.Text>
       </Card.Body>
     </Card>
