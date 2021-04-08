@@ -169,7 +169,7 @@ const LocationForm: React.FC<LocationFormProps> = ({
           {errors?.warehouse?.value?.message}
         </Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
-          {warehousesError && warehousesError.message}
+          {warehousesError?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
